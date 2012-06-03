@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'djcelery',
+    'django_fields',
     'djsupervisor',
     'gunicorn',
     'social_auth',

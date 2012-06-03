@@ -3,6 +3,7 @@ from django.db import models
 from django.conf import settings
 from social_auth.models import UserSocialAuth
 from datetime import datetime,timedelta
+from django_fields.tests import EncryptedCharField
 import twitter
 import tweepy
 
@@ -137,7 +138,7 @@ class CustomUser(models.Model):
         
 # Define Tweet 
 class Tweet(models.Model):
-    text = models.CharField(max_length=140, unique=True)
+    text = EncryptedCharField(max_length=140, unique=True)
     user = models.ForeignKey(UserSocialAuth)
     pub_date = models.DateTimeField('date published', auto_now_add=True)
     
