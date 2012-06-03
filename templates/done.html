@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block script %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://browserid.org/include.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+<div class="modal hide" id="myModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <p>One fine body…</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    <a href="#" class="btn btn-primary">Save changes</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span3">
+    <form action="/done/" method="post">
+    {% csrf_token %}
+	<div class="control-group">
+	  <label class="control-label" for="message">Save a tweet</label>
+	  <div class="controls">
+	    {{ form.text }}
+	    <p class="help-block"></p>
+	    {{ form.text.errors }}
+	  </div>
+	</div>
+      <input type="submit" value="Save" />
+    </form>
+  </div>
+
+  <div class="span9">
+    <h2>Post-tweets</h2> 
+    {% for tweet in tweets %}
+
+      <div class='tweet'>
+	<p>{{ tweet.text }}</p>
+	<i>{{ tweet.pretty_date }}</i>
+<!-- 	<a href="/tweet/open/{{tweet.pk}}"><i class="icon-eye-open icon-black"></i> Abrir</a> -->
+	<a href="/tweet/delete/{{tweet.pk}}"><i class="icon-trash icon-black"></i> Borrar</a><br/>
+      </div>
+    {% endfor %}
+
+  </div>
+</div>
+{% endblock %}

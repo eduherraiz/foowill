@@ -1,0 +1,5 @@
+#536682 <!-- Blue -->
+#B52C38 <!-- Red -->
+#EBD1B0 <!-- White -->
+#D9964B <!-- Orange yellow -->
+#DE6846 <!-- Orange red -->

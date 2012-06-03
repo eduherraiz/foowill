@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block script %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://browserid.org/include.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block heading %}Hello, {{ user.username }}{% endblock %}
+
+{% block content %}
+
+<div style="margin-bottom:30px;">
+<h2>Configuración</h2>
+
+<form action="/config/" method="post" class="form-horizontal well"> 
+
+{% csrf_token %}
+{{ form.non_field_errors }}
+    
+    <div class="control-group">
+      <label class="control-label" for="activity_interval">Activity interval</label>
+      <div class="controls">
+	{{ form.activity_interval }}
+	<p class="help-block">Tiempo que tiene que pasar sin actualizar tu cuenta en twitter para que empezemos a preocuparnos por tí.</p>
+	{{ form.activity_interval.errors }}
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="email">Email</label>
+      <div class="controls">
+	{{ form.email }}
+	<p class="help-block">Si no especificas dirección de email no podremos enviarte el email de verificación antes de darte por muerto y los post-tweets saldrán sin verificar si sigues vivo preguntándote por email.</p>
+	{{ form.email.errors }}
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="mail_interval">Mail interval</label>
+      <div class="controls">
+	{{ form.mail_interval }}
+	<p class="help-block">Tiempo de espera después de enviar el email de verificación. Transcurrido este tiempo si no has actualizado twitter o contestado al email te daremos por muerto y publicaremos tus post-tweets.</p>
+	{{ form.activity_interval.errors }}
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="publish_interval">Publish interval</label>
+      <div class="controls">
+	{{ form.publish_interval }}
+	<p class="help-block">Intervalo de publicación entre post-tweets. Con esto puedes escoger cada cuanto tiempo saldrán los post-tweets que guardarás.</p>
+	{{ form.activity_interval.errors }}
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="update_save">Update save</label>
+      <div class="controls">
+	{{ form.update_save }}
+	<p class="help-block">Actulizar estado de twitter cuando guardes un nuevo post-tweet.</p>
+	{{ form.update_save.errors }}
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Save changes</button>
+      <button class="btn">Cancel</button>
+    </div>
+
+</form>
+
+</div>
+
+{% endblock %}

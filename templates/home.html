@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block script %}{% endblock %}
+
+{% block content %}
+  <div class="hero-unit">
+    <strong>Foowill</strong> es una <strong>aplicación para twitter</strong> donde puedes <strong>guardar tweets</strong> (post-tweets) que serán enviados a tu cuenta <strong>cuando mueras</strong>.<br/>
+    Realmente esperamos no tener que enviarlos nunca, pero como las desgracias ocurren, te brindamos esta oportunidad.<br/>
+    Para comprobar si sigues entre nosotros iremos <strong>verificando</strong> cada cierto tiempo si has <strong>actualizado tu cuenta</strong> de twitter, ese tiempo lo puedes decidir tú.<br/>
+    Si pasado ese tiempo no leemos nada nuevo de tí tienes la opción de una <strong>última comprobación</strong>, te enviaremos <strong>un email</strong> a la dirección que prefieras para que puedas parar el envio de tus post-tweets y con un simple click avisarnos que afortunadamente sigues con vida.<br/>
+    <br/>Todo en 3 simples pasos:<br/>
+    1. <strong>Logueate</strong> con tu cuenta de twitter aceptando que enviemos mensajes en tu nombre.<br/>
+    2. <strong>Configura</strong> la aplicación añadiendo tu cuenta de correo y los demás parámetros.<br/>
+    3. <strong>Guarda</strong> todos los tweets que quieras.<br/>
+    <br/>
+    
+    {% if logued %}
+	<strong>Ya estás logueado</strong>. 
+	<a href="/config" >Configura la aplicación</a> o 
+	<a href="/done" >Guarda tus tweets</a>
+    {% else %}
+	<a href="{% url socialauth_begin 'twitter' %}" class="btn btn-primary btn-large">Logeate con Twitter</a>
+    {% endif %}
+  </div>
+
+  <!-- Example row of columns -->
+<!--  <div class="row">
+    <div class="span4">
+      <h2>Seguridad</h2>
+	<p>Todos los mensajes se guardarán encriptados y nadie podrá leerlos hasta el día fatídico que no sepamos de tí.</p>
+      <p><a class="btn" href="#">Más detalles &raquo;</a></p>
+    </div>
+    <div class="span4">
+      <h2>Heading</h2>
+	<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+      <p><a class="btn" href="#">View details &raquo;</a></p>
+    </div>
+    <div class="span4">
+      <h2>Heading</h2>
+      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+      <p><a class="btn" href="#">View details &raquo;</a></p>
+    </div>
+  </div>-->
+
+{% endblock %}
+
+
