@@ -239,6 +239,14 @@ CELERYBEAT_SCHEDULE = {
     },
 }
 
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+#EMAIL_FILE_PATH = '/tmp/app-messages' # change this to a proper location
+
+#TODO:Create account and redirects to admin
+EMAIL_PROJECT = "info@foowill.com"
+
 import djcelery
 djcelery.setup_loader()
 

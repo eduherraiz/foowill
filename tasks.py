@@ -27,7 +27,7 @@ def forensic():
 	    user.save()
 	    logger.info("User %s, is HALF-DEAD (on twitter) - [%s]" % (user.username, datetime.now()))
 	    
-	    #TODO: if email: Send email to ping the user else: dead!
+	    user.send_mail_halfdead()
 	    
 @task
 def killer_saver():
