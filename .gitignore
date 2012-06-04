@@ -1,0 +1,4 @@
+*~
+*.pyc
+.nfs*
+admin/*
