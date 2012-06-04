@@ -166,10 +166,11 @@ def updatestatus(request):
 		try:
 		    user.update_twitter_status(tweet)
 		except TweepError:
-		    count = Tweet.objects.filter(user=instance).count()
-		    user.update_twitter_status("%s (%d)" % (tweet, count))
-		except:
-		    pass
+		    try:
+			count = Tweet.objects.filter(user=instance).count()
+			user.update_twitter_status("%s (%d)" % (tweet, count))
+		    except:
+			pass
   
     return HttpResponseRedirect('/done/') # Redirect after POST
     
