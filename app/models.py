@@ -70,15 +70,10 @@ class CustomUser(models.Model):
     #if we are waiting for a mail ping
     wait_mail = models.BooleanField(default=False)
     
-    
-    
-    UPDATE_CHOICES = (
-      ('always', 'Always'), ##DEFAULT
-      ('only', 'Only the first time'),
-      ('never', 'Never')
-    )
-
-    update_save = models.CharField(max_length=15, choices=UPDATE_CHOICES, default='always', blank=True)
+    #For the ask in the modal
+    neverupdate = models.BooleanField(default=False)
+    alwaysupdate = models.BooleanField(default=False)
+    nottodayupdate = models.DateTimeField(blank=True, null=True)
 
     objects = CustomUserManager()
 
@@ -102,7 +97,7 @@ class CustomUser(models.Model):
 		return True
 
     def update_twitter_status(self, text):
-	if self.update_save == "always" and text:
+	if text:
 	    # == OAuth Authentication ==
 	    #
 	    # This mode of authentication is the new preferred way
@@ -132,7 +127,15 @@ class CustomUser(models.Model):
 	    # timeline. The "Read and Write" setting is on https://dev.twitter.com/apps
 	    api.update_status(text)
 
-		
+    def show_modal(self):
+	if self.alwaysupdate:
+	    return False
+	if self.neverupdate:
+	    return False
+	if self.nottodayupdate and (self.nottodayupdate > (datetime.now() - timedelta(days=1))):
+	    return False
+	return True
+	
     def is_authenticated(self):
         return True
         

@@ -1,3 +1,5 @@
+ #-*- coding: UTF-8 -*-
+
 from django.http import HttpResponseRedirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
@@ -5,6 +7,9 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, redirect
 from django.contrib.messages.api import get_messages
 from django.conf import settings
+from datetime import datetime
+
+from tweepy.error import TweepError
 
 from social_auth import __version__ as version
 from social_auth.utils import setting
@@ -54,7 +59,6 @@ def config(request):
 	    #Save the user config in the table
 	    user.username = request.user.username
 	    user.email = form.cleaned_data['email']
-	    user.update_save = form.cleaned_data['update_save']
 	    user.publish_interval = form.cleaned_data['publish_interval']
 	    user.mail_interval = form.cleaned_data['mail_interval']
 	    user.activity_interval = form.cleaned_data['activity_interval']
@@ -82,6 +86,7 @@ def done(request):
     """Login complete view, displays user data"""
     instance = UserSocialAuth.objects.filter(provider='twitter',user=request.user).get()
     user = CustomUser.objects.filter(user=instance).get()
+    newtweet = False
    
     if request.method == 'POST': # If the form has been submitted...
 	form = TweetForm(request.POST) # A form bound to the POST data
@@ -92,34 +97,37 @@ def done(request):
 	    
 	    t = Tweet(text=text, user=instance)
 	    t.save()
-	    
-	    count = Tweet.objects.filter(user=instance).count()
-	    try:
-		user.update_twitter_status("I saved a post-tweet in foowill.com (%d) " % count)
-	    except:
-		pass
-	    
-	    return HttpResponseRedirect('/done/') # Redirect after POST
+	    newtweet = True
+	    if user.alwaysupdate:
+		tweet = "He guardado un tweet que podrás leer cuando muera gracias a http://foowill.com @foo_will"
+		newtweet = False
+		try:
+		    user.update_twitter_status(tweet)
+		except TweepError:
+		    count = Tweet.objects.filter(user=instance).count()
+		    user.update_twitter_status("%s (%d)" % (tweet, count))
+		except:
+		    pass
     else:
 	form = TweetForm() # An unbound form
 	
     tweets = Tweet.objects.filter(user=instance).order_by('-pub_date')
-
+    updatetweetform = UpdateTweetForm()
+    
     ctx = {
-        'version': version,
-        'last_login': request.session.get('social_auth_last_login_backend'),
-        'tokens': instance.tokens,
         'form': form,
         'tweets': tweets,
-        'config': user,
+        'user': user,
         'logued': True,
+        'newtweet': newtweet,
+        'updatetweetform': updatetweetform,
     }
     
     return render_to_response('done.html', ctx, RequestContext(request))
     
 @login_required
 def delete_tweet(request, id_tweet):
-    """Login complete view, displays user data"""
+    """Delete tweet"""
     instance = UserSocialAuth.objects.filter(provider='twitter',user=request.user).get()
     user = CustomUser.objects.filter(user=instance).get()
    
@@ -128,6 +136,42 @@ def delete_tweet(request, id_tweet):
     
     return HttpResponseRedirect('/done/') # Redirect after POST
 
+@login_required
+def updatestatus(request):
+    """Update user status in her twitter account"""
+    instance = UserSocialAuth.objects.filter(provider='twitter',user=request.user).get()
+    user = CustomUser.objects.filter(user=instance).get()
+    sendupdate = False
+    #Saving user option for future updates
+    if request.method == 'POST': # If the form has been submitted...
+	if 'never' in request.POST:
+	    user.neverupdate = True
+	    user.save()
+	elif 'nottoday' in request.POST:
+	    user.nottodayupdate = datetime.now()
+	    user.save()
+	elif 'ever' in request.POST:
+	    user.alwaysupdate = True
+	    user.save()
+	    sendupdate = True
+	elif 'now' in request.POST:
+	    sendupdate = True
+
+	if sendupdate:
+	    form = UpdateTweetForm(request.POST) # A form bound to the POST data
+	    if form.is_valid(): # All validation rules pass
+		#Send the tweet to twitter
+		tweet = form.cleaned_data['tweet']
+		
+		try:
+		    user.update_twitter_status(tweet)
+		except TweepError:
+		    count = Tweet.objects.filter(user=instance).count()
+		    user.update_twitter_status("%s (%d)" % (tweet, count))
+		except:
+		    pass
+  
+    return HttpResponseRedirect('/done/') # Redirect after POST
     
     
 def error(request):
