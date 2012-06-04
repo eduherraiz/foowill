@@ -1,24 +1,36 @@
 {% extends "base.html" %}
 
 {% block script %}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script src="https://browserid.org/include.js" type="text/javascript"></script>
+
+  {% if newtweet and user.show_modal %}
+    <script>
+    $('#myModal').modal('show')
+    </script>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
-<div class="modal hide" id="myModal">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>Modal header</h3>
-  </div>
-  <div class="modal-body">
-    <p>One fine body…</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary">Save changes</a>
-  </div>
-</div>
+    {% if newtweet and user.show_modal %}
+	<div class="modal hide" id="myModal">
+	<div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal">×</button>
+	    <h3>¿Quieres actualizar tu estado de twitter?</h3>
+	</div>
+	
+	<form action="/updatestatus/" method="post">
+	{% csrf_token %}
+	    <div class="modal-body">
+	    {{ updatetweetform.tweet }}
+	    </div>
+	    <div class="modal-footer">
+	    <input type="submit" class="btn btn-danger" name="never" value="Nunca">
+	    <input type="submit" class="btn btn-warning" name="nottoday" value="Hoy no">
+	    <input type="submit" class="btn btn-success" name="ever" value="Ahora y siempre">
+	    <input type="submit" class="btn btn-info"  name="now" value="Solo ahora">
+	    </div>
+	</form>
+	</div>
+    {% endif %}
 
 <div class="row">
   <div class="span3">
