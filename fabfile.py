@@ -1,44 +1,35 @@
 from fabric.api import *
 env.use_ssh_config = True
 
-SERVER_PATH = '/mnt/xuflus/Webs/foowill'
-
 env.directory = '/mnt/xuflus/Webs/foowill'
-env.activate = 'source /mnt/xuflus/virtualenvs/foowill/bin/activate'
 env.deploy_user = 'root'
-
-def virtualenv(command):
-    with cd(env.directory):
-        sudo(env.activate + '&&' + command, user=env.deploy_user)
-
-
-def server():
-    env.hosts = ['foowill.com']
-    env.user = 'root'
-    #env.key_filename = ['my-server-ssh-key']
-    
-#def restart_webserver():
-    #""" Restart NGINX & UWSGI
-    #"""
-    #sudo("stop uwsgi-pricedag")
-    #sudo("start uwsgi-pricedag")
+env.hosts = ['root@foowill.com']
+workon = "source /root/.virtualenvs/foowill/bin/activate && cd %s" % env.directory
 
 def syncdb():
-    with cd(SERVER_PATH):
         run('python manage.py syncdb')
+        run('python manage.py migrate')
 
 def git_push():
     'Local push to the repository.'
-    with cd(env.directory):    
+    with cd(env.directory):
         local('git push -u origin master')
         
 def git_pull():
     'Updates the repository.'
-    with cd(env.directory):    
-        run('git pull')
+    with cd(env.directory):
+	run('git pull')
+        
+def run_webserver():
+    'Restart nginx and run the supervisor for celery, redis, anf gunicorn'
+    run("/etc/init.d/nginx restart")
+    with prefix(workon):
+	run("python manage.py supervisor")
         
 def deploy():
-    local("source /usr/bin/foowill")
-    local("git push -u origin master")
-    run("source foowill")
-    run("git pull")
+    #git_push()
+    #server()
+    #git_pull()
+    #syncdb()
+    run_webserver()
+    

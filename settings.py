@@ -204,10 +204,10 @@ LOGIN_ERROR_URL    = '/'
 SOCIAL_AUTH_COMPLETE_URL_NAME  = 'socialauth_complete'
 SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
 
-BROKER_HOST = "foowill.com"
+BROKER_HOST = "127.0.0.1"
 BROKER_BACKEND="redis"
 REDIS_PORT=6379
-REDIS_HOST = "foowill.com"
+REDIS_HOST = "127.0.0.1"
 BROKER_USER = ""
 BROKER_PASSWORD =""
 BROKER_VHOST = "0"
@@ -250,10 +250,10 @@ EMAIL_PROJECT = "info@foowill.com"
 import djcelery
 djcelery.setup_loader()
 
-try:
-   from local_settings import *
-except ImportError, e:
-   pass
+#try:
+   #from local_settings import *
+#except ImportError, e:
+   #pass
 
 #Celery
 #python manage.py celeryd -E -B --loglevel=INFO -n w1.hanzo

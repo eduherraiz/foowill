@@ -57462,3 +57462,612 @@ Configuration ->
 2012-06-03 01:37:13,351 DEBG fd 7 closed, stopped monitoring <POutputDispatcher at 164129804 for <Subprocess at 164013900 with name celeryd in state STOPPING> (stdout)>
 2012-06-03 01:37:13,351 INFO stopped: celeryd (exit status 0)
 2012-06-03 01:37:13,351 DEBG received SIGCLD indicating a child quit
+2012-06-06 02:29:00,735 INFO RPC interface 'supervisor' initialized
+2012-06-06 02:29:00,862 INFO supervisord started with pid 8843
+2012-06-06 02:29:01,864 INFO spawned: 'celeryd' with pid 8869
+2012-06-06 02:29:01,866 INFO spawned: 'autoreload' with pid 8870
+2012-06-06 02:29:01,936 INFO spawned: ' gunicorn' with pid 8871
+2012-06-06 02:29:01,938 INFO spawned: 'celerybeat' with pid 8872
+2012-06-06 02:29:02,464 DEBG ' gunicorn' stdout output:
+2012-06-06 02:29:02 [8871] [INFO] Starting gunicorn 0.14.3
+
+2012-06-06 02:29:02,465 DEBG ' gunicorn' stdout output:
+2012-06-06 02:29:02 [8871] [INFO] Listening at: http://127.0.0.1:8000 (8871)
+
+2012-06-06 02:29:02,465 DEBG ' gunicorn' stdout output:
+2012-06-06 02:29:02 [8871] [INFO] Using worker: sync
+
+2012-06-06 02:29:02,466 DEBG ' gunicorn' stdout output:
+2012-06-06 02:29:02 [8921] [INFO] Booting worker with pid: 8921
+
+2012-06-06 02:29:02,549 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:02,549: WARNING/MainProcess] celerybeat v2.5.3 is starting.
+
+2012-06-06 02:29:02,549 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:02,549: WARNING/MainProcess] /home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/loaders.py:108: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warnings.warn("Using settings.DEBUG leads to a memory leak, never "
+
+2012-06-06 02:29:02,570 DEBG 'celeryd' stdout output:
+/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/loaders.py:108: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warnings.warn("Using settings.DEBUG leads to a memory leak, never "
+
+2012-06-06 02:29:03,316 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:03,316: WARNING/MainProcess] -------------- celery@hanzo v2.5.3
+---- **** -----
+--- * ***  * -- [Configuration]
+-- * - **** ---   . broker:      redis://127.0.0.1:6379/0
+- ** ----------   . loader:      djcelery.loaders.DjangoLoader
+- ** ----------   . logfile:     [stderr]@INFO
+- ** ----------   . concurrency: 4
+- ** ----------   . events:      ON
+- *** --- * ---   . beat:        OFF
+-- ******* ----
+--- ***** ----- [Queues]
+ --------------   . celery:      exchange:celery (direct) binding:celery
+                  
+
+[Tasks]
+  . tasks.forensic
+  . tasks.killer_saver
+
+2012-06-06 02:29:03,316 INFO success: autoreload entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2012-06-06 02:29:03,317 INFO success:  gunicorn entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2012-06-06 02:29:03,508 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:03,508: INFO/PoolWorker-1] child process calling self.run()
+
+2012-06-06 02:29:03,509 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:03,509: INFO/PoolWorker-2] child process calling self.run()
+
+2012-06-06 02:29:03,511 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:03,510: INFO/PoolWorker-3] child process calling self.run()
+
+2012-06-06 02:29:03,512 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:03,512: INFO/PoolWorker-4] child process calling self.run()
+
+2012-06-06 02:29:03,513 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:03,512: WARNING/MainProcess] celery@hanzo has started.
+
+2012-06-06 02:29:03,611 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:03,610: WARNING/MainProcess] __    -    ... __   -        _
+Configuration ->
+    . broker -> redis://127.0.0.1:6379/0
+    . loader -> djcelery.loaders.DjangoLoader
+    . scheduler -> djcelery.schedulers.DatabaseScheduler
+
+    . logfile -> [stderr]@INFO
+    . maxinterval -> 5.00 minutes (300s)
+
+2012-06-06 02:29:03,639 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:03,611: INFO/MainProcess] Celerybeat: Starting...
+
+2012-06-06 02:29:03,846 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:03,844: CRITICAL/MainProcess] celerybeat raised exception <class 'django.db.utils.DatabaseError'>: DatabaseError('no such table: djcelery_periodictask',)
+Traceback (most recent call last):
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/apps/beat.py", line 88, in start_scheduler
+    beat.start()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 397, in start
+    humanize_seconds(self.scheduler.max_interval))
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/kombu/utils/__init__.py", line 229, in __get__
+    value = obj.__dict__[self.__name__] = self.__get(obj)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 436, in scheduler
+    return self.get_scheduler()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 431, in get_scheduler
+    lazy=lazy)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/utils/__init__.py", line 304, in instantiate
+    return get_cls_by_name(name)(*args, **kwargs)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/schedulers.py", line 119, in __init__
+    Scheduler.__init__(self, *args, **kwargs)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 160, in __init__
+    self.setup_schedule()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/schedulers.py", line 123, in setup_schedule
+    self.install_default_entries(self.schedule)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 313, in schedule
+    return self.get_schedule()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/schedulers.py", line 204, in get_schedule
+    self._schedule = self.all_as_schedule()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/schedulers.py", line 129, in all_as_schedule
+    for model in self.Model.objects.enabled():
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/query.py", line 118, in _result_iter
+    self._fill_cache()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/query.py", line 875, in _fill_cache
+    self._result_cache.append(self._iter.next())
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/query.py", line 291, in iterator
+    for row in compiler.results_iter():
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 763, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 818, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/backends/util.py", line 40, in execute
+    return self.cursor.execute(sql, params)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/backends/sqlite3/base.py", line 337, in execute
+    return Database.Cursor.execute(self, query, params)
+DatabaseError: no such table: djcelery_periodictask
+
+2012-06-06 02:29:04,034 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:04,034: INFO/MainProcess] process shutting down
+
+2012-06-06 02:29:04,059 DEBG fd 16 closed, stopped monitoring <POutputDispatcher at 152928076 for <Subprocess at 152643820 with name celerybeat in state STARTING> (stdout)>
+2012-06-06 02:29:04,059 INFO exited: celerybeat (exit status 0; not expected)
+2012-06-06 02:29:04,059 DEBG received SIGCLD indicating a child quit
+2012-06-06 02:29:05,062 INFO spawned: 'celerybeat' with pid 8962
+2012-06-06 02:29:06,014 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:06,014: WARNING/MainProcess] celerybeat v2.5.3 is starting.
+
+2012-06-06 02:29:06,014 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:06,014: WARNING/MainProcess] /home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/loaders.py:108: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warnings.warn("Using settings.DEBUG leads to a memory leak, never "
+
+2012-06-06 02:29:06,377 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:06,377: WARNING/MainProcess] __    -    ... __   -        _
+Configuration ->
+    . broker -> redis://127.0.0.1:6379/0
+    . loader -> djcelery.loaders.DjangoLoader
+    . scheduler -> djcelery.schedulers.DatabaseScheduler
+
+    . logfile -> [stderr]@INFO
+    . maxinterval -> 5.00 minutes (300s)
+
+2012-06-06 02:29:06,377 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:06,377: INFO/MainProcess] Celerybeat: Starting...
+
+2012-06-06 02:29:06,391 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:06,389: CRITICAL/MainProcess] celerybeat raised exception <class 'django.db.utils.DatabaseError'>: DatabaseError('no such table: djcelery_periodictask',)
+Traceback (most recent call last):
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/apps/beat.py", line 88, in start_scheduler
+    beat.start()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 397, in start
+    humanize_seconds(self.scheduler.max_interval))
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/kombu/utils/__init__.py", line 229, in __get__
+    value = obj.__dict__[self.__name__] = self.__get(obj)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 436, in scheduler
+    return self.get_scheduler()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 431, in get_scheduler
+    lazy=lazy)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/utils/__init__.py", line 304, in instantiate
+    return get_cls_by_name(name)(*args, **kwargs)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/schedulers.py", line 119, in __init__
+    Scheduler.__init__(self, *args, **kwargs)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 160, in __init__
+    self.setup_schedule()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/schedulers.py", line 123, in setup_schedule
+    self.install_default_entries(self.schedule)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 313, in schedule
+    return self.get_schedule()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/schedulers.py", line 204, in get_schedule
+    self._schedule = self.all_as_schedule()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/schedulers.py", line 129, in all_as_schedule
+    for model in self.Model.objects.enabled():
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/query.py", line 118, in _result_iter
+    self._fill_cache()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/query.py", line 875, in _fill_cache
+    self._result_cache.append(self._iter.next())
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/query.py", line 291, in iterator
+    for row in compiler.results_iter():
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 763, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 818, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/backends/util.py", line 40, in execute
+    return self.cursor.execute(sql, params)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/backends/sqlite3/base.py", line 337, in execute
+    return Database.Cursor.execute(self, query, params)
+DatabaseError: no such table: djcelery_periodictask
+
+2012-06-06 02:29:06,470 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:06,469: INFO/MainProcess] process shutting down
+
+2012-06-06 02:29:06,493 DEBG fd 16 closed, stopped monitoring <POutputDispatcher at 152948812 for <Subprocess at 152643820 with name celerybeat in state STARTING> (stdout)>
+2012-06-06 02:29:06,494 INFO exited: celerybeat (exit status 0; not expected)
+2012-06-06 02:29:06,494 DEBG received SIGCLD indicating a child quit
+2012-06-06 02:29:07,494 INFO success: celeryd entered RUNNING state, process has stayed up for > than 5 seconds (startsecs)
+2012-06-06 02:29:08,496 INFO spawned: 'celerybeat' with pid 8980
+2012-06-06 02:29:09,505 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:09,505: WARNING/MainProcess] celerybeat v2.5.3 is starting.
+
+2012-06-06 02:29:09,506 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:09,505: WARNING/MainProcess] /home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/loaders.py:108: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warnings.warn("Using settings.DEBUG leads to a memory leak, never "
+
+2012-06-06 02:29:09,882 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:09,881: WARNING/MainProcess] __    -    ... __   -        _
+Configuration ->
+    . broker -> redis://127.0.0.1:6379/0
+    . loader -> djcelery.loaders.DjangoLoader
+    . scheduler -> djcelery.schedulers.DatabaseScheduler
+
+    . logfile -> [stderr]@INFO
+    . maxinterval -> 5.00 minutes (300s)
+
+2012-06-06 02:29:09,882 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:09,882: INFO/MainProcess] Celerybeat: Starting...
+
+2012-06-06 02:29:09,897 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:09,894: CRITICAL/MainProcess] celerybeat raised exception <class 'django.db.utils.DatabaseError'>: DatabaseError('no such table: djcelery_periodictask',)
+Traceback (most recent call last):
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/apps/beat.py", line 88, in start_scheduler
+    beat.start()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 397, in start
+    humanize_seconds(self.scheduler.max_interval))
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/kombu/utils/__init__.py", line 229, in __get__
+    value = obj.__dict__[self.__name__] = self.__get(obj)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 436, in scheduler
+    return self.get_scheduler()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 431, in get_scheduler
+    lazy=lazy)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/utils/__init__.py", line 304, in instantiate
+    return get_cls_by_name(name)(*args, **kwargs)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/schedulers.py", line 119, in __init__
+    Scheduler.__init__(self, *args, **kwargs)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 160, in __init__
+    self.setup_schedule()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/schedulers.py", line 123, in setup_schedule
+    self.install_default_entries(self.schedule)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 313, in schedule
+    return self.get_schedule()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/schedulers.py", line 204, in get_schedule
+    self._schedule = self.all_as_schedule()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/schedulers.py", line 129, in all_as_schedule
+    for model in self.Model.objects.enabled():
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/query.py", line 118, in _result_iter
+    self._fill_cache()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/query.py", line 875, in _fill_cache
+    self._result_cache.append(self._iter.next())
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/query.py", line 291, in iterator
+    for row in compiler.results_iter():
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 763, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 818, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/backends/util.py", line 40, in execute
+    return self.cursor.execute(sql, params)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/backends/sqlite3/base.py", line 337, in execute
+    return Database.Cursor.execute(self, query, params)
+DatabaseError: no such table: djcelery_periodictask
+
+2012-06-06 02:29:09,944 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:09,943: INFO/MainProcess] process shutting down
+
+2012-06-06 02:29:09,967 DEBG fd 16 closed, stopped monitoring <POutputDispatcher at 152950156 for <Subprocess at 152643820 with name celerybeat in state STARTING> (stdout)>
+2012-06-06 02:29:09,967 INFO exited: celerybeat (exit status 0; not expected)
+2012-06-06 02:29:09,967 DEBG received SIGCLD indicating a child quit
+2012-06-06 02:29:11,531 WARN received SIGINT indicating exit request
+2012-06-06 02:29:11,532 INFO waiting for autoreload, celeryd,  gunicorn to die
+2012-06-06 02:29:12,533 DEBG killing  gunicorn (pid 8871) with signal SIGTERM
+2012-06-06 02:29:12,534 DEBG ' gunicorn' stdout output:
+2012-06-06 02:29:12 [8871] [INFO] Handling signal: term
+
+2012-06-06 02:29:12,835 DEBG ' gunicorn' stdout output:
+2012-06-06 02:29:12 [8921] [INFO] Worker exiting (pid: 8921)
+
+2012-06-06 02:29:12,854 DEBG ' gunicorn' stdout output:
+2012-06-06 02:29:12 [8871] [INFO] Shutting down: Master
+
+2012-06-06 02:29:12,871 DEBG fd 13 closed, stopped monitoring <POutputDispatcher at 152927916 for <Subprocess at 152643692 with name  gunicorn in state STOPPING> (stdout)>
+2012-06-06 02:29:12,872 INFO stopped:  gunicorn (exit status 0)
+2012-06-06 02:29:12,872 DEBG received SIGCLD indicating a child quit
+2012-06-06 02:29:12,872 DEBG killing autoreload (pid 8870) with signal SIGTERM
+2012-06-06 02:29:12,874 DEBG fd 10 closed, stopped monitoring <POutputDispatcher at 152927788 for <Subprocess at 152643756 with name autoreload in state STOPPING> (stdout)>
+2012-06-06 02:29:13,202 INFO stopped: autoreload (terminated by SIGTERM)
+2012-06-06 02:29:13,202 DEBG received SIGCLD indicating a child quit
+2012-06-06 02:29:13,202 DEBG killing celeryd (pid 8869) with signal SIGTERM
+2012-06-06 02:29:13,203 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:13,203: WARNING/MainProcess] celeryd: Warm shutdown (MainProcess)
+
+2012-06-06 02:29:13,924 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:13,923: INFO/PoolWorker-2] process shutting down
+[2012-06-06 02:29:13,923: INFO/PoolWorker-4] process shutting down
+[2012-06-06 02:29:13,923: INFO/PoolWorker-2] process exiting with exitcode 0
+[2012-06-06 02:29:13,923: INFO/PoolWorker-4] process exiting with exitcode 0
+
+2012-06-06 02:29:13,925 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:13,924: INFO/PoolWorker-3] process shutting down
+[2012-06-06 02:29:13,924: INFO/PoolWorker-1] process shutting down
+[2012-06-06 02:29:13,925: INFO/PoolWorker-3] process exiting with exitcode 0
+
+2012-06-06 02:29:13,926 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:13,925: INFO/PoolWorker-1] process exiting with exitcode 0
+
+2012-06-06 02:29:14,529 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:14,528: INFO/MainProcess] process shutting down
+
+2012-06-06 02:29:14,556 DEBG fd 7 closed, stopped monitoring <POutputDispatcher at 152927692 for <Subprocess at 152643628 with name celeryd in state STOPPING> (stdout)>
+2012-06-06 02:29:14,556 INFO stopped: celeryd (exit status 0)
+2012-06-06 02:29:14,556 DEBG received SIGCLD indicating a child quit
+2012-06-06 02:29:31,925 INFO RPC interface 'supervisor' initialized
+2012-06-06 02:29:33,495 INFO supervisord started with pid 8995
+2012-06-06 02:29:34,498 INFO spawned: 'celeryd' with pid 9020
+2012-06-06 02:29:34,500 INFO spawned: 'autoreload' with pid 9021
+2012-06-06 02:29:34,696 INFO spawned: ' gunicorn' with pid 9022
+2012-06-06 02:29:34,699 INFO spawned: 'celerybeat' with pid 9023
+2012-06-06 02:29:35,163 DEBG 'celeryd' stdout output:
+/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/loaders.py:108: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warnings.warn("Using settings.DEBUG leads to a memory leak, never "
+
+2012-06-06 02:29:35,251 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:35,251: WARNING/MainProcess] -------------- celery@hanzo v2.5.3
+---- **** -----
+--- * ***  * -- [Configuration]
+-- * - **** ---   . broker:      redis://127.0.0.1:6379/0
+- ** ----------   . loader:      djcelery.loaders.DjangoLoader
+- ** ----------   . logfile:     [stderr]@INFO
+- ** ----------   . concurrency: 4
+- ** ----------   . events:      ON
+- *** --- * ---   . beat:        OFF
+-- ******* ----
+--- ***** ----- [Queues]
+ --------------   . celery:      exchange:celery (direct) binding:celery
+                  
+
+[Tasks]
+  . tasks.forensic
+  . tasks.killer_saver
+
+2012-06-06 02:29:35,252 DEBG ' gunicorn' stdout output:
+2012-06-06 02:29:35 [9022] [INFO] Starting gunicorn 0.14.3
+2012-06-06 02:29:35 [9022] [INFO] Listening at: http://127.0.0.1:8000 (9022)
+2012-06-06 02:29:35 [9022] [INFO] Using worker: sync
+
+2012-06-06 02:29:35,254 DEBG ' gunicorn' stdout output:
+2012-06-06 02:29:35 [9086] [INFO] Booting worker with pid: 9086
+
+2012-06-06 02:29:35,268 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:35,268: INFO/PoolWorker-3] child process calling self.run()
+
+2012-06-06 02:29:35,274 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:35,273: INFO/PoolWorker-2] child process calling self.run()
+
+2012-06-06 02:29:35,275 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:35,274: INFO/PoolWorker-1] child process calling self.run()
+
+2012-06-06 02:29:35,278 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:35,278: INFO/PoolWorker-4] child process calling self.run()
+
+2012-06-06 02:29:35,286 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:35,285: WARNING/MainProcess] celery@hanzo has started.
+
+2012-06-06 02:29:35,308 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:35,308: WARNING/MainProcess] celerybeat v2.5.3 is starting.
+
+2012-06-06 02:29:35,308 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:35,308: WARNING/MainProcess] /home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/loaders.py:108: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warnings.warn("Using settings.DEBUG leads to a memory leak, never "
+
+2012-06-06 02:29:35,853 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:35,853: WARNING/MainProcess] __    -    ... __   -        _
+Configuration ->
+    . broker -> redis://127.0.0.1:6379/0
+    . loader -> djcelery.loaders.DjangoLoader
+    . scheduler -> djcelery.schedulers.DatabaseScheduler
+
+    . logfile -> [stderr]@INFO
+    . maxinterval -> 5.00 minutes (300s)
+
+2012-06-06 02:29:35,854 INFO success: autoreload entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2012-06-06 02:29:35,854 INFO success:  gunicorn entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2012-06-06 02:29:35,854 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:35,853: INFO/MainProcess] Celerybeat: Starting...
+
+2012-06-06 02:29:35,868 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:35,865: CRITICAL/MainProcess] celerybeat raised exception <class 'django.db.utils.DatabaseError'>: DatabaseError('no such table: djcelery_periodictask',)
+Traceback (most recent call last):
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/apps/beat.py", line 88, in start_scheduler
+    beat.start()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 397, in start
+    humanize_seconds(self.scheduler.max_interval))
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/kombu/utils/__init__.py", line 229, in __get__
+    value = obj.__dict__[self.__name__] = self.__get(obj)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 436, in scheduler
+    return self.get_scheduler()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 431, in get_scheduler
+    lazy=lazy)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/utils/__init__.py", line 304, in instantiate
+    return get_cls_by_name(name)(*args, **kwargs)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/schedulers.py", line 119, in __init__
+    Scheduler.__init__(self, *args, **kwargs)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 160, in __init__
+    self.setup_schedule()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/schedulers.py", line 123, in setup_schedule
+    self.install_default_entries(self.schedule)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/celery/beat.py", line 313, in schedule
+    return self.get_schedule()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/schedulers.py", line 204, in get_schedule
+    self._schedule = self.all_as_schedule()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/schedulers.py", line 129, in all_as_schedule
+    for model in self.Model.objects.enabled():
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/query.py", line 118, in _result_iter
+    self._fill_cache()
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/query.py", line 875, in _fill_cache
+    self._result_cache.append(self._iter.next())
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/query.py", line 291, in iterator
+    for row in compiler.results_iter():
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 763, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 818, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/backends/util.py", line 40, in execute
+    return self.cursor.execute(sql, params)
+  File "/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/django/db/backends/sqlite3/base.py", line 337, in execute
+    return Database.Cursor.execute(self, query, params)
+DatabaseError: no such table: djcelery_periodictask
+
+2012-06-06 02:29:36,125 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:29:36,125: INFO/MainProcess] process shutting down
+
+2012-06-06 02:29:36,146 DEBG fd 16 closed, stopped monitoring <POutputDispatcher at 182030444 for <Subprocess at 181733868 with name celerybeat in state STARTING> (stdout)>
+2012-06-06 02:29:36,146 INFO exited: celerybeat (exit status 0; not expected)
+2012-06-06 02:29:36,146 DEBG received SIGCLD indicating a child quit
+2012-06-06 02:29:37,150 INFO spawned: 'celerybeat' with pid 9114
+2012-06-06 02:29:37,395 WARN received SIGINT indicating exit request
+2012-06-06 02:29:37,396 DEBG killing celerybeat (pid 9114) with signal SIGTERM
+2012-06-06 02:29:37,396 INFO waiting for autoreload, celeryd,  gunicorn, celerybeat to die
+2012-06-06 02:29:37,396 DEBG fd 16 closed, stopped monitoring <POutputDispatcher at 182030668 for <Subprocess at 181733868 with name celerybeat in state STOPPING> (stdout)>
+2012-06-06 02:29:37,397 INFO stopped: celerybeat (terminated by SIGTERM)
+2012-06-06 02:29:37,397 DEBG received SIGCLD indicating a child quit
+2012-06-06 02:29:37,397 DEBG killing  gunicorn (pid 9022) with signal SIGTERM
+2012-06-06 02:29:37,398 DEBG ' gunicorn' stdout output:
+2012-06-06 02:29:37 [9022] [INFO] Handling signal: term
+
+2012-06-06 02:29:37,699 DEBG ' gunicorn' stdout output:
+2012-06-06 02:29:37 [9086] [INFO] Worker exiting (pid: 9086)
+
+2012-06-06 02:29:37,720 DEBG ' gunicorn' stdout output:
+2012-06-06 02:29:37 [9022] [INFO] Shutting down: Master
+
+2012-06-06 02:29:37,735 DEBG fd 13 closed, stopped monitoring <POutputDispatcher at 182009772 for <Subprocess at 181733740 with name  gunicorn in state STOPPING> (stdout)>
+2012-06-06 02:29:37,735 INFO stopped:  gunicorn (exit status 0)
+2012-06-06 02:29:37,735 DEBG received SIGCLD indicating a child quit
+2012-06-06 02:29:37,735 DEBG killing autoreload (pid 9021) with signal SIGTERM
+2012-06-06 02:29:37,737 DEBG fd 10 closed, stopped monitoring <POutputDispatcher at 182009644 for <Subprocess at 181733804 with name autoreload in state STOPPING> (stdout)>
+2012-06-06 02:29:38,106 INFO stopped: autoreload (terminated by SIGTERM)
+2012-06-06 02:29:38,106 DEBG received SIGCLD indicating a child quit
+2012-06-06 02:29:38,107 DEBG killing celeryd (pid 9020) with signal SIGTERM
+2012-06-06 02:29:38,107 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:38,107: WARNING/MainProcess] celeryd: Warm shutdown (MainProcess)
+
+2012-06-06 02:29:38,483 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:38,482: INFO/PoolWorker-4] process shutting down
+
+2012-06-06 02:29:38,483 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:38,482: INFO/PoolWorker-4] process exiting with exitcode 0
+
+2012-06-06 02:29:38,485 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:38,483: INFO/PoolWorker-2] process shutting down
+[2012-06-06 02:29:38,484: INFO/PoolWorker-2] process exiting with exitcode 0
+[2012-06-06 02:29:38,484: INFO/PoolWorker-1] process shutting down
+[2012-06-06 02:29:38,484: INFO/PoolWorker-1] process exiting with exitcode 0
+[2012-06-06 02:29:38,484: INFO/PoolWorker-3] process shutting down
+[2012-06-06 02:29:38,484: INFO/PoolWorker-3] process exiting with exitcode 0
+
+2012-06-06 02:29:40,300 DEBG 'celeryd' stdout output:
+[2012-06-06 02:29:40,299: INFO/MainProcess] process shutting down
+
+2012-06-06 02:29:40,324 DEBG fd 7 closed, stopped monitoring <POutputDispatcher at 182009548 for <Subprocess at 181733676 with name celeryd in state STOPPING> (stdout)>
+2012-06-06 02:29:40,324 INFO stopped: celeryd (exit status 0)
+2012-06-06 02:29:40,324 DEBG received SIGCLD indicating a child quit
+2012-06-06 02:31:32,039 INFO RPC interface 'supervisor' initialized
+2012-06-06 02:31:32,307 INFO supervisord started with pid 9152
+2012-06-06 02:31:33,309 INFO spawned: 'celeryd' with pid 9177
+2012-06-06 02:31:33,311 INFO spawned: 'autoreload' with pid 9178
+2012-06-06 02:31:33,383 INFO spawned: ' gunicorn' with pid 9179
+2012-06-06 02:31:33,385 INFO spawned: 'celerybeat' with pid 9180
+2012-06-06 02:31:33,853 DEBG ' gunicorn' stdout output:
+2012-06-06 02:31:33 [9179] [INFO] Starting gunicorn 0.14.3
+
+2012-06-06 02:31:33,876 DEBG 'celeryd' stdout output:
+/home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/loaders.py:108: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warnings.warn("Using settings.DEBUG leads to a memory leak, never "
+
+2012-06-06 02:31:33,876 DEBG ' gunicorn' stdout output:
+2012-06-06 02:31:33 [9179] [INFO] Listening at: http://127.0.0.1:8000 (9179)
+2012-06-06 02:31:33 [9179] [INFO] Using worker: sync
+2012-06-06 02:31:33 [9233] [INFO] Booting worker with pid: 9233
+
+2012-06-06 02:31:33,883 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:31:33,883: WARNING/MainProcess] celerybeat v2.5.3 is starting.
+
+2012-06-06 02:31:33,884 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:31:33,884: WARNING/MainProcess] /home/edu/.virtualenvs/foowill/local/lib/python2.7/site-packages/djcelery/loaders.py:108: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warnings.warn("Using settings.DEBUG leads to a memory leak, never "
+
+2012-06-06 02:31:33,950 DEBG 'celeryd' stdout output:
+[2012-06-06 02:31:33,950: WARNING/MainProcess] -------------- celery@hanzo v2.5.3
+---- **** -----
+--- * ***  * -- [Configuration]
+-- * - **** ---   . broker:      redis://127.0.0.1:6379/0
+- ** ----------   . loader:      djcelery.loaders.DjangoLoader
+- ** ----------   . logfile:     [stderr]@INFO
+- ** ----------   . concurrency: 4
+- ** ----------   . events:      ON
+- *** --- * ---   . beat:        OFF
+-- ******* ----
+--- ***** ----- [Queues]
+ --------------   . celery:      exchange:celery (direct) binding:celery
+                  
+
+[Tasks]
+  . tasks.forensic
+  . tasks.killer_saver
+
+2012-06-06 02:31:34,137 DEBG 'celeryd' stdout output:
+[2012-06-06 02:31:34,136: INFO/PoolWorker-1] child process calling self.run()
+
+2012-06-06 02:31:34,142 DEBG 'celeryd' stdout output:
+[2012-06-06 02:31:34,141: INFO/PoolWorker-2] child process calling self.run()
+
+2012-06-06 02:31:34,143 DEBG 'celeryd' stdout output:
+[2012-06-06 02:31:34,141: INFO/PoolWorker-3] child process calling self.run()
+
+2012-06-06 02:31:34,143 DEBG 'celeryd' stdout output:
+[2012-06-06 02:31:34,143: INFO/PoolWorker-4] child process calling self.run()
+
+2012-06-06 02:31:34,144 DEBG 'celeryd' stdout output:
+[2012-06-06 02:31:34,144: WARNING/MainProcess] celery@hanzo has started.
+
+2012-06-06 02:31:34,277 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:31:34,277: WARNING/MainProcess] __    -    ... __   -        _
+Configuration ->
+    . broker -> redis://127.0.0.1:6379/0
+    . loader -> djcelery.loaders.DjangoLoader
+    . scheduler -> djcelery.schedulers.DatabaseScheduler
+
+    . logfile -> [stderr]@INFO
+    . maxinterval -> 5.00 minutes (300s)
+
+2012-06-06 02:31:34,278 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:31:34,277: INFO/MainProcess] Celerybeat: Starting...
+
+2012-06-06 02:31:35,280 INFO success: autoreload entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2012-06-06 02:31:35,280 INFO success:  gunicorn entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2012-06-06 02:31:39,286 INFO success: celeryd entered RUNNING state, process has stayed up for > than 5 seconds (startsecs)
+2012-06-06 02:31:39,286 INFO success: celerybeat entered RUNNING state, process has stayed up for > than 5 seconds (startsecs)
+2012-06-06 02:31:49,068 WARN received SIGINT indicating exit request
+2012-06-06 02:31:49,069 DEBG killing celerybeat (pid 9180) with signal SIGTERM
+2012-06-06 02:31:49,069 INFO waiting for autoreload, celeryd,  gunicorn, celerybeat to die
+2012-06-06 02:31:49,269 DEBG 'celerybeat' stdout output:
+[2012-06-06 02:31:49,268: INFO/MainProcess] process shutting down
+
+2012-06-06 02:31:49,294 DEBG fd 16 closed, stopped monitoring <POutputDispatcher at 159027308 for <Subprocess at 158730732 with name celerybeat in state STOPPING> (stdout)>
+2012-06-06 02:31:49,294 INFO stopped: celerybeat (exit status 0)
+2012-06-06 02:31:49,294 DEBG received SIGCLD indicating a child quit
+2012-06-06 02:31:49,294 DEBG killing  gunicorn (pid 9179) with signal SIGTERM
+2012-06-06 02:31:49,295 DEBG ' gunicorn' stdout output:
+2012-06-06 02:31:49 [9179] [INFO] Handling signal: term
+
+2012-06-06 02:31:49,597 DEBG ' gunicorn' stdout output:
+2012-06-06 02:31:49 [9233] [INFO] Worker exiting (pid: 9233)
+
+2012-06-06 02:31:49,668 DEBG ' gunicorn' stdout output:
+2012-06-06 02:31:49 [9179] [INFO] Shutting down: Master
+
+2012-06-06 02:31:49,668 INFO stopped:  gunicorn (exit status 0)
+2012-06-06 02:31:49,668 DEBG received SIGCLD indicating a child quit
+2012-06-06 02:31:49,669 DEBG killing autoreload (pid 9178) with signal SIGTERM
+2012-06-06 02:31:49,671 DEBG fd 10 closed, stopped monitoring <POutputDispatcher at 159006508 for <Subprocess at 158730668 with name autoreload in state STOPPING> (stdout)>
+2012-06-06 02:31:49,987 INFO stopped: autoreload (terminated by SIGTERM)
+2012-06-06 02:31:49,987 DEBG received SIGCLD indicating a child quit
+2012-06-06 02:31:49,988 DEBG killing celeryd (pid 9177) with signal SIGTERM
+2012-06-06 02:31:49,988 DEBG 'celeryd' stdout output:
+[2012-06-06 02:31:49,988: WARNING/MainProcess] celeryd: Warm shutdown (MainProcess)
+
+2012-06-06 02:31:50,161 DEBG 'celeryd' stdout output:
+[2012-06-06 02:31:50,160: INFO/PoolWorker-2] process shutting down
+
+2012-06-06 02:31:50,161 DEBG 'celeryd' stdout output:
+[2012-06-06 02:31:50,161: INFO/PoolWorker-2] process exiting with exitcode 0
+
+2012-06-06 02:31:50,163 DEBG 'celeryd' stdout output:
+[2012-06-06 02:31:50,161: INFO/PoolWorker-1] process shutting down
+[2012-06-06 02:31:50,161: INFO/PoolWorker-3] process shutting down
+[2012-06-06 02:31:50,162: INFO/PoolWorker-1] process exiting with exitcode 0
+[2012-06-06 02:31:50,162: INFO/PoolWorker-3] process exiting with exitcode 0
+[2012-06-06 02:31:50,163: INFO/PoolWorker-4] process shutting down
+
+2012-06-06 02:31:50,164 DEBG 'celeryd' stdout output:
+[2012-06-06 02:31:50,163: INFO/PoolWorker-4] process exiting with exitcode 0
+
+2012-06-06 02:31:51,166 DEBG 'celeryd' stdout output:
+[2012-06-06 02:31:51,165: INFO/MainProcess] process shutting down
+
+2012-06-06 02:31:51,192 DEBG fd 7 closed, stopped monitoring <POutputDispatcher at 159006412 for <Subprocess at 158730540 with name celeryd in state STOPPING> (stdout)>
+2012-06-06 02:31:51,192 INFO stopped: celeryd (exit status 0)
+2012-06-06 02:31:51,192 DEBG received SIGCLD indicating a child quit
