@@ -27,9 +27,9 @@ def run_webserver():
 	run("python manage.py supervisor")
         
 def deploy():
-    #git_push()
+    git_push()
     #server()
-    #git_pull()
+    git_pull()
     #syncdb()
     run_webserver()
     
