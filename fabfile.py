@@ -17,7 +17,7 @@ def git_push():
 def git_pull():
     'Updates the repository.'
     with cd(env.directory):
-    run('git pull')
+	run('git pull')
 
 def stop_supervisor():
     with cd(env.directory):

@@ -1,25 +1,27 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% block script %}{% endblock %}
 
 {% block content %}
   <div class="hero-unit">
-    <strong>Foowill</strong> es una <strong>aplicación para twitter</strong> donde puedes <strong>guardar tweets</strong> (post-tweets) que serán enviados a tu cuenta <strong>cuando mueras</strong>.<br/>
-    Realmente esperamos no tener que enviarlos nunca, pero como las desgracias ocurren, te brindamos esta oportunidad.<br/>
-    Para comprobar si sigues entre nosotros iremos <strong>verificando</strong> cada cierto tiempo si has <strong>actualizado tu cuenta</strong> de twitter, ese tiempo lo puedes decidir tú.<br/>
-    Si pasado ese tiempo no leemos nada nuevo de tí tienes la opción de una <strong>última comprobación</strong>, te enviaremos <strong>un email</strong> a la dirección que prefieras para que puedas parar el envio de tus post-tweets y con un simple click avisarnos que afortunadamente sigues con vida.<br/>
-    <br/>Todo en 3 simples pasos:<br/>
-    1. <strong>Logueate</strong> con tu cuenta de twitter aceptando que enviemos mensajes en tu nombre.<br/>
-    2. <strong>Configura</strong> la aplicación añadiendo tu cuenta de correo y los demás parámetros.<br/>
-    3. <strong>Guarda</strong> todos los tweets que quieras.<br/>
+    {% trans "Foowill is an application where you can save tweets twitter (post-tweets) that will be sent to your account when you die." %}<br/>
+    {% trans "We really hope not ever having to send them, but because bad things happen, we give you this opportunity." %}<br/>
+    {% trans "To check if you continue with us from time to time we will verify if you've updated your twitter account, that time you can decide yourself." %}<br/>
+    {% trans "If after that time do not read anything new you have the option of a final check, we will send an email to the address of your choice so you can stop sending your tweets and post with a simple click let us know that fortunately still alive." %}<br/>
+    <br/>{% trans "Everything in 3 simple steps:" %}<br/>
+    1. {% trans "Please sign in to your twitter account accepting that send tweets on your behalf." %}<br/>
+    2. {% trans "Configure the application by adding your email address and other parameters." %}<br/>
+    3. {% trans "Saves all the tweets you want." %}<br/>
     <br/>
     
     {% if logued %}
-	<strong>Ya estás logueado</strong>. 
-	<a href="/config" >Configura la aplicación</a> o 
-	<a href="/done" >Guarda tus tweets</a>
+	{% trans "Already logged in" %}. 
+	<a href="/config" >{% trans "Configure the application" %}</a> {% trans "or" %} 
+	<a href="/done" >{% trans "Save your post-tweets" %}</a>
     {% else %}
-	<a href="{% url socialauth_begin 'twitter' %}" class="btn btn-primary btn-large">Logeate con Twitter</a>
+	<a href="{% url socialauth_begin 'twitter' %}" class="btn btn-primary btn-large">{% trans "Login with Twitter" %}</a>
     {% endif %}
   </div>
 

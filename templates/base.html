@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -45,30 +47,44 @@
           <a class="brand" href="/">Foowill</a>
           <div class="nav-collapse">
 	    <ul class="nav">
-              <li class="{% add_active request 'home' %}"><a href="/">Inicio</a></li>
-              <li class="{% add_active request 'contact' %}"><a href="/contact">Contacto</a></li>
+              <li class="{% add_active request 'home' %}"><a href="/">{% trans "Home" %}</a></li>
+              <li class="{% add_active request 'contact' %}"><a href="/contact">{% trans "Contact" %}</a></li>
 	    </ul>
 
-	    {% if logued %}
 	    <ul class="nav pull-right">
+	      <li class="divider-vertical"></li>
+
+	    <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Language" %}<b class="caret"></b></a>
+		<ul class="dropdown-menu">
+		  {% for lang in LANGUAGES %}
+		    <form name="setLang{{ lang.1}}" action="/i18n/setlang/" method="POST">
+		      {% csrf_token %}
+		      <input name="next" type="hidden" value="/" />
+		      <input type="hidden" name="language" value="{{ lang.0 }}" />
+		      <li><a href="#" onclick="document.setLang{{ lang.1 }}.submit();return false;">{{ lang.1 }}</a></li>
+		    </form>
+		  {% endfor %}    
+		</ul>
+	      </li>
+	    {% if logued %}
 	      <li class="divider-vertical"></li>
 	      <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}<b class="caret"></b></a>
 		<ul class="dropdown-menu">
-		  <li><a rel="nofollow" href="/config"><i class="icon-user"></i> Configure</a></li>
-		  <li><a rel="nofollow" href="/done"><i class="icon-th-list"></i> Post-tweets</a></li>
-		  <li><a rel="nofollow" href="/logout"><i class="icon-off"></i> Logout</a></li>
+		  <li><a rel="nofollow" href="/config"><i class="icon-user"></i> {% trans "Configure" %}</a></li>
+		  <li><a rel="nofollow" href="/done"><i class="icon-th-list"></i> {% trans "Post-tweets" %}</a></li>
+		  <li><a rel="nofollow" href="/logout"><i class="icon-off"></i> {% trans "Logout" %}</a></li>
 <!-- 		  <li class="divider"></li> -->
 		</ul>
 	      </li>
 	    </ul>
 	    {% else %}
-	    <ul class="nav pull-right">
 	      <li class="divider-vertical"></li>
 	      <li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Login" %}<b class="caret"></b></a>
 		<ul class="dropdown-menu">
-		  <li><a href="{% url socialauth_begin 'twitter' %}">Login with twitter</a></li>
+		  <li><a href="{% url socialauth_begin 'twitter' %}">{% trans "Login with twitter" %}</a></li>
 <!-- 		  <li class="divider"></li> -->
 		</ul>
 	      </li>

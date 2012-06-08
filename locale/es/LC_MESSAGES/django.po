@@ -1,0 +1,146 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-08 03:16+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: settings.py:54
+msgid "Spanish"
+msgstr ""
+
+#: settings.py:55
+msgid "English"
+msgstr ""
+
+#: app/views.py:104
+msgid ""
+"I saved a tweet that will be published when I die with http://foowill.com "
+"@foo_will"
+msgstr ""
+"He guardado un tweet que se publicará cuando muera gracias a http://foowill."
+"com @foo_will"
+
+#: templates/base.html:50
+msgid "Home"
+msgstr "Inicio"
+
+#: templates/base.html:51
+msgid "Contact"
+msgstr "Contacto"
+
+#: templates/base.html:58
+msgid "Language"
+msgstr "Idioma"
+
+#: templates/base.html:75
+msgid "Configure"
+msgstr "Configura"
+
+#: templates/base.html:76
+msgid "Post-tweets"
+msgstr "Post-tweets"
+
+#: templates/base.html:77
+msgid "Logout"
+msgstr "Desconectar"
+
+#: templates/base.html:85
+msgid "Login"
+msgstr "Iniciar sesión"
+
+#: templates/base.html:87
+msgid "Login with twitter"
+msgstr "Iniciar sesión con twitter"
+
+#: templates/home.html:9
+msgid ""
+"Foowill is an application where you can save tweets twitter (post-tweets) "
+"that will be sent to your account when you die."
+msgstr ""
+"Foowill es una aplicación para twitter donde puedes guardar tweets (post-"
+"tweets) que serán enviados a tu cuenta cuando mueras."
+
+#: templates/home.html:10
+msgid ""
+"We really hope not ever having to send them, but because bad things happen, "
+"we give you this opportunity."
+msgstr ""
+"Realmente esperamos no tener que enviarlos nunca, pero como las desgracias "
+"ocurren, te brindamos esta oportunidad."
+
+#: templates/home.html:11
+msgid ""
+"To check if you continue with us from time to time we will verify if you've "
+"updated your twitter account, that time you can decide yourself."
+msgstr ""
+"Para comprobar si sigues entre nosotros iremos verificando cada cierto "
+"tiempo si has actualizado tu cuenta de twitter, ese tiempo lo puedes decidir "
+"tú."
+
+#: templates/home.html:12
+msgid ""
+"If after that time do not read anything new you have the option of a final "
+"check, we will send an email to the address of your choice so you can stop "
+"sending your tweets and post with a simple click let us know that "
+"fortunately still alive."
+msgstr ""
+"Si pasado ese tiempo no leemos nada nuevo de tí tienes la opción de una "
+"última comprobación, te enviaremos un email a la dirección que prefieras "
+"para que puedas parar el envio de tus post-tweets y con un simple click "
+"avisarnos que afortunadamente sigues con vida."
+
+#: templates/home.html:13
+msgid "Everything in 3 simple steps:"
+msgstr "Todo en 3 simples pasos:"
+
+#: templates/home.html:14
+msgid ""
+"Please sign in to your twitter account accepting that send tweets on your "
+"behalf."
+msgstr ""
+"Logueate con tu cuenta de twitter aceptando que enviemos mensajes en tu "
+"nombre."
+
+#: templates/home.html:15
+msgid ""
+"Configure the application by adding your email address and other parameters."
+msgstr ""
+"Configura la aplicación añadiendo tu cuenta de correo y los demás parámetros."
+
+#: templates/home.html:16
+msgid "Saves all the tweets you want."
+msgstr "Guarda todos los tweets que quieras."
+
+#: templates/home.html:20
+msgid "Already logged in"
+msgstr "Ya estás logueado"
+
+#: templates/home.html:21
+msgid "Configure the application"
+msgstr "Configura la aplicación"
+
+#: templates/home.html:21
+msgid "or"
+msgstr "o"
+
+#: templates/home.html:22
+msgid "Save your post-tweets"
+msgstr "Guarda tus post-weets"
+
+#: templates/home.html:24
+msgid "Login with Twitter"
+msgstr "Iniciar sesión con twitter"

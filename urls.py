@@ -1,4 +1,7 @@
 from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls.i18n import i18n_patterns
+from django.utils.translation import ugettext_lazy as _
+
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -19,4 +22,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^tweet/delete/(?P<id_tweet>(\d+))/$',delete_tweet, name='delete_tweet'),
     url(r'', include('social_auth.urls')),
+    (r'^i18n/', include('django.conf.urls.i18n')),
+)
+
+urlpatterns += i18n_patterns('',
+     url(r'^$', home, name='home'),
 )

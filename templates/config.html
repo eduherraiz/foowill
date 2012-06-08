@@ -1,8 +1,14 @@
 {% extends "base.html" %}
 
 {% block script %}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script src="https://browserid.org/include.js" type="text/javascript"></script>
+  <!--TODO: Download on static-->
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    $( "#slider" ).slider({ values: [1,5,9] });
+  });
+  </script>
 {% endblock %}
 
 {% block heading %}Hello, {{ user.username }}{% endblock %}
@@ -12,6 +18,8 @@
 <div style="margin-bottom:30px;">
 <h2>Configuración</h2>
 
+<div id="slider"></div>
+
 <form action="/config/" method="post" class="form-horizontal well"> 
 
 {% csrf_token %}
@@ -20,6 +28,7 @@
     <div class="control-group">
       <label class="control-label" for="activity_interval">Activity interval</label>
       <div class="controls">
+	
 	{{ form.activity_interval }}
 	<p class="help-block">Tiempo que tiene que pasar sin actualizar tu cuenta en twitter para que empezemos a preocuparnos por tí.</p>
 	{{ form.activity_interval.errors }}

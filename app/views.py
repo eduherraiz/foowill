@@ -7,6 +7,8 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, redirect
 from django.contrib.messages.api import get_messages
 from django.conf import settings
+from django.utils.translation import ugettext as _
+
 from datetime import datetime
 
 from tweepy.error import TweepError
@@ -99,7 +101,7 @@ def done(request):
 	    t.save()
 	    newtweet = True
 	    if user.alwaysupdate:
-		tweet = "He guardado un tweet que podrás leer cuando muera gracias a http://foowill.com @foo_will"
+		tweet = _("I saved a tweet that will be published when I die with http://foowill.com @foo_will")
 		newtweet = False
 		try:
 		    user.update_twitter_status(tweet)

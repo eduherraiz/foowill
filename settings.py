@@ -45,7 +45,15 @@ TIME_ZONE = 'Europe/Madrid'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'es-Es'
+LANGUAGE_CODE = 'en'
+
+#Function to prevent a circular import if use  django.utils.translation
+ugettext = lambda s: s
+
+LANGUAGES = (
+    ('es', ugettext('Spanish')),
+    ('en', ugettext('English')),
+)
 
 SITE_ID = 1
 
@@ -110,6 +118,7 @@ TEMPLATE_LOADERS = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.request',
+    'django.core.context_processors.i18n',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -118,6 +127,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
