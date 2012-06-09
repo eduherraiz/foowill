@@ -9,30 +9,37 @@ except ImportError:
 import os
 import sys
 sys.path.append(os.getcwd())
+
+import properties
+
+APP_ROOT = getattr(properties, 'app_root', '.')
+
+DEBUG = getattr(properties, 'debug', True)
+TEMPLATE_DEBUG = DEBUG
+
+DATABASES = {
+    'default': {
+        'ENGINE': getattr(properties, 'database_engine', 'django.db.backends.sqlite3'),
+        'NAME': getattr(properties, 'database_name', 'db.sqlite'),
+        'USER': getattr(properties, 'database_user', None),
+        'PASSWORD': getattr(properties, 'database_password', ''),
+        'HOST': getattr(properties, 'database_host',''),
+        'PORT': getattr(properties, 'database_port',''),
+        'OPTIONS': {}, #{'autocommit': True,}
+    }
+}
     
 # Django settings for foowill project.
 ROOT_PATH = abspath(dirname(__file__))
 PROJECT_NAME = basename(ROOT_PATH)
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+
 
 ADMINS = (
     ('Edu Herraiz', 'gshark@gmail.com'),
 )
 
 MANAGERS = ADMINS
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/mnt/xuflus/Webs/foowill/sqlite.db',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
-}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -151,7 +158,7 @@ INSTALLED_APPS = (
     'south',
     'app',
     # Uncomment the next line to enable the admin:
-   'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
