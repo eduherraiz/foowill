@@ -1,0 +1,21 @@
+/*COLORS*/
+@box: #EEF5ED;
+@border: #D6D6D6;
+
+.rounded-corners(@radius: 5px) {
+  border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+}
+
+.tweet {
+  background-color: @box;
+  border-bottom: 1px solid @border;
+  padding:15px;
+  p { font-size: 22px;
+    word-wrap: break-word;
+    a { text-decoration: none;
+      &:hover { border-width: 1px }
+    }
+  }
+}

@@ -9,9 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    {% block meta %}{% endblock %}
+
     <!-- Le styles -->
     <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="/static/css/base.css" rel="stylesheet">
+    <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    {% block css %}{% endblock %}
 
     <style type="text/css">
       body {
@@ -20,7 +24,6 @@
       }
     </style>
 
-    <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- TODO: compile on deploy and delete this -->
     <link rel="stylesheet/less" type="text/css" href="/static/js/style.less">
@@ -56,13 +59,9 @@
 
 	    <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Language" %}<b class="caret"></b></a>
-		<ul class="dropdown-menu">
-		  {% for lang in LANGUAGES %}
-		    <form name="setLang{{ lang.1}}" action="/i18n/setlang/" method="POST">
-		      {% csrf_token %}
-		      <input name="next" type="hidden" value="/" />
-		      <input type="hidden" name="language" value="{{ lang.0 }}" />
-		      <li><a href="#" onclick="document.setLang{{ lang.1 }}.submit();return false;">{{ lang.1 }}</a></li>
+		<ul class="dropdown-menu">{% for lang in LANGUAGES %}
+		    <form name="setLang{{ lang.1}}" action="/i18n/setlang/" method="POST">{% csrf_token %}<input name="next" type="hidden" value="/" /><input type="hidden" name="language" value="{{ lang.0 }}" />
+		      <li><a rel="nofollow" onclick="document.setLang{{ lang.1 }}.submit();return false;">{{ lang.1 }}</a></li>
 		    </form>
 		  {% endfor %}    
 		</ul>

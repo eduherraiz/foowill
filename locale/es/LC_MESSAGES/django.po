@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-08 03:16+0200\n"
+"POT-Creation-Date: 2012-06-09 08:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: settings.py:54
 msgid "Spanish"
-msgstr ""
+msgstr "Español"
 
 #: settings.py:55
 msgid "English"
-msgstr ""
+msgstr "Inglés"
 
 #: app/views.py:104
 msgid ""
@@ -34,39 +34,39 @@ msgstr ""
 "He guardado un tweet que se publicará cuando muera gracias a http://foowill."
 "com @foo_will"
 
-#: templates/base.html:50
+#: templates/base.html:53
 msgid "Home"
 msgstr "Inicio"
 
-#: templates/base.html:51
+#: templates/base.html:54
 msgid "Contact"
 msgstr "Contacto"
 
-#: templates/base.html:58
+#: templates/base.html:61
 msgid "Language"
 msgstr "Idioma"
 
-#: templates/base.html:75
+#: templates/base.html:74
 msgid "Configure"
 msgstr "Configura"
 
-#: templates/base.html:76
+#: templates/base.html:75
 msgid "Post-tweets"
 msgstr "Post-tweets"
 
-#: templates/base.html:77
+#: templates/base.html:76
 msgid "Logout"
 msgstr "Desconectar"
 
-#: templates/base.html:85
+#: templates/base.html:84
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: templates/base.html:87
+#: templates/base.html:86
 msgid "Login with twitter"
 msgstr "Iniciar sesión con twitter"
 
-#: templates/home.html:9
+#: templates/home.html:28
 msgid ""
 "Foowill is an application where you can save tweets twitter (post-tweets) "
 "that will be sent to your account when you die."
@@ -74,7 +74,7 @@ msgstr ""
 "Foowill es una aplicación para twitter donde puedes guardar tweets (post-"
 "tweets) que serán enviados a tu cuenta cuando mueras."
 
-#: templates/home.html:10
+#: templates/home.html:29
 msgid ""
 "We really hope not ever having to send them, but because bad things happen, "
 "we give you this opportunity."
@@ -82,7 +82,7 @@ msgstr ""
 "Realmente esperamos no tener que enviarlos nunca, pero como las desgracias "
 "ocurren, te brindamos esta oportunidad."
 
-#: templates/home.html:11
+#: templates/home.html:30
 msgid ""
 "To check if you continue with us from time to time we will verify if you've "
 "updated your twitter account, that time you can decide yourself."
@@ -91,7 +91,7 @@ msgstr ""
 "tiempo si has actualizado tu cuenta de twitter, ese tiempo lo puedes decidir "
 "tú."
 
-#: templates/home.html:12
+#: templates/home.html:31
 msgid ""
 "If after that time do not read anything new you have the option of a final "
 "check, we will send an email to the address of your choice so you can stop "
@@ -103,11 +103,11 @@ msgstr ""
 "para que puedas parar el envio de tus post-tweets y con un simple click "
 "avisarnos que afortunadamente sigues con vida."
 
-#: templates/home.html:13
+#: templates/home.html:32
 msgid "Everything in 3 simple steps:"
 msgstr "Todo en 3 simples pasos:"
 
-#: templates/home.html:14
+#: templates/home.html:33
 msgid ""
 "Please sign in to your twitter account accepting that send tweets on your "
 "behalf."
@@ -115,32 +115,40 @@ msgstr ""
 "Logueate con tu cuenta de twitter aceptando que enviemos mensajes en tu "
 "nombre."
 
-#: templates/home.html:15
+#: templates/home.html:34
 msgid ""
 "Configure the application by adding your email address and other parameters."
 msgstr ""
 "Configura la aplicación añadiendo tu cuenta de correo y los demás parámetros."
 
-#: templates/home.html:16
+#: templates/home.html:35
 msgid "Saves all the tweets you want."
 msgstr "Guarda todos los tweets que quieras."
 
-#: templates/home.html:20
+#: templates/home.html:39
 msgid "Already logged in"
 msgstr "Ya estás logueado"
 
-#: templates/home.html:21
+#: templates/home.html:40
 msgid "Configure the application"
 msgstr "Configura la aplicación"
 
-#: templates/home.html:21
+#: templates/home.html:40
 msgid "or"
 msgstr "o"
 
-#: templates/home.html:22
+#: templates/home.html:41
 msgid "Save your post-tweets"
 msgstr "Guarda tus post-weets"
 
-#: templates/home.html:24
+#: templates/home.html:43
 msgid "Login with Twitter"
 msgstr "Iniciar sesión con twitter"
+
+#: templates/home.html:50
+msgid "I just found an app to update twitter post-mortem"
+msgstr "He encontrado un aplicación para actualizar twitter post-mortem"
+
+#: templates/home.html:56 templates/home.html.py:63 templates/home.html:73
+msgid "Share on"
+msgstr "Comparte en"
