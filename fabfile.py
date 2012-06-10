@@ -1,52 +1,90 @@
-from fabric.api import *
+from fabric.api import env, run, cd, prefix,local
 env.use_ssh_config = True
 
-env.directory = '/mnt/xuflus/Webs/foowill'
-env.deploy_user = 'root'
-env.hosts = ['root@foowill.com']
+def prod():
+    env.vcs = 'git'
+    env.hosts = ['foowill.com', ]
+    env.user = 'root'
+    env.app = 'foowill'
+    env.APP_DIR = '/var/pywww/foowill/'
+    env.virtualenv = 'foowill'
 
-def syncdb():
-    with cd(env.directory):
-        run('workon foowill && python manage.py syncdb && python manage.py migrate')
+def pre():
+    env.vcs = 'git'
+    env.hosts = ['localhost', ]
+    env.user = 'root'
+    env.app = 'foowill'
+    env.APP_DIR = '/mnt/xuflus/Webs/foowill/'
+    env.virtualenv = 'foowill'
 
-def git_push():
+def requirements():
+    """ install requeriments on app """
+    with cd(env.APP_DIR):
+        with prefix("source /usr/local/bin/virtualenvwrapper.sh"):
+            with prefix('workon %s' % env.virtualenv):
+                run('pip install -r requirements.txt')
+
+def get_requeriments():
+    with cd(env.APP_DIR):
+      local('pip freeze > requirements.txt')
+                
+def push():
     'Local push to the repository.'
-    with cd(env.directory):
+    with cd(env.APP_DIR):
         local('git push -u origin master')
         
-def git_pull():
+def pull():
     'Updates the repository.'
-    with cd(env.directory):
+    with cd(env.APP_DIR):
 	run('git pull')
 
-def stop_supervisor():
-    with cd(env.directory):
-        run("workon foowill && python manage.py supervisor stop all" )
-        
-def start_supervisor():
-    with cd(env.directory):
-        run("workon foowill && python manage.py supervisor --daemonize --project-dir=%s" % env.directory)
-    
-def stop_webserver():
-    'Restart nginx and run the supervisor for celery, redis, anf gunicorn'
-    run("/etc/init.d/nginx stop")
-    stop_supervisor()
-        
-def start_webserver():
-    'Restart nginx and run the supervisor for celery, redis, anf gunicorn'
-    run("/etc/init.d/nginx start")
-    with cd(env.directory):
-        run("workon foowill && python manage.py supervisor --daemonize --project-dir=%s" % env.directory)
-        
-def restart_webserver():
-    stop_supervisor()
-    run("/etc/init.d/nginx restart")
-    start_supervisor()
+def syncdb():
+    with cd(env.APP_DIR):
+        with prefix("source /usr/local/bin/virtualenvwrapper.sh"):
+            with prefix('workon %s' % env.virtualenv):
+		run('python manage.py syncdb')
 
-def deploy():
-    git_push()
-    stop_webserver()
-    git_pull()
+def migrate():
+    with cd(env.APP_DIR):
+        with prefix("source /usr/local/bin/virtualenvwrapper.sh"):
+            with prefix('workon %s' % env.virtualenv):
+		run('python manage.py migrate')
+
+def collectstatic():
+    with cd(env.APP_DIR):
+        with prefix("source /usr/local/bin/virtualenvwrapper.sh"):
+            with prefix('workon %s' % env.virtualenv):
+		run('python manage.py collectstatic')
+
+def stop():
+    with cd(env.APP_DIR):
+        with prefix("source /usr/local/bin/virtualenvwrapper.sh"):
+            with prefix('workon %s' % env.virtualenv):
+		run('python manage.py supervisor stop all')
+
+def start():
+    with cd(env.APP_DIR):
+        with prefix("source /usr/local/bin/virtualenvwrapper.sh"):
+            with prefix('workon %s' % env.virtualenv):
+		run('python manage.py supervisor --daemonize --project-dir=%s' % env.APP_DIR)
+
+def restart():
+    stop()
+    start()
+
+def update():
+    'Update all'
+    pull()
+    requirements()
     syncdb()
-    start_webserver()
-    
+    migrate()
+    collectstatic()
+    #compress()
+    restart()
+
+def updatefast():
+    'No changes in DB or requeriments'
+    pull()
+    collectstatic()
+    #compress()
+    restart()
