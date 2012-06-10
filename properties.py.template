@@ -1,4 +1,4 @@
-appt_root = '/path/to/app'
+app_root = '/path/to/app'
 debug = True
 database_engine = 'django.db.backends.sqlite3' 
 database_name = '/path/to/sqlite.db or dbname'
