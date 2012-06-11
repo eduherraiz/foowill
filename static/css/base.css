@@ -4,3 +4,16 @@
   line-height: 28px;
   word-wrap: break-word;
 }*/
+
+.form-lang{
+    margin:0;
+}
+
+#slider_mi .ui-slider-range { background: #ef2929; }
+#slider_mi .ui-slider-handle { border-color: #ef2929; background: #ef2929; }
+#slider_ai .ui-slider-horizontal { border-color: #8ae234; }
+#slider_ai .ui-slider-handle { border-color: #8ae234; background: #8ae234; }
+#blue .ui-slider-range { background: #729fcf; }
+#blue .ui-slider-handle { border-color: #729fcf; }
+
+.control-label{ font-weight:bold;}

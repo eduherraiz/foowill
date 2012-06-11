@@ -29,12 +29,16 @@ def home(request):
 	user = None
 	try:
 	    user = CustomUser.objects.filter(user=instance).get()
+	    logued = True
 	except CustomUser.DoesNotExist:
 	    user = CustomUser.objects.create(user=instance)
-	if user.configured:
-	    return HttpResponseRedirect('/done/') # Redirect after POST
-	else:
-	    return HttpResponseRedirect('/config/') # Redirect after POST
+	    logued = True
+	    
+	
+	#if user.configured:
+	    #return HttpResponseRedirect('/done/') # Redirect after POST
+	#else:
+	    #return HttpResponseRedirect('/config/') # Redirect after POST
     else:
 	logued = False
 	user = ()

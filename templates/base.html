@@ -14,6 +14,7 @@
     <!-- Le styles -->
     <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="/static/css/base.css" rel="stylesheet">
+    <link href="/static/css/flags.css" rel="stylesheet">
     <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     {% block css %}{% endblock %}
 
@@ -67,7 +68,8 @@
                         {% csrf_token %}
                         <input name="next" type="hidden" value="{{ request.path }}" />
                         <input type="hidden" name="language" value="{{ lang.0 }}" />
-                        <li><a rel="nofollow" onclick="document.setLang{{ lang.1 }}.submit();return false;">{{ lang.1 }}</a></li>
+                        
+                        <li><a rel="nofollow" onclick="document.setLang{{ lang.1 }}.submit();return false;"><img src="/static/img/blank.gif" class="flag flag-{{ lang.0 }}" alt="{{ lang.1 }}" /> {{ lang.1 }}</a></li>
 		    </form>
 		  {% endfor %}    
 		</ul>
