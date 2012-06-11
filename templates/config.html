@@ -36,30 +36,46 @@
         return 0;
     }
 
+    function valueSelected(id_select){
+        $(id_select+" option:selected").each(function () {
+                val = $(this).val();
+        });
+        return val
+    }
+
+    function changeSlider(id_slider, id_select){
+        val = valueSelected(id_select)
+        $(id_slider).slider('option','value',getRealValue(val,trueValues,values))
+    }
+
+    function put_slider(id_slider, id_select){
+        var slider = $(id_slider).slider({
+            min: 0,
+            max: 100,
+            value: getRealValue(valueSelected(id_select),trueValues,values),
+            slide: function(event, ui) {
+                    var includeLeft = event.keyCode != $.ui.keyCode.RIGHT;
+                    var includeRight = event.keyCode != $.ui.keyCode.LEFT;
+                    slider.slider('option', 'value', findNearest(includeLeft, includeRight, ui.value));
+                    $(id_select).val(getRealValue(slider.slider('value'),values,trueValues))
+                    return false;
+            }
+        });
+    }
+
     $(document).ready(function() {
         /*Slider activity_interval*/
         $(function() {
-            var slider = $("#slider_ai").slider({
-                min: 0,
-                max: 100,
-                value: getRealValue({% if form.instance.activity_interval %}{{form.instance.activity_interval}}{% else %}{{form.data.activity_interval}}{% endif %},trueValues,values),
-                slide: function(event, ui) {
-                        var includeLeft = event.keyCode != $.ui.keyCode.RIGHT;
-                        var includeRight = event.keyCode != $.ui.keyCode.LEFT;
-                        slider.slider('option', 'value', findNearest(includeLeft, includeRight, ui.value));
-                        $("#id_activity_interval").val(getRealValue(slider.slider('value'),values,trueValues))
-                        return false;
-                }
-            });
-
+            put_slider("#slider_ai","#id_activity_interval");
+            put_slider("#slider_mi","#id_mail_interval");
         });
     });
 
-    select = $("#id_activity_interval").change(function () {
-        $("#id_activity_interval option:selected").each(function () {
-                val = $(this).val();
-        });
-        $("#slider_ai").slider('option','value',getRealValue(val,trueValues,values))
+    $("#id_activity_interval").change(function () {
+        changeSlider("#slider_ai", "#id_activity_interval");
+    })
+    $("#id_mail_interval").change(function () {
+        changeSlider("#slider_mi", "#id_mail_interval");
     })
   </script>
 {% endblock %}
@@ -75,32 +91,36 @@
 
 {% csrf_token %}
 {{ form.non_field_errors }}
-    
+
+    <div class="control-group">
+      <label class="control-label" for="email">Email</label>
+      <div class="controls">
+        {{ form.email }}
+        <p class="help-block">Si no especificas dirección de email no podremos enviarte el email de verificación antes de darte por muerto y los post-tweets saldrán sin verificar si sigues vivo preguntándote por email.</p>
+        {{ form.email.errors }}
+      </div>
+    </div>
+
+
     <div class="control-group">
       <label class="control-label" for="activity_interval">Activity interval</label>
       <div class="controls">
         <p class="help-block">Tiempo que tiene que pasar sin actualizar tu cuenta en twitter para que empezemos a preocuparnos por tí.</p>
-        <div id="slider_ai" style="width:400px;margin-top:10px;margin-bottom:10px;"></div>
+        <div id="slider_ai" style="width:400px;margin-top:10px;margin-bottom:10px;margin-right:20px;float:left;"></div>
 	{{ form.activity_interval }}
 	{{ form.activity_interval.errors }}
       </div>
     </div>
 
-    <div class="control-group">
-      <label class="control-label" for="email">Email</label>
-      <div class="controls">
-	{{ form.email }}
-	<p class="help-block">Si no especificas dirección de email no podremos enviarte el email de verificación antes de darte por muerto y los post-tweets saldrán sin verificar si sigues vivo preguntándote por email.</p>
-	{{ form.email.errors }}
-      </div>
-    </div>
 
     <div class="control-group">
       <label class="control-label" for="mail_interval">Mail interval</label>
       <div class="controls">
-	{{ form.mail_interval }}
+	
 	<p class="help-block">Tiempo de espera después de enviar el email de verificación. Transcurrido este tiempo si no has actualizado twitter o contestado al email te daremos por muerto y publicaremos tus post-tweets.</p>
-	{{ form.activity_interval.errors }}
+        <div id="slider_mi" style="width:400px;margin-top:10px;margin-bottom:10px;margin-right:20px;float:left;"></div>	
+        {{ form.mail_interval }}
+        {{ form.activity_interval.errors }}
       </div>
     </div>
 

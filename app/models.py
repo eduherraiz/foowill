@@ -69,7 +69,7 @@ class CustomUser(models.Model):
       (29030400, '1 year')
     )
     #tiempo a esperar desde half-dead hasta dead
-    mail_interval = models.IntegerField(choices=MAIL_CHOICES, default=1209600, blank=True)
+    mail_interval = models.IntegerField(choices=ACTIVITY_CHOICES, default=1209600, blank=False)
     
     #fecha de la última publicación en twitter
     last_update = models.DateTimeField(blank=True, null=True)
