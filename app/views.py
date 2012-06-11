@@ -18,6 +18,7 @@ from social_auth.utils import setting
 from social_auth.models import UserSocialAuth
 
 from app.models import Tweet, CustomUser
+from app.utils import send_email_mandrill
 from app.forms import *
 
 
@@ -215,8 +216,11 @@ def contact(request):
 	if form.is_valid(): # All validation rules pass
 	    #Send the email
 	    subject = form.cleaned_data['subject']
-	    message = form.cleaned_data['message']
-	    sender = form.cleaned_data['sender']
+	    text_content = form.cleaned_data['message']
+            html_content = form.cleaned_data['message']
+	    from_email = form.cleaned_data['sender']
+	    from_name = form.cleaned_data['name']
+	    send_email_mandrill(subject, text_content, html_content, from_email, from_name, settings.ADMIN_EMAIL, 'Admin foowill')
 	    
 	    #user = CustomUser.objects.filter(username=request.user).get()
 	    return HttpResponseRedirect('/contact') # Redirect after POST

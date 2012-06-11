@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-09 08:41+0200\n"
+"POT-Creation-Date: 2012-06-11 02:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: settings.py:54
+#: settings.py:63
 msgid "Spanish"
 msgstr "Español"
 
-#: settings.py:55
+#: settings.py:64
 msgid "English"
 msgstr "Inglés"
 
-#: app/views.py:104
+#: app/forms.py:23
+msgid "Message subject"
+msgstr "Asunto del mensaje"
+
+#: app/forms.py:24
+msgid "Your message"
+msgstr "Tu mensaje"
+
+#: app/forms.py:25
+msgid "Email address"
+msgstr "Dirección de email"
+
+#: app/forms.py:26
+msgid "Your name or company"
+msgstr "Tu nombre o de tu compañía"
+
+#: app/views.py:105
 msgid ""
 "I saved a tweet that will be published when I die with http://foowill.com "
 "@foo_will"
@@ -34,35 +50,35 @@ msgstr ""
 "He guardado un tweet que se publicará cuando muera gracias a http://foowill."
 "com @foo_will"
 
-#: templates/base.html:53
+#: templates/base.html:55
 msgid "Home"
 msgstr "Inicio"
 
-#: templates/base.html:54
+#: templates/base.html:56
 msgid "Contact"
 msgstr "Contacto"
 
-#: templates/base.html:61
+#: templates/base.html:63
 msgid "Language"
 msgstr "Idioma"
 
-#: templates/base.html:74
+#: templates/base.html:76
 msgid "Configure"
 msgstr "Configura"
 
-#: templates/base.html:75
+#: templates/base.html:77
 msgid "Post-tweets"
 msgstr "Post-tweets"
 
-#: templates/base.html:76
+#: templates/base.html:78
 msgid "Logout"
 msgstr "Desconectar"
 
-#: templates/base.html:84
+#: templates/base.html:86
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: templates/base.html:86
+#: templates/base.html:88
 msgid "Login with twitter"
 msgstr "Iniciar sesión con twitter"
 

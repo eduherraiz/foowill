@@ -17,7 +17,7 @@ django-supervisor==0.2.7
 gunicorn==0.14.3
 httplib2==0.7.4
 kombu==2.1.8
--e git://github.com/brad/mailsnake.git@503dd6a8ba1426edf13fff13be2ff9c0354f35ae#egg=mailsnake-dev
+-e git://github.com/brad/mailsnake.git@503dd6a8ba1426edf13fff13be2ff9c0354f35ae#egg=mailsnake
 meld3==0.6.8
 oauth2==1.5.211
 oauthlib==0.1.3

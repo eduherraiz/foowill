@@ -12,6 +12,8 @@ sys.path.append(os.getcwd())
 
 import properties
 
+NAME_PROJECT = "Foowill"
+
 APP_ROOT = getattr(properties, 'app_root', '.')
 
 DEBUG = getattr(properties, 'debug', True)
@@ -74,18 +76,18 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = getattr(properties, 'media_root', '')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = getattr(properties, 'static_root', '')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -98,7 +100,7 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    getattr(properties, 'static_route', '.'),
+    getattr(properties, 'app_root', '.')+'/app/static',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -263,6 +265,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 #TODO:Create account and redirects to admin
 EMAIL_PROJECT = "info@foowill.com"
+ADMIN_EMAIL = "gshark@gmail.com"
+MANDRILL_KEY = "994dcdb3-9fb4-4852-809d-97a7c358a0b4"
 
 import djcelery
 djcelery.setup_loader()

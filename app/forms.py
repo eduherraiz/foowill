@@ -1,6 +1,7 @@
  #-*- coding: UTF-8 -*-
 from django.forms import ModelForm, Textarea, Form, CharField, EmailField
 from app.models import Tweet, CustomUser
+from django.utils.translation import ugettext_lazy as _
 
 class TweetForm(ModelForm):
     class Meta:
@@ -19,9 +20,10 @@ class ConfigForm(ModelForm):
         #}	 
  
 class ContactForm(Form):
-    subject = CharField(max_length=200)
-    message = CharField(widget=Textarea(attrs={'cols': 80, 'rows': 5}) )
-    sender = EmailField(label="Your email address")
+    subject = CharField(label=_("Message subject"),max_length=200)
+    message = CharField(label=_("Your message"),widget=Textarea() )
+    sender = EmailField(label=_("Email address"))
+    name = CharField(label=_("Your name or company"),max_length=200)
     #cc_myself = forms.BooleanField(required=False)
     
 class UpdateTweetForm(Form):

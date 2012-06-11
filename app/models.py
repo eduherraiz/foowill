@@ -6,6 +6,8 @@ from datetime import datetime,timedelta
 from django_fields.tests import EncryptedCharField
 from django.core.mail import EmailMultiAlternatives
 
+from app.utils import send_email_mandrill
+
 import twitter
 import tweepy
 
@@ -139,18 +141,14 @@ class CustomUser(models.Model):
 	return True
 	
     def send_email(self, subject, text_content, html_content):
-	from_email = settings.EMAIL_PROJECT
-	to = user.email
-	if to:
-	    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-	    msg.attach_alternative(html_content, "text/html")
-	    msg.send()
+        send_email_mandrill(subject, text_content, html_content, self.email. self.username)
 
-    def send_mail_halfdead(self):
+
+    def send_email_halfdead(self):
 	subject = "¿Sigues vivo?"
 	text_content = "Get text from template/text_halfdead.txt"
 	html_content = "Get <b>html</b> from template/text_halfdead.html"
-	self.send_mail(subject, text_content, html_content)
+	self.send_email(subject, text_content, html_content)
 	
     def is_authenticated(self):
         return True

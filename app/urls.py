@@ -21,10 +21,4 @@ urlpatterns = patterns('',
     url(r'^updatestatus/$', updatestatus, name='updatestatus'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^tweet/delete/(?P<id_tweet>(\d+))/$',delete_tweet, name='delete_tweet'),
-    #url(r'', include('social_auth.urls')),
-    #(r'^i18n/', include('django.conf.urls.i18n')),
 )
-
-#urlpatterns += i18n_patterns('',
-     #url(r'^$', home, name='home'),
-#)
