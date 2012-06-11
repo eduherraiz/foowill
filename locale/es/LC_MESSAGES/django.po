@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-11 05:03+0200\n"
+"POT-Creation-Date: 2012-06-11 11:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: settings.py:63
+#: settings.py:64
 msgid "Spanish"
 msgstr "Español"
 
-#: settings.py:64
+#: settings.py:65
 msgid "English"
 msgstr "Inglés"
 
@@ -42,7 +42,7 @@ msgstr "Dirección de email"
 msgid "Your name or company"
 msgstr "Tu nombre o de tu compañía"
 
-#: app/views.py:104
+#: app/views.py:109
 msgid ""
 "I saved a tweet that will be published when I die with http://foowill.com "
 "@foo_will"
@@ -50,35 +50,35 @@ msgstr ""
 "He guardado un tweet que se publicará cuando muera gracias a http://foowill."
 "com @foo_will"
 
-#: templates/base.html:55
+#: templates/base.html:56
 msgid "Home"
 msgstr "Inicio"
 
-#: templates/base.html:56
+#: templates/base.html:57
 msgid "Contact"
 msgstr "Contacto"
 
-#: templates/base.html:63
+#: templates/base.html:64
 msgid "Language"
 msgstr "Idioma"
 
-#: templates/base.html:80
+#: templates/base.html:82
 msgid "Configure"
 msgstr "Configura"
 
-#: templates/base.html:81
+#: templates/base.html:83
 msgid "Post-tweets"
 msgstr "Post-tweets"
 
-#: templates/base.html:82
+#: templates/base.html:84
 msgid "Logout"
 msgstr "Desconectar"
 
-#: templates/base.html:90
+#: templates/base.html:92
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: templates/base.html:92
+#: templates/base.html:94
 msgid "Login with twitter"
 msgstr "Iniciar sesión con twitter"
 
@@ -86,7 +86,9 @@ msgstr "Iniciar sesión con twitter"
 msgid ""
 "Message sent, we'll try to reply as soon as possible to the your email "
 "address:"
-msgstr "Mensaje enviado, intentaremos responder lo más rápido posible a tu dirección de correo: "
+msgstr ""
+"Mensaje enviado, intentaremos responder lo más rápido posible a tu dirección "
+"de correo: "
 
 #: templates/home.html:28
 msgid ""

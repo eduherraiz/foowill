@@ -1,4 +1,5 @@
 from os.path import abspath, dirname, basename, join
+from django.utils.translation import ugettext_lazy as _
 
 try:
     import social_auth
@@ -57,11 +58,10 @@ TIME_ZONE = 'Europe/Madrid'
 LANGUAGE_CODE = 'en'
 
 #Function to prevent a circular import if use  django.utils.translation
-ugettext = lambda s: s
 
 LANGUAGES = (
-    ('es', ugettext('Spanish')),
-    ('en', ugettext('English')),
+    ('es', _('Spanish')),
+    ('en', _('English')),
 )
 
 SITE_ID = 1
