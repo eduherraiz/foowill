@@ -91,28 +91,29 @@ def done(request):
     newtweet = False
    
     if request.method == 'POST': # If the form has been submitted...
-	form = TweetForm(request.POST) # A form bound to the POST data
-	if form.is_valid(): # All validation rules pass
-	    #Save the tweet in the table
-	    text = form.cleaned_data['text']
-	    #user = CustomUser.objects.filter(username=request.user).get()
-	    
-	    t = Tweet(text=text, user=instance)
-	    t.save()
-	    newtweet = True
-	    if user.alwaysupdate:
-		tweet = _("I saved a tweet that will be published when I die with http://foowill.com @foo_will")
-		newtweet = False
-		try:
-		    user.update_twitter_status(tweet)
-		except TweepError:
-		    count = Tweet.objects.filter(user=instance).count()
-		    user.update_twitter_status("%s (%d)" % (tweet, count))
-		except:
-		    pass
+        form = TweetForm(request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            #Save the tweet in the table
+            text = form.cleaned_data['text']
+
+            #user = CustomUser.objects.filter(username=request.user).get()
+            
+            t = Tweet(text=text, user=instance)
+            t.save()
+            newtweet = True
+            if user.alwaysupdate:
+                tweet = _("I saved a tweet that will be published when I die with http://foowill.com @foo_will")
+                newtweet = False
+                try:
+                    user.update_twitter_status(tweet)
+                except TweepError:
+                    count = Tweet.objects.filter(user=instance).count()
+                    user.update_twitter_status("%s (%d)" % (tweet, count))
+                except:
+                    pass
     else:
-	form = TweetForm() # An unbound form
-	
+        form = TweetForm() # An unbound form
+        
     tweets = Tweet.objects.filter(user=instance).order_by('-pub_date')
     updatetweetform = UpdateTweetForm()
     
@@ -146,33 +147,33 @@ def updatestatus(request):
     sendupdate = False
     #Saving user option for future updates
     if request.method == 'POST': # If the form has been submitted...
-	if 'never' in request.POST:
-	    user.neverupdate = True
-	    user.save()
-	elif 'nottoday' in request.POST:
-	    user.nottodayupdate = datetime.now()
-	    user.save()
-	elif 'ever' in request.POST:
-	    user.alwaysupdate = True
-	    user.save()
-	    sendupdate = True
-	elif 'now' in request.POST:
-	    sendupdate = True
+        if 'never' in request.POST:
+            user.neverupdate = True
+            user.save()
+        elif 'nottoday' in request.POST:
+            user.nottodayupdate = datetime.now()
+            user.save()
+        elif 'ever' in request.POST:
+            user.alwaysupdate = True
+            user.save()
+            sendupdate = True
+        elif 'now' in request.POST:
+            sendupdate = True
 
-	if sendupdate:
-	    form = UpdateTweetForm(request.POST) # A form bound to the POST data
-	    if form.is_valid(): # All validation rules pass
-		#Send the tweet to twitter
-		tweet = form.cleaned_data['tweet']
-		
-		try:
-		    user.update_twitter_status(tweet)
-		except TweepError:
-		    try:
-			count = Tweet.objects.filter(user=instance).count()
-			user.update_twitter_status("%s (%d)" % (tweet, count))
-		    except:
-			pass
+        if sendupdate:
+            form = UpdateTweetForm(request.POST) # A form bound to the POST data
+            if form.is_valid(): # All validation rules pass
+                #Send the tweet to twitter
+                tweet = form.cleaned_data['tweet']
+                
+                try:
+                    user.update_twitter_status(tweet)
+                except TweepError:
+                    try:
+                        count = Tweet.objects.filter(user=instance).count()
+                        user.update_twitter_status("%s (%d)" % (tweet, count))
+                    except:
+                        pass
   
     return HttpResponseRedirect('/done/') # Redirect after POST
     
@@ -202,37 +203,37 @@ def form(request):
 
 def contact(request):
     if request.user.is_authenticated():
-	instance = UserSocialAuth.objects.filter(provider='twitter',user=request.user).get()
-	user = CustomUser.objects.filter(user=instance).get()
-	logued = True
+        instance = UserSocialAuth.objects.filter(provider='twitter',user=request.user).get()
+        user = CustomUser.objects.filter(user=instance).get()
+        logued = True
     else:
-	logued = False
-	user = ()
-	
-  
+        logued = False
+        user = ()
+        
+
     if request.method == 'POST': # If the form has been submitted...
-	form = ContactForm(request.POST) # A form bound to the POST data
-	if form.is_valid(): # All validation rules pass
-	    #Send the email
-	    subject = form.cleaned_data['subject']
+        form = ContactForm(request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            #Send the email
+            subject = form.cleaned_data['subject']
             html_content = form.cleaned_data['message']
             text_content = html2text.html2text(html_content)
-	    from_email = form.cleaned_data['sender']
-	    from_name = form.cleaned_data['name']
-	    info = send_email_mandrill(subject, text_content, html_content, from_email, from_name, settings.ADMIN_EMAIL, 'Admin foowill')
-	    infomail = info[0]
-	    
-	    #user = CustomUser.objects.filter(username=request.user).get()
-	    #return HttpResponseRedirect('/contact') # Redirect after POST
+            from_email = form.cleaned_data['sender']
+            from_name = form.cleaned_data['name']
+            info = send_email_mandrill(subject, text_content, html_content, from_email, from_name, settings.ADMIN_EMAIL, 'Admin foowill')
+            infomail = info[0]
+            
+            #user = CustomUser.objects.filter(username=request.user).get()
+            #return HttpResponseRedirect('/contact') # Redirect after POST
     else:
         infomail = {}
-	form = ContactForm() # An unbound form
-	
+        form = ContactForm() # An unbound form
+        
     ctx = {
         'form': form,
         'config': user,
         'logued': logued,
         'infomail' : infomail,
     }
-	
+        
     return render_to_response('contact.html', ctx, RequestContext(request))

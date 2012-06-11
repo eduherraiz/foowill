@@ -39,7 +39,7 @@
 	<div class="control-group">
 	  <label class="control-label" for="message">Save a tweet</label>
 	  <div class="controls">
-	    {{ form.text }}
+	    {{  form.text }}
 	    <p class="help-block"></p>
 	    {{ form.text.errors }}
 	  </div>
@@ -53,7 +53,8 @@
     {% for tweet in tweets %}
 
       <div class='tweet'>
-	<p>{{ tweet.text }}</p>
+        {% load extras %}
+	<p>{% parse_tweet tweet.text %}</p>
 	<i>{{ tweet.pretty_date }}</i>
 <!-- 	<a href="/tweet/open/{{tweet.pk}}"><i class="icon-eye-open icon-black"></i> Abrir</a> -->
 	<a href="/tweet/delete/{{tweet.pk}}"><i class="icon-trash icon-black"></i> Borrar</a><br/>

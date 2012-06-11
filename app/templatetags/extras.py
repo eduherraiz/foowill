@@ -1,5 +1,6 @@
 from django import template
 from django.core.urlresolvers import reverse
+import re
 
 register = template.Library()
 
@@ -21,3 +22,11 @@ def add_active(request, name, by_path=False):
         return ' active '
 
     return ''
+
+@register.simple_tag
+def parse_tweet(text):
+    text = re.sub(r'((mailto\:|(news|(ht|f)tp(s?))\://){1}\S+)', '<a href="\g<0>" rel="external">\g<0></a>', text)
+    text = re.sub(r'http://(yfrog|twitpic).com/(?P<id>\w+/?)', '', text)
+    text = re.sub(r'#(?P<tag>\w+)', '<a href="http://search.twitter.com/search?tag=\g<tag>" rel="external">#\g<tag></a>', text)
+    text = re.sub(r'@(?P<username>\w+)', '@<a href="http://twitter.com/\g<username>/" rel="external">\g<username></a>', text)
+    return text
