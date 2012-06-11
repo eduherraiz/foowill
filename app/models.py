@@ -30,13 +30,24 @@ class CustomUser(models.Model):
       (120, '2 minutes'),
       (604800, '1 week'),
       (1209600, '2 weeks'),
+      (1814400, '3 weeks'),
       (2419200, '1 month'), ##DEFAULT
-      (7257600, '3 months'), 
+      (4838400, '2 month'), ##DEFAULT
+      (7257600, '3 months'),
+      (9676800, '4 months'),
+      (12096000, '5 months'),
       (14515200, '6 months'),
-      (29030400, '1 year')
+      (16934400, '7 months'),
+      (19353600, '8 months'),
+      (21772800, '9 months'),
+      (24192000, '10 months'),
+      (26611200, '11 months'),
+      (29030400, '1 year'),
+      (58060800, '2 year'),
+      (87091200, '3 year'),
     )
     #intervalo de periodo de inactividad para considerar al usuario muerto/medio-muerto (segun si email ping o no)
-    activity_interval = models.IntegerField(choices=ACTIVITY_CHOICES, default=2419200, blank=True)
+    activity_interval = models.IntegerField(choices=ACTIVITY_CHOICES, default=2419200, blank=False)
     
     PUBLISH_CHOICES = (
       (0, 'Inmediatly'), ##DEFAULT
