@@ -20,8 +20,7 @@ from social_auth.models import UserSocialAuth
 from app.models import Tweet, CustomUser
 from app.utils import send_email_mandrill
 from app.forms import *
-
-
+import html2text
 
 def home(request):
     """Home view, displays login mechanism"""
@@ -216,21 +215,24 @@ def contact(request):
 	if form.is_valid(): # All validation rules pass
 	    #Send the email
 	    subject = form.cleaned_data['subject']
-	    text_content = form.cleaned_data['message']
             html_content = form.cleaned_data['message']
+            text_content = html2text.html2text(html_content)
 	    from_email = form.cleaned_data['sender']
 	    from_name = form.cleaned_data['name']
-	    send_email_mandrill(subject, text_content, html_content, from_email, from_name, settings.ADMIN_EMAIL, 'Admin foowill')
+	    info = send_email_mandrill(subject, text_content, html_content, from_email, from_name, settings.ADMIN_EMAIL, 'Admin foowill')
+	    infomail = info[0]
 	    
 	    #user = CustomUser.objects.filter(username=request.user).get()
-	    return HttpResponseRedirect('/contact') # Redirect after POST
+	    #return HttpResponseRedirect('/contact') # Redirect after POST
     else:
+        infomail = {}
 	form = ContactForm() # An unbound form
 	
     ctx = {
         'form': form,
         'config': user,
         'logued': logued,
+        'infomail' : infomail,
     }
 	
     return render_to_response('contact.html', ctx, RequestContext(request))

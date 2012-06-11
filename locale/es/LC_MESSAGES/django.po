@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-11 02:31+0200\n"
+"POT-Creation-Date: 2012-06-11 05:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr "Dirección de email"
 msgid "Your name or company"
 msgstr "Tu nombre o de tu compañía"
 
-#: app/views.py:105
+#: app/views.py:104
 msgid ""
 "I saved a tweet that will be published when I die with http://foowill.com "
 "@foo_will"
@@ -62,25 +62,31 @@ msgstr "Contacto"
 msgid "Language"
 msgstr "Idioma"
 
-#: templates/base.html:76
+#: templates/base.html:80
 msgid "Configure"
 msgstr "Configura"
 
-#: templates/base.html:77
+#: templates/base.html:81
 msgid "Post-tweets"
 msgstr "Post-tweets"
 
-#: templates/base.html:78
+#: templates/base.html:82
 msgid "Logout"
 msgstr "Desconectar"
 
-#: templates/base.html:86
+#: templates/base.html:90
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: templates/base.html:88
+#: templates/base.html:92
 msgid "Login with twitter"
 msgstr "Iniciar sesión con twitter"
+
+#: templates/contact.html:28
+msgid ""
+"Message sent, we'll try to reply as soon as possible to the your email "
+"address:"
+msgstr "Mensaje enviado, intentaremos responder lo más rápido posible a tu dirección de correo: "
 
 #: templates/home.html:28
 msgid ""

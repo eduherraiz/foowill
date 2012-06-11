@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% block head %}
 <!-- TinyMCE -->
     <script type="text/javascript" src="/static/js/tiny_mce/tiny_mce.js"></script>
@@ -20,6 +22,15 @@
 {% endblock %}
 
 {% block content %}
+
+{% if infomail.status == "sent" %}
+<div class="alert alert-success">
+  {% trans "Message sent, we'll try to reply as soon as possible to the your email address:" %} <b>{{ infomail.email }}</b>
+</div>
+{% endif %}
+
+
+
 <form action="" method="post">
     {% csrf_token %}
     {{ form.non_field_errors }}

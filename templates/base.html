@@ -61,9 +61,13 @@
 
 	    <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Language" %}<b class="caret"></b></a>
-		<ul class="dropdown-menu">{% for lang in LANGUAGES %}
-		    <form name="setLang{{ lang.1}}" action="/i18n/setlang/" method="POST">{% csrf_token %}<input name="next" type="hidden" value="{{ request.path }}" /><input type="hidden" name="language" value="{{ lang.0 }}" />
-		      <li><a rel="nofollow" onclick="document.setLang{{ lang.1 }}.submit();return false;">{{ lang.1 }}</a></li>
+		<ul class="dropdown-menu">
+                    {% for lang in LANGUAGES %}
+		    <form class="form-lang" name="setLang{{ lang.1 }}" action="/i18n/setlang/" method="POST">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.path }}" />
+                        <input type="hidden" name="language" value="{{ lang.0 }}" />
+                        <li><a rel="nofollow" onclick="document.setLang{{ lang.1 }}.submit();return false;">{{ lang.1 }}</a></li>
 		    </form>
 		  {% endfor %}    
 		</ul>

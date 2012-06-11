@@ -16,6 +16,6 @@ def send_email_mandrill(subject, text_content, html_content, from_email, from_na
             'name': name_to,
         }]
     }
-    mapi.messages.send(message=message) 
+    return mapi.messages.send(message=message) 
 
     
