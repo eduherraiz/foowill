@@ -53,7 +53,8 @@ class CustomUser(models.Model):
       (0, 'Inmediatly'), ##DEFAULT
       (3600, '1 hour'),
       (21600, '6 hour'),
-      (86400, '1 day')
+      (86400, '1 day'),
+      (172800, '2 days'),
     )
     #intervalo de tiempo entre emisiones de tweets una vez muerto
     publish_interval = models.IntegerField(choices=PUBLISH_CHOICES, default=0, blank=True)

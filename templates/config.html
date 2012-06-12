@@ -10,11 +10,23 @@
 
   <script>
      $(document).ready(function() {
+        /*scale in diferent proportion*/
+        values =  [0,3,6,9,14,19,24,29,34,39,44,49,54,59,76,88,100];
+        /*Real values of each value*/
+        trueValues = [604800, 1209600,1814400, /*weeks: 1 to 3*/
+        2419200,4838400,7257600,9676800,12096000,14515200,16934400,19353600,21772800,24192000,26611200, /*months: 1 to 11*/
+        29030400, 58060800, 87091200]; /*years: 1 to 3*/ /*17 items*/
+
+        values2 =  [0,25,50,75,100];
+        trueValues2 = [0,3600, 21600,86400,172800]; 
+
         /*Slider activity_interval*/
-        var slider1 = new Slider("#slider_ai","#id_activity_interval");
+        var slider1 = new Slider("#slider_ai","#id_activity_interval",values, trueValues);
         slider1.put_slider();
-        var slider2 =  new Slider("#slider_mi","#id_mail_interval");
+        var slider2 =  new Slider("#slider_mi","#id_mail_interval",values, trueValues);
         slider2.put_slider();
+        var slider3 =  new Slider("#slider_pi","#id_publish_interval",values2, trueValues2);
+        slider3.put_slider();
     });
   </script>
 {% endblock %}
@@ -66,8 +78,9 @@
     <div class="control-group">
       <label class="control-label" for="publish_interval">Publish interval</label>
       <div class="controls">
-	{{ form.publish_interval }}
 	<p class="help-block">Intervalo de publicación entre post-tweets. Con esto puedes escoger cada cuanto tiempo saldrán los post-tweets que guardarás.</p>
+        <div id="slider_pi" style="width:400px;margin-top:10px;margin-bottom:10px;margin-right:20px;float:left;"></div> 
+        {{ form.publish_interval }}
 	{{ form.activity_interval.errors }}
       </div>
     </div>
