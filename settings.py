@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from os.path import abspath, dirname, basename, join
 from django.utils.translation import ugettext_lazy as _
 
@@ -60,8 +61,8 @@ LANGUAGE_CODE = 'en'
 #Function to prevent a circular import if use  django.utils.translation
 
 LANGUAGES = (
-    ('es', _('Spanish')),
-    ('en', _('English')),
+    ('es', 'Español'),
+    ('en', 'English'),
 )
 
 SITE_ID = 1

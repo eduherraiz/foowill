@@ -69,7 +69,10 @@
                         <input name="next" type="hidden" value="{{ request.path }}" />
                         <input type="hidden" name="language" value="{{ lang.0 }}" />
                         
-                        <li><a rel="nofollow" onclick="document.setLang{{ lang.1 }}.submit();return false;"><img src="/static/img/blank.gif" class="flag flag-{{ lang.0 }}" alt="{{ lang.1 }}" /> {{ lang.1 }}</a></li>
+                        <li>
+                            <a rel="nofollow" onclick="document.setLang{{ lang.1 }}.submit();return false;">
+                            <img src="/static/img/blank.gif" class="flag flag-{{ lang.0 }}" alt="{{ lang.1 }}" /> {{ lang.1 }}</a>
+                        </li>
 		    </form>
 		  {% endfor %}    
 		</ul>
