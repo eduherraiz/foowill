@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-11 11:58+0200\n"
+"POT-Creation-Date: 2012-06-13 02:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-
-#: settings.py:64
-msgid "Spanish"
-msgstr "Español"
-
-#: settings.py:65
-msgid "English"
-msgstr "Inglés"
 
 #: app/forms.py:23
 msgid "Message subject"
@@ -50,6 +42,46 @@ msgstr ""
 "He guardado un tweet que se publicará cuando muera gracias a http://foowill."
 "com @foo_will"
 
+#: app/templatetags/extras.py:71
+msgid "a year ago"
+msgid_plural "%(years)d years ago"
+msgstr[0] "hace cerca de un año"
+msgstr[1] "hace cerca de %(years)d años"
+
+#: app/templatetags/extras.py:74
+msgid "a month ago"
+msgid_plural "%(months)d months ago"
+msgstr[0] "un mes"
+msgstr[1] "%(months)d meses"
+
+#: app/templatetags/extras.py:77
+msgid "a week ago"
+msgid_plural "%(weeks)d weeks ago"
+msgstr[0] "una semana"
+msgstr[1] "%(weeks)d semanas"
+
+#: app/templatetags/extras.py:80
+msgid "a day ago"
+msgid_plural "%(days)d days ago"
+msgstr[0] "un día"
+msgstr[1] "%(days)d días"
+
+#: app/templatetags/extras.py:83
+msgid "a hour ago"
+msgid_plural "%(hours)d hours ago"
+msgstr[0] "una hora"
+msgstr[1] "%(hours)d horas"
+
+#: app/templatetags/extras.py:86
+msgid "a minute ago"
+msgid_plural "%(minutes)d minutes ago"
+msgstr[0] "un minuto"
+msgstr[1] "%(minutes)d minutos"
+
+#: app/templatetags/extras.py:88
+msgid "moments ago"
+msgstr "un momento"
+
 #: templates/base.html:56
 msgid "Home"
 msgstr "Inicio"
@@ -62,25 +94,82 @@ msgstr "Contacto"
 msgid "Language"
 msgstr "Idioma"
 
-#: templates/base.html:82
+#: templates/base.html:85
 msgid "Configure"
 msgstr "Configura"
 
-#: templates/base.html:83
+#: templates/base.html:86
 msgid "Post-tweets"
 msgstr "Post-tweets"
 
-#: templates/base.html:84
+#: templates/base.html:87
 msgid "Logout"
 msgstr "Desconectar"
 
-#: templates/base.html:92
+#: templates/base.html:95
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: templates/base.html:94
+#: templates/base.html:97
 msgid "Login with twitter"
 msgstr "Iniciar sesión con twitter"
+
+#: templates/config.html:44
+msgid "Email"
+msgstr "Email"
+
+#: templates/config.html:48
+msgid "We need your email to send you a verification email."
+msgstr ""
+"Necesitamos tu dirección de correo para poder enviarte un email de "
+"verificación."
+
+#: templates/config.html:49
+msgid ""
+"If you leave the field blank, your saved tweets will be posted immediately "
+"after reaching the interval of inactivity."
+msgstr ""
+"Si dejas el campo en blanco, tus tweets guardados serán publicados "
+"inmediatamente después de sobrepasar el intervalo de inactividad."
+
+#: templates/config.html:57
+msgid "Interval of inactivity"
+msgstr "Intervalo de inactividad"
+
+#: templates/config.html:63
+msgid "How long without updating your status should make us worry for you?"
+msgstr ""
+"¿Cuánto tiempo sin actualizar tu estado debe hacer que nos preocupemos por "
+"ti?"
+
+#: templates/config.html:64
+msgid "Your last update on twitter was"
+msgstr "Tu última actualización en twitter fué hace"
+
+#: templates/config.html:71
+msgid "Time pending verification"
+msgstr "Tiempo de espera de la verificación"
+
+#: templates/config.html:77
+msgid "How long we wait for the response to verification mail?"
+msgstr ""
+"¿Cuánto tiempo esperamos por alguna respuesta al email de verificación?"
+
+#: templates/config.html:82
+msgid "Publish interval"
+msgstr "Intervalo de publicación"
+
+#: templates/config.html:87
+msgid "Interval of time between post-tweets update"
+msgstr "Intervalo de tiempo entre publicaciones de post-tweets."
+
+#: templates/config.html:93
+msgid "Save changes"
+msgstr "Guardar cambios"
+
+#: templates/config.html:94
+msgid "Cancel"
+msgstr "Cancelar"
 
 #: templates/contact.html:28
 msgid ""
@@ -176,3 +265,9 @@ msgstr "He encontrado un aplicación para actualizar twitter post-mortem"
 #: templates/home.html:56 templates/home.html.py:63 templates/home.html:73
 msgid "Share on"
 msgstr "Comparte en"
+
+#~ msgid "Spanish"
+#~ msgstr "Español"
+
+#~ msgid "English"
+#~ msgstr "Inglés"

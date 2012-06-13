@@ -24,53 +24,15 @@ class CustomUser(models.Model):
     last_login = models.DateTimeField(blank=True, null=True)
 
     email = models.EmailField(blank=True)
-    
-    ACTIVITY_CHOICES = (
-      (30, '30 seconds'),
-      (120, '2 minutes'),
-      (604800, '1 week'),
-      (1209600, '2 weeks'),
-      (1814400, '3 weeks'),
-      (2419200, '1 month'), ##DEFAULT
-      (4838400, '2 month'), ##DEFAULT
-      (7257600, '3 months'),
-      (9676800, '4 months'),
-      (12096000, '5 months'),
-      (14515200, '6 months'),
-      (16934400, '7 months'),
-      (19353600, '8 months'),
-      (21772800, '9 months'),
-      (24192000, '10 months'),
-      (26611200, '11 months'),
-      (29030400, '1 year'),
-      (58060800, '2 year'),
-      (87091200, '3 year'),
-    )
-    #intervalo de periodo de inactividad para considerar al usuario muerto/medio-muerto (segun si email ping o no)
-    activity_interval = models.IntegerField(choices=ACTIVITY_CHOICES, default=2419200, blank=False)
-    
-    PUBLISH_CHOICES = (
-      (0, 'Inmediatly'), ##DEFAULT
-      (3600, '1 hour'),
-      (21600, '6 hour'),
-      (86400, '1 day'),
-      (172800, '2 days'),
-    )
-    #intervalo de tiempo entre emisiones de tweets una vez muerto
-    publish_interval = models.IntegerField(choices=PUBLISH_CHOICES, default=0, blank=True)
 
-    MAIL_CHOICES = (
-      (30, '30 seconds'),
-      (120, '2 minutes'),
-      (604800, '1 week'),
-      (1209600, '2 weeks'), ##DEFAULT
-      (2419200, '1 month'), 
-      (7257600, '3 months'), 
-      (14515200, '6 months'),
-      (29030400, '1 year')
-    )
+    #intervalo de periodo de inactividad para considerar al usuario muerto/medio-muerto (segun si email ping o no)
+    activity_interval = models.IntegerField(choices=settings.ACTIVITY_CHOICES, default=2419200, blank=False)
+    
+    #intervalo de tiempo entre emisiones de tweets una vez muerto
+    publish_interval = models.IntegerField(choices=settings.PUBLISH_CHOICES, default=0, blank=True)
+
     #tiempo a esperar desde half-dead hasta dead
-    mail_interval = models.IntegerField(choices=ACTIVITY_CHOICES, default=1209600, blank=False)
+    mail_interval = models.IntegerField(choices=settings.ACTIVITY_CHOICES, default=1209600, blank=False)
     
     #fecha de la última publicación en twitter
     last_update = models.DateTimeField(blank=True, null=True)
@@ -93,24 +55,29 @@ class CustomUser(models.Model):
 
     objects = CustomUserManager()
 
+    def get_update_dates(self):
+        "Get last update date and next_check in twitter"
+        api = twitter.Api()
+        statuses = api.GetUserTimeline(self.username, count=1)
+        if len(statuses) > 0:
+            new_date = datetime.utcfromtimestamp(statuses[0].created_at_in_seconds)
+            next_check = new_date + timedelta(seconds=self.activity_interval)
+            return {'new_date': new_date, 'next_check': next_check }
+
+    def get_last_update(self):
+        "Get last update date in twitter"
+        d = self.get_update_dates()
+        return d['new_date']
+
+    
     def update_date(self):
 	"Save the last update date in twitter for the user"
-	api = twitter.Api()
-	statuses = api.GetUserTimeline(self.username, count=1)
-	if len(statuses) > 0:
-	    new_date = datetime.utcfromtimestamp(statuses[0].created_at_in_seconds)
-	    next_check = new_date + timedelta(seconds=self.activity_interval)
-	    if not self.last_update:
-		self.last_update = new_date
-		self.next_check = next_check
-		self.save()
-		return True
-		
-	    if self.last_update < new_date:
-		self.last_update = new_date
-		self.next_check = next_check
-		self.save()
-		return True
+        d = self.get_update_dates()
+        if (self.last_update < new_date) or (not self.last_update):
+            self.new_date = d["new_date"]
+            self.next_check = d["next_check"]
+            self.save()
+            return True
 
     def update_twitter_status(self, text):
 	if text:

@@ -269,6 +269,56 @@ EMAIL_PROJECT = "info@foowill.com"
 ADMIN_EMAIL = "gshark@gmail.com"
 MANDRILL_KEY = "994dcdb3-9fb4-4852-809d-97a7c358a0b4"
 
+ACTIVITY_CHOICES = (
+    (30, '30 seconds'),
+    (120, '2 minutes'),
+    (604800, '1 week'),
+    (1209600, '2 weeks'),
+    (1814400, '3 weeks'),
+    (2419200, '1 month'), ##DEFAULT
+    (4838400, '2 month'), 
+    (7257600, '3 months'),
+    (9676800, '4 months'),
+    (12096000, '5 months'),
+    (14515200, '6 months'),
+    (16934400, '7 months'),
+    (19353600, '8 months'),
+    (21772800, '9 months'),
+    (24192000, '10 months'),
+    (26611200, '11 months'),
+    (29030400, '1 year'),
+    (58060800, '2 year'),
+    (87091200, '3 year'),
+)
+
+PUBLISH_CHOICES = (
+    (0, 'Inmediatly'), ##DEFAULT
+    (3600, '1 hour'),
+    (21600, '6 hour'),
+    (86400, '1 day'),
+    (172800, '2 days'),
+    (259200, '3 days'),
+    (345600, '4 days'),
+    (432000, '5 days'),
+    (518400, '6 days'),
+    (604800, '1 week'),
+    (1209600, '2 weeks'),
+    (1814400, '3 weeks'),
+    (2419200, '1 month'), ##DEFAULT
+    (4838400, '2 month'), 
+    (7257600, '3 months'),
+    (9676800, '4 months'),
+    (12096000, '5 months'),
+    (14515200, '6 months'),
+    (16934400, '7 months'),
+    (19353600, '8 months'),
+    (21772800, '9 months'),
+    (24192000, '10 months'),
+    (26611200, '11 months'),
+    (29030400, '1 year'),
+    (58060800, '2 year'),
+)
+
 import djcelery
 djcelery.setup_loader()
 

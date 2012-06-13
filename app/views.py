@@ -80,7 +80,7 @@ def config(request):
 	
     ctx = {
         'form': form,
-        'config': user,
+        'user': user,
         'logued': True,
     }
     

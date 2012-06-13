@@ -46,19 +46,17 @@ Slider = function (id_slider, id_select, values, trueValues ){
         return val;
     }
     
-    this.put_slider = function(){
-        var slider = $(_id_slider).slider({
-            min: 0,
-            max: 100,
-            value: getRealValue(valueSelected(),_trueValues,_values),
-            slide: function(event, ui) {
-                    var includeLeft = event.keyCode != $.ui.keyCode.RIGHT;
-                    var includeRight = event.keyCode != $.ui.keyCode.LEFT;
-                    slider.slider('option', 'value', findNearest(includeLeft, includeRight, ui.value));
-                    $(_id_select).val(getRealValue(slider.slider('value'),_values,_trueValues));
-                    return false;
-            }
-        });
-        changeSelect();
-    }
+    var slider = $(_id_slider).slider({
+        min: 0,
+        max: 100,
+        value: getRealValue(valueSelected(),_trueValues,_values),
+        slide: function(event, ui) {
+                var includeLeft = event.keyCode != $.ui.keyCode.RIGHT;
+                var includeRight = event.keyCode != $.ui.keyCode.LEFT;
+                slider.slider('option', 'value', findNearest(includeLeft, includeRight, ui.value));
+                $(_id_select).val(getRealValue(slider.slider('value'),_values,_trueValues));
+                return false;
+        }
+    });
+    changeSelect();
  }
