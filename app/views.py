@@ -54,6 +54,7 @@ def config(request):
     """Login complete view, displays user data"""
     instance = UserSocialAuth.objects.filter(provider='twitter',user=request.user).get()
     user = None
+    saved = False
     try:
 	user = CustomUser.objects.filter(user=instance).get()
     except CustomUser.DoesNotExist:
@@ -73,8 +74,7 @@ def config(request):
 		user.update_date()
 		user.configured = True
 		user.save()
-	    
-	    return HttpResponseRedirect('/done/') # Redirect after POST
+	    saved = True
     else:
 	form = ConfigForm(instance=user) # An unbound form
 	
@@ -82,6 +82,7 @@ def config(request):
         'form': form,
         'user': user,
         'logued': True,
+        'saved' : saved,
     }
     
     return render_to_response('config.html', ctx, RequestContext(request))

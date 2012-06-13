@@ -138,20 +138,6 @@ class Tweet(models.Model):
     user = models.ForeignKey(UserSocialAuth)
     pub_date = models.DateTimeField('date published', auto_now_add=True)
     
-    def pretty_date(self):
-	now = datetime.now()
-	diff = now - self.pub_date 
-	seconds = diff.seconds
-	if diff.days is 0:
-	    if seconds < 60:
-		return "%ds" % seconds
-	    elif seconds < 3600:
-		return "%dm" % ((seconds + 60 / 2) / 60)
-	    else:
-		return "%dh" % ((seconds + 3600 / 2) / 3600)
-	else:
-	    return "%d/%d/%d" % (self.pub_date.day,self.pub_date.month,self.pub_date.year)
-
     def __str__(self):
         return self.text
      

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-13 02:36+0200\n"
+"POT-Creation-Date: 2012-06-13 03:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgstr "Dirección de email"
 msgid "Your name or company"
 msgstr "Tu nombre o de tu compañía"
 
-#: app/views.py:109
+#: app/views.py:110
 msgid ""
 "I saved a tweet that will be published when I die with http://foowill.com "
 "@foo_will"
@@ -43,36 +43,42 @@ msgstr ""
 "com @foo_will"
 
 #: app/templatetags/extras.py:71
+#, python-format
 msgid "a year ago"
 msgid_plural "%(years)d years ago"
 msgstr[0] "hace cerca de un año"
 msgstr[1] "hace cerca de %(years)d años"
 
 #: app/templatetags/extras.py:74
+#, python-format
 msgid "a month ago"
 msgid_plural "%(months)d months ago"
 msgstr[0] "un mes"
 msgstr[1] "%(months)d meses"
 
 #: app/templatetags/extras.py:77
+#, python-format
 msgid "a week ago"
 msgid_plural "%(weeks)d weeks ago"
 msgstr[0] "una semana"
 msgstr[1] "%(weeks)d semanas"
 
 #: app/templatetags/extras.py:80
+#, python-format
 msgid "a day ago"
 msgid_plural "%(days)d days ago"
 msgstr[0] "un día"
 msgstr[1] "%(days)d días"
 
 #: app/templatetags/extras.py:83
+#, python-format
 msgid "a hour ago"
 msgid_plural "%(hours)d hours ago"
 msgstr[0] "una hora"
 msgstr[1] "%(hours)d horas"
 
 #: app/templatetags/extras.py:86
+#, python-format
 msgid "a minute ago"
 msgid_plural "%(minutes)d minutes ago"
 msgstr[0] "un minuto"
@@ -179,13 +185,47 @@ msgstr ""
 "Mensaje enviado, intentaremos responder lo más rápido posible a tu dirección "
 "de correo: "
 
+#: templates/done.html:20
+msgid "Do you want to update your twitter status?"
+msgstr "¿Quieres actualizar tu estado en twitter?"
+
+#: templates/done.html:29
+msgid "Never"
+msgstr "Nunca"
+
+#: templates/done.html:30
+msgid "Not today"
+msgstr "Hoy no"
+
+#: templates/done.html:31
+msgid "Now and ever"
+msgstr "Ahora y siempre"
+
+#: templates/done.html:32
+msgid "Just now"
+msgstr "Sólo ahora"
+
+#: templates/done.html:43
+msgid "Save a post-tweet"
+msgstr "Guarda tus post-weets"
+
+#: templates/done.html:50
+#, fuzzy
+msgid "Post-tweet"
+msgstr "Post-tweets"
+
+#: templates/done.html:63
+msgid "Delete"
+msgstr "Borrar"
+
 #: templates/home.html:28
+#, fuzzy
 msgid ""
-"Foowill is an application where you can save tweets twitter (post-tweets) "
-"that will be sent to your account when you die."
+"Foowill is an twitter application where you can save tweets that will be "
+"sent to your account when you die (post-tweets)."
 msgstr ""
-"Foowill es una aplicación para twitter donde puedes guardar tweets (post-"
-"tweets) que serán enviados a tu cuenta cuando mueras."
+"Foowill es una aplicación para twitter donde puedes guardar tweets "
+"que serán enviados a tu cuenta cuando mueras (post-tweets)."
 
 #: templates/home.html:29
 msgid ""

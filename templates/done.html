@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 
+{% load extras %}
+{% load i18n %}
+
 {% block script %}
 
   {% if newtweet and user.show_modal %}
@@ -14,7 +17,7 @@
 	<div class="modal hide" id="myModal">
 	<div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal">×</button>
-	    <h3>¿Quieres actualizar tu estado de twitter?</h3>
+	    <h3>{% trans 'Do you want to update your twitter status?' %}</h3>
 	</div>
 	
 	<form action="/updatestatus/" method="post">
@@ -23,10 +26,10 @@
 	    {{ updatetweetform.tweet }}
 	    </div>
 	    <div class="modal-footer">
-	    <input type="submit" class="btn btn-danger" name="never" value="Nunca">
-	    <input type="submit" class="btn btn-warning" name="nottoday" value="Hoy no">
-	    <input type="submit" class="btn btn-success" name="ever" value="Ahora y siempre">
-	    <input type="submit" class="btn btn-info"  name="now" value="Solo ahora">
+	    <input type="submit" class="btn btn-danger" name="never" value="{% trans 'Never' %}">
+	    <input type="submit" class="btn btn-warning" name="nottoday" value="{% trans 'Not today' %}">
+	    <input type="submit" class="btn btn-success" name="ever" value="{% trans 'Now and ever' %}">
+	    <input type="submit" class="btn btn-info"  name="now" value="{% trans 'Just now' %}">
 	    </div>
 	</form>
 	</div>
@@ -37,14 +40,14 @@
     <form action="/done/" method="post">
     {% csrf_token %}
 	<div class="control-group">
-	  <label class="control-label" for="message">Save a tweet</label>
+	  <label class="control-label" for="message">{% trans 'Save a post-tweet' %}</label>
 	  <div class="controls">
 	    {{  form.text }}
 	    <p class="help-block"></p>
 	    {{ form.text.errors }}
 	  </div>
 	</div>
-      <input type="submit" value="Save" />
+      <input type="submit" value="{% trans 'Post-tweet' %}" />
     </form>
   </div>
 
@@ -53,11 +56,11 @@
     {% for tweet in tweets %}
 
       <div class='tweet'>
-        {% load extras %}
+
 	<p>{% parse_tweet tweet.text %}</p>
-	<i>{{ tweet.pretty_date }}</i>
+	<i>{{ tweet.pub_date|relative_date }}</i>
 <!-- 	<a href="/tweet/open/{{tweet.pk}}"><i class="icon-eye-open icon-black"></i> Abrir</a> -->
-	<a href="/tweet/delete/{{tweet.pk}}"><i class="icon-trash icon-black"></i> Borrar</a><br/>
+	<a href="/tweet/delete/{{tweet.pk}}"><i class="icon-trash icon-black"></i> {% trans 'Delete' %}</a><br/>
       </div>
     {% endfor %}
 
