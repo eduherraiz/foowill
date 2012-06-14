@@ -8,7 +8,6 @@ from django.shortcuts import render_to_response, redirect
 from django.contrib.messages.api import get_messages
 from django.conf import settings
 from django.utils.translation import ugettext as _
-
 from datetime import datetime
 
 from tweepy.error import TweepError
@@ -22,66 +21,63 @@ from app.utils import send_email_mandrill
 from app.forms import *
 import html2text
 
+def get_user(userg):
+    instance = UserSocialAuth.objects.filter(provider='twitter',user=userg).get()
+    user = None
+    try:
+        user = CustomUser.objects.filter(user=instance).get()
+    except CustomUser.DoesNotExist:
+        user = CustomUser.objects.create(user=instance)
+    return user
+
 def home(request):
     """Home view, displays login mechanism"""
     if request.user.is_authenticated():
-	instance = UserSocialAuth.objects.filter(provider='twitter',user=request.user).get()
-	user = None
-	try:
-	    user = CustomUser.objects.filter(user=instance).get()
-	    logued = True
-	except CustomUser.DoesNotExist:
-	    user = CustomUser.objects.create(user=instance)
-	    logued = True
-	    
-	
-	#if user.configured:
-	    #return HttpResponseRedirect('/done/') # Redirect after POST
-	#else:
-	    #return HttpResponseRedirect('/config/') # Redirect after POST
+        logued = True
+        user = get_user(request.user)
     else:
 	logued = False
 	user = ()
 	
     ctx = {
         'logued': logued,
-        'config': user,
+        'user': user,
     }    
     return render_to_response('home.html', ctx, RequestContext(request))
 
 @login_required
 def config(request):
     """Login complete view, displays user data"""
-    instance = UserSocialAuth.objects.filter(provider='twitter',user=request.user).get()
-    user = None
+    user = get_user(request.user)
+    
     saved = False
-    try:
-	user = CustomUser.objects.filter(user=instance).get()
-    except CustomUser.DoesNotExist:
-	user = CustomUser.objects.create(user=instance)
         
     if request.method == 'POST': # If the form has been submitted...
-	form = ConfigForm(request.POST) # A form bound to the POST data
-	if form.is_valid(): # All validation rules pass
-	    #Save the user config in the table
-	    user.username = request.user.username
-	    user.email = form.cleaned_data['email']
-	    user.publish_interval = form.cleaned_data['publish_interval']
-	    user.mail_interval = form.cleaned_data['mail_interval']
-	    user.activity_interval = form.cleaned_data['activity_interval']
-	    user.save()
-	    if not user.configured:
-		user.update_date()
-		user.configured = True
-		user.save()
-	    saved = True
+        form = ConfigForm(request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            #Save the user config in the table
+            user.username = request.user.username
+            user.email = form.cleaned_data['email']
+            user.publish_interval = form.cleaned_data['publish_interval']
+            user.mail_interval = form.cleaned_data['mail_interval']
+            user.activity_interval = form.cleaned_data['activity_interval']
+            
+            #Change the language
+            #user.language = form.cleaned_data['language']
+            
+            user.save()
+            if not user.configured:
+                user.update_date()
+                user.configured = True
+                user.save()
+            saved = True
     else:
-	form = ConfigForm(instance=user) # An unbound form
-	
+        form = ConfigForm(instance=user) # An unbound form
+        
     ctx = {
         'form': form,
         'user': user,
-        'logued': True,
+        'logued' : True, 
         'saved' : saved,
     }
     
@@ -91,8 +87,7 @@ def config(request):
 @login_required
 def done(request):
     """Login complete view, displays user data"""
-    instance = UserSocialAuth.objects.filter(provider='twitter',user=request.user).get()
-    user = CustomUser.objects.filter(user=instance).get()
+    user = get_user(request.user)
     newtweet = False
    
     if request.method == 'POST': # If the form has been submitted...
@@ -100,8 +95,6 @@ def done(request):
         if form.is_valid(): # All validation rules pass
             #Save the tweet in the table
             text = form.cleaned_data['text']
-
-            #user = CustomUser.objects.filter(username=request.user).get()
             
             t = Tweet(text=text, user=instance)
             t.save()
@@ -119,7 +112,7 @@ def done(request):
     else:
         form = TweetForm() # An unbound form
         
-    tweets = Tweet.objects.filter(user=instance).order_by('-pub_date')
+    tweets = Tweet.objects.filter(user=user).order_by('-pub_date')
     updatetweetform = UpdateTweetForm()
     
     ctx = {
@@ -136,10 +129,9 @@ def done(request):
 @login_required
 def delete_tweet(request, id_tweet):
     """Delete tweet"""
-    instance = UserSocialAuth.objects.filter(provider='twitter',user=request.user).get()
-    user = CustomUser.objects.filter(user=instance).get()
+    user = get_user(request.user)
    
-    t = Tweet.objects.filter(pk=id_tweet, user=instance).get()
+    t = Tweet.objects.filter(pk=id_tweet, user=user).get()
     t.delete()
     
     return HttpResponseRedirect('/done/') # Redirect after POST
@@ -147,8 +139,7 @@ def delete_tweet(request, id_tweet):
 @login_required
 def updatestatus(request):
     """Update user status in her twitter account"""
-    instance = UserSocialAuth.objects.filter(provider='twitter',user=request.user).get()
-    user = CustomUser.objects.filter(user=instance).get()
+    user = get_user(request.user)
     sendupdate = False
     #Saving user option for future updates
     if request.method == 'POST': # If the form has been submitted...
@@ -208,13 +199,11 @@ def form(request):
 
 def contact(request):
     if request.user.is_authenticated():
-        instance = UserSocialAuth.objects.filter(provider='twitter',user=request.user).get()
-        user = CustomUser.objects.filter(user=instance).get()
+        user = get_user(request.user)
         logued = True
     else:
         logued = False
         user = ()
-        
 
     if request.method == 'POST': # If the form has been submitted...
         form = ContactForm(request.POST) # A form bound to the POST data
@@ -236,7 +225,7 @@ def contact(request):
         
     ctx = {
         'form': form,
-        'config': user,
+        'user': user,
         'logued': logued,
         'infomail' : infomail,
     }

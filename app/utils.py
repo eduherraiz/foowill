@@ -1,4 +1,5 @@
  #-*- coding: UTF-8 -*-
+ 
 def send_email_mandrill(subject, text_content, html_content, from_email, from_name, email_to, name_to):
     from mailsnake import MailSnake
     from django.conf import settings
@@ -17,3 +18,4 @@ def send_email_mandrill(subject, text_content, html_content, from_email, from_na
         }]
     }
     return mapi.messages.send(message=message) 
+    

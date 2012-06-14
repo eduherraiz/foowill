@@ -22,7 +22,7 @@ class CustomUser(models.Model):
     user = models.OneToOneField(UserSocialAuth)
     username = models.CharField(max_length=128)
     last_login = models.DateTimeField(blank=True, null=True)
-
+    
     email = models.EmailField(blank=True)
 
     #intervalo de periodo de inactividad para considerar al usuario muerto/medio-muerto (segun si email ping o no)
@@ -135,7 +135,7 @@ class CustomUser(models.Model):
 # Define Tweet 
 class Tweet(models.Model):
     text = EncryptedCharField(max_length=140, unique=True)
-    user = models.ForeignKey(UserSocialAuth)
+    user = models.ForeignKey(CustomUser)
     pub_date = models.DateTimeField('date published', auto_now_add=True)
     
     def __str__(self):

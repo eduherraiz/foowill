@@ -33,7 +33,13 @@
 {% block content %}
 
 <div style="margin-bottom:30px;">
-<h2>{% trans Settings %}</h2>
+<h2>{% trans 'Settings' %}</h2>
+
+{% if saved %}
+    <div class="alert alert-success">
+    {% trans "Settings saved" %}
+    </div>
+{% endif %}
 
 <form action="/config/" method="post" class="form-horizontal well"> 
 
@@ -87,7 +93,6 @@
 <p class="help-block">{% trans 'Interval of time between post-tweets update' %}</p>
       </div>
     </div>
-
 
     <div class="form-actions">
       <button type="submit" class="btn btn-primary">{% trans 'Save changes' %}</button>
