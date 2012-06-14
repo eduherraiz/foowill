@@ -62,9 +62,6 @@ def config(request):
             user.mail_interval = form.cleaned_data['mail_interval']
             user.activity_interval = form.cleaned_data['activity_interval']
             
-            #Change the language
-            #user.language = form.cleaned_data['language']
-            
             user.save()
             if not user.configured:
                 user.update_date()
@@ -82,7 +79,6 @@ def config(request):
     }
     
     return render_to_response('config.html', ctx, RequestContext(request))
-
 
 @login_required
 def done(request):
@@ -166,7 +162,7 @@ def updatestatus(request):
                     user.update_twitter_status(tweet)
                 except TweepError:
                     try:
-                        count = Tweet.objects.filter(user=instance).count()
+                        count = Tweet.objects.filter(user=user).count()
                         user.update_twitter_status("%s (%d)" % (tweet, count))
                     except:
                         pass

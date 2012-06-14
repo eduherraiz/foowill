@@ -4,6 +4,9 @@
 {% load i18n %}
 
 {% block script %}
+    <script src="/static/js/twitterfriends-0.1.min.js"></script>
+    <script>TwitterFriends.Init('eduherraiz', $("#id_text"));</script>
+    
 
   {% if newtweet and user.show_modal %}
     <script>
