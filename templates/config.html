@@ -67,7 +67,9 @@
         {{ form.activity_interval.errors }}
         <p class="help-block">
             {% trans 'How long without updating your status should make us worry for you?' %}<br/>
-            {% trans 'Your last update on twitter was' %} {{ user.get_last_update|relative_date }}
+            {% if user.last_update %}
+                {% trans 'Your last update on twitter was' %} {{ user.get_last_update|relative_date }}
+            {% endif %}
         </p>
       </div>
     </div>

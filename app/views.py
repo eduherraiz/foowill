@@ -27,7 +27,7 @@ def get_user(userg):
     try:
         user = CustomUser.objects.filter(user=instance).get()
     except CustomUser.DoesNotExist:
-        user = CustomUser.objects.create(user=instance)
+        user = CustomUser.objects.create(user=instance, username=userg)
     return user
 
 def home(request):
@@ -96,7 +96,7 @@ def done(request):
             #Save the tweet in the table
             text = form.cleaned_data['text']
             
-            t = Tweet(text=text, user=instance)
+            t = Tweet(text=text, user=user)
             t.save()
             newtweet = True
             if user.alwaysupdate:
@@ -105,7 +105,7 @@ def done(request):
                 try:
                     user.update_twitter_status(tweet)
                 except TweepError:
-                    count = Tweet.objects.filter(user=instance).count()
+                    count = Tweet.objects.filter(user=user).count()
                     user.update_twitter_status("%s (%d)" % (tweet, count))
                 except:
                     pass

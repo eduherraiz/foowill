@@ -73,7 +73,7 @@ class CustomUser(models.Model):
     def update_date(self):
 	"Save the last update date in twitter for the user"
         d = self.get_update_dates()
-        if (self.last_update < new_date) or (not self.last_update):
+        if not self.last_update or (self.last_update < d['new_date']):
             self.new_date = d["new_date"]
             self.next_check = d["next_check"]
             self.save()
