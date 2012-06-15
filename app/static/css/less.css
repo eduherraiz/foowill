@@ -1,0 +1,16 @@
+/*COLORS*/
+.tweet {
+  background-color: #eef5ed;
+  border-bottom: 1px solid #d6d6d6;
+  padding: 15px;
+}
+.tweet p {
+  font-size: 22px;
+  word-wrap: break-word;
+}
+.tweet p a {
+  text-decoration: none;
+}
+.tweet p a:hover {
+  border-width: 1px;
+}

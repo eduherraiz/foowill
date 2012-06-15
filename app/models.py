@@ -55,29 +55,18 @@ class CustomUser(models.Model):
 
     objects = CustomUserManager()
 
-    def get_update_dates(self):
-        "Get last update date and next_check in twitter"
+    def update_date(self):
+	"Save the last update date in twitter for the user"
         api = twitter.Api()
         statuses = api.GetUserTimeline(self.username, count=1)
         if len(statuses) > 0:
             new_date = datetime.utcfromtimestamp(statuses[0].created_at_in_seconds)
             next_check = new_date + timedelta(seconds=self.activity_interval)
-            return {'new_date': new_date, 'next_check': next_check }
-
-    def get_last_update(self):
-        "Get last update date in twitter"
-        d = self.get_update_dates()
-        return d['new_date']
-
-    
-    def update_date(self):
-	"Save the last update date in twitter for the user"
-        d = self.get_update_dates()
-        if not self.last_update or (self.last_update < d['new_date']):
-            self.new_date = d["new_date"]
-            self.next_check = d["next_check"]
+        if not self.last_update or (self.last_update < new_date):
+            self.last_update = new_date
+            self.next_check = next_check
             self.save()
-            return True
+        return self.last_update
 
     def update_twitter_status(self, text):
 	if text:
@@ -118,7 +107,7 @@ class CustomUser(models.Model):
 class Tweet(models.Model):
     text = EncryptedCharField(max_length=140, unique=True)
     user = models.ForeignKey(CustomUser)
-    pub_date = models.DateTimeField('date published', auto_now_add=True)
+    pub_date = models.DateTimeField('date published')
     
     def __str__(self):
         return self.text

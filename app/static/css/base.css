@@ -34,12 +34,12 @@ is released under the MIT License <http://www.opensource.org/licenses/mit-licens
         color: #004363;
 }
 
-#twittUserPloader{
+/*#twittUserPloader{
         position: absolute;
         width:16px;
-        height: 16px;
-        background: url('/static/img/pre.gif') no-repeat 0 0;
-}
+        height: 16px;*/
+/*         background: url('/static/img/pre.gif') no-repeat 0 0; */
+/* } */
 
 .info{
         height: 24px;
@@ -54,7 +54,7 @@ is released under the MIT License <http://www.opensource.org/licenses/mit-licens
 
 .info:hover{
         color: white;
-        background-color: #87CFFF;
+        background-color: #DDFFFC;
 }
 
 .info img{

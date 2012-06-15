@@ -49,7 +49,7 @@ def home(request):
 def config(request):
     """Login complete view, displays user data"""
     user = get_user(request.user)
-    
+       
     saved = False
         
     if request.method == 'POST': # If the form has been submitted...
@@ -61,7 +61,7 @@ def config(request):
             user.publish_interval = form.cleaned_data['publish_interval']
             user.mail_interval = form.cleaned_data['mail_interval']
             user.activity_interval = form.cleaned_data['activity_interval']
-            
+
             user.save()
             if not user.configured:
                 user.update_date()
@@ -91,8 +91,9 @@ def done(request):
         if form.is_valid(): # All validation rules pass
             #Save the tweet in the table
             text = form.cleaned_data['text']
+            pub_date = datetime.utcnow() 
             
-            t = Tweet(text=text, user=user)
+            t = Tweet(text=text, pub_date=pub_date, user=user)
             t.save()
             newtweet = True
             if user.alwaysupdate:
@@ -143,7 +144,7 @@ def updatestatus(request):
             user.neverupdate = True
             user.save()
         elif 'nottoday' in request.POST:
-            user.nottodayupdate = datetime.now()
+            user.nottodayupdate = datetime.utcnow()
             user.save()
         elif 'ever' in request.POST:
             user.alwaysupdate = True

@@ -24,6 +24,12 @@ def requirements():
             with prefix('workon %s' % env.virtualenv):
                 run('pip install -r requirements.txt')
 
+def lessc():
+    'Compile lessc to the final css file'
+    with cd(env.APP_DIR):
+        local('lessc app/static/js/style.less > app/static/css/less.css')
+    collectstatic()
+                
 def get_requeriments():
     with cd(env.APP_DIR):
       local('pip freeze > requirements.txt')

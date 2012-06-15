@@ -67,8 +67,8 @@
         {{ form.activity_interval.errors }}
         <p class="help-block">
             {% trans 'How long without updating your status should make us worry for you?' %}<br/>
-            {% if user.last_update %}
-                {% trans 'Your last update on twitter was' %} {{ user.get_last_update|relative_date }}
+            {% if user.update_date %}
+                {% trans 'Your last update on twitter was' %} {{ user.last_update|relative_date }}
             {% endif %}
         </p>
       </div>
@@ -92,7 +92,7 @@
         <div id="slider_pi" class='slider'></div> 
         {{ form.publish_interval }}
 	{{ form.activity_interval.errors }}
-<p class="help-block">{% trans 'Interval of time between post-tweets update' %}</p>
+        <p class="help-block">{% trans 'Interval of time between post-tweets update' %}</p>
       </div>
     </div>
 
@@ -104,7 +104,5 @@
 </form>
 
 </div>
-
-{{ user.get_twitter_friends }}
 
 {% endblock %}
