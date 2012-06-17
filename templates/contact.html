@@ -23,53 +23,59 @@
 
 {% block content %}
 
-{% if infomail.status == "sent" %}
-<div class="alert alert-success">
-  {% trans "Message sent, we'll try to reply as soon as possible to the your email address:" %} <b>{{ infomail.email }}</b>
+    {% include "user-box.html" %}
+
+    <div class='main-box'>
+
+    {% if infomail.status == "sent" %}
+        <div class="alert alert-success">
+        {% trans "Message sent, we'll try to reply as soon as possible to the your email address:" %} <b>{{ infomail.email }}</b>
+        </div>
+    {% endif %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="control-group">
+        <label class="control-label" for="sender">{{form.name.label}}</label>
+        <div class="controls">
+            {{ form.name }}
+            <p class="help-block"></p>
+            {{ form.name.errors }}
+        </div>
+        </div>
+
+        <div class="control-group">
+        <label class="control-label" for="sender">{{form.sender.label}}</label>
+        <div class="controls">
+            {{ form.sender }}
+            <p class="help-block"></p>
+            {{ form.sender.errors }}
+        </div>
+        </div>
+
+        <div class="control-group">
+        <label class="control-label" for="subject">{{form.subject.label}}</label>
+        <div class="controls">
+            {{ form.subject }}
+            <p class="help-block"></p>
+            {{ form.subject.errors }}
+        </div>
+        </div>
+
+        <div class="control-group">
+        <label class="control-label" for="message">{{form.message.label}}</label>
+        <div class="controls">
+            {{ form.message }}
+            <p class="help-block"></p>
+            {{ form.message.errors }}
+        </div>
+        </div>
+
+
+        <input type="submit" value="Send Message" />
+    </form>
+
 </div>
-{% endif %}
-
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.non_field_errors }}
-
-    <div class="control-group">
-      <label class="control-label" for="sender">{{form.name.label}}</label>
-      <div class="controls">
-        {{ form.name }}
-        <p class="help-block"></p>
-        {{ form.name.errors }}
-      </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label" for="sender">{{form.sender.label}}</label>
-      <div class="controls">
-        {{ form.sender }}
-        <p class="help-block"></p>
-        {{ form.sender.errors }}
-      </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label" for="subject">{{form.subject.label}}</label>
-      <div class="controls">
-	{{ form.subject }}
-	<p class="help-block"></p>
-	{{ form.subject.errors }}
-      </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label" for="message">{{form.message.label}}</label>
-      <div class="controls">
-	{{ form.message }}
-	<p class="help-block"></p>
-	{{ form.message.errors }}
-      </div>
-    </div>
-
-
-    <input type="submit" value="Send Message" />
-</form>
 {% endblock %}

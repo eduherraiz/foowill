@@ -4,69 +4,38 @@
 {% load i18n %}
 
 {% block script %}
-    <script src="/static/js/twitterfriends-0.1.min.js"></script>
-    <script>TwitterFriends.Init('eduherraiz', $("#id_text"));</script>
-    
-
-  {% if newtweet and user.show_modal %}
     <script>
-    $('#myModal').modal('show')
+    $("#id_text").maxChars(200, true);
     </script>
-  {% endif %}
+
+    <script src="/static/js/character_counter.js"></script>
+    <script src="/static/js/twitterfriends-0.1.min.js"></script>
+    <script>TwitterFriends.Init('{{user.username}}', $("#id_text"));</script>
+
 {% endblock %}
 
 {% block content %}
-    {% if newtweet and user.show_modal %}
-	<div class="modal hide" id="myModal">
-	<div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal">×</button>
-	    <h3>{% trans 'Do you want to update your twitter status?' %}</h3>
-	</div>
-	
-	<form action="/updatestatus/" method="post">
-	{% csrf_token %}
-	    <div class="modal-body">
-	    {{ updatetweetform.tweet }}
-	    </div>
-	    <div class="modal-footer">
-	    <input type="submit" class="btn btn-danger" name="never" value="{% trans 'Never' %}">
-	    <input type="submit" class="btn btn-warning" name="nottoday" value="{% trans 'Not today' %}">
-	    <input type="submit" class="btn btn-success" name="ever" value="{% trans 'Now and ever' %}">
-	    <input type="submit" class="btn btn-info"  name="now" value="{% trans 'Just now' %}">
-	    </div>
-	</form>
-	</div>
-    {% endif %}
+    {% include "modal-newposttweet.html" %}
+    {% include "user-box.html" %}
 
-<div class="row">
-  <div class="span3">
-    <form action="/done/" method="post">
-    {% csrf_token %}
-	<div class="control-group">
-	  <label class="control-label" for="message">{% trans 'Save a post-tweet' %}</label>
-	  <div class="controls">
-	    {{  form.text }}
-	    <p class="help-block"></p>
-	    {{ form.text.errors }}
-	  </div>
-	</div>
-      <input type="submit" value="{% trans 'Post-tweet' %}" />
-    </form>
+    <div class='header-inner'>
+        <h2>Post-tweets</h2>
+    </div>
+
+    <div class='content-box'>
+        {% for tweet in tweets %}
+            <div class='tweet'>
+                <p>{% parse_tweet tweet.text %}</p>
+                <i>{{ tweet.pub_date|relative_date }}</i>
+        <!-- 	<a href="/tweet/open/{{tweet.pk}}"><i class="icon-eye-open icon-black"></i> Abrir</a> -->
+                <a href="/tweet/delete/{{tweet.pk}}"><i class="icon-trash icon-black"></i>{% trans 'Delete' %}</a><br/>
+            </div>
+        {% endfor %}
+    </div>
   </div>
 
-  <div class="span9">
-    <h2>Post-tweets</h2> 
-    {% for tweet in tweets %}
-
-      <div class='tweet'>
-
-	<p>{% parse_tweet tweet.text %}</p>
-	<i>{{ tweet.pub_date|relative_date }}</i>
-<!-- 	<a href="/tweet/open/{{tweet.pk}}"><i class="icon-eye-open icon-black"></i> Abrir</a> -->
-	<a href="/tweet/delete/{{tweet.pk}}"><i class="icon-trash icon-black"></i> {% trans 'Delete' %}</a><br/>
-      </div>
-    {% endfor %}
-
-  </div>
 </div>
+
+{% include "modal-newposttweet.html" %}
+
 {% endblock %}

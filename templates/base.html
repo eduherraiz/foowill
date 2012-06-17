@@ -11,26 +11,19 @@
 
     {% block meta %}{% endblock %}
 
-    <!-- Le styles -->
-    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="/static/css/base.css" rel="stylesheet">
+    <!-- Less styles -->
+    <link rel="stylesheet/less" type="text/css" href="/static/css/less/bootstrap.less">
     <link href="/static/css/flags.css" rel="stylesheet">
-    <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
     {% block css %}{% endblock %}
 
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
-
     {% if DEBUG %}
-        <link rel="stylesheet/less" type="text/css" href="/static/js/style.less">
+        <link rel="stylesheet/less" type="text/css" href="/static/css/lessless.css">
         <script src="/static/js/less.js" type="text/javascript"></script>
     {% else %}
         <link href="/static/css/less.css" rel="stylesheet">
     {% endif %}
+
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -84,7 +77,7 @@
 		  {% endfor %}    
 		</ul>
 	      </li>
-	    {% if logued %}
+	    {% if user %}
 	      <li class="divider-vertical"></li>
 	      <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}<b class="caret"></b></a>
@@ -114,35 +107,38 @@
     </div>
 
     <div class="container">
-
-<!-- 	<h1>{% block heading %}{% endblock %}</h1> -->
 	{% block content %}{% endblock %}
-
-
       <hr>
-
       <footer>
         {% block footer %}{% endblock %}
       </footer>
-
     </div> <!-- /container -->
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/static/js/jquery.js"></script>
-    <script src="/static/bootstrap/js/bootstrap.js"></script>
     {% block script %}{% endblock %}
-<!--    <script src="/static/bootstrap/js/bootstrap-alert.js"></script>
-    <script src="/static/bootstrap/js/bootstrap-modal.js"></script>
-    <script src="/static/bootstrap/js/bootstrap-dropdown.js"></script>
-    <script src="/static/bootstrap/js/bootstrap-scrollspy.js"></script>
-    <script src="/static/bootstrap/js/bootstrap-tab.js"></script>
-    <script src="/static/bootstrap/js/bootstrap-tooltip.js"></script>
-    <script src="/static/bootstrap/js/bootstrap-popover.js"></script>
-    <script src="/static/bootstrap/js/bootstrap-button.js"></script>
-    <script src="/static/bootstrap/js/bootstrap-collapse.js"></script>
-    <script src="/static/bootstrap/js/bootstrap-carousel.js"></script>
-    <script src="/static/bootstrap/js/bootstrap-typeahead.js"></script>-->
+    <script src="/static/js/bootstrap-alert.js"></script>
+    <script src="/static/js/bootstrap-modal.js"></script>
+    <script src="/static/js/bootstrap-dropdown.js"></script>
+
+    {% if new_posttweet %}
+        <script type="text/javascript">
+        //<![CDATA[
+            $(document).ready(function(){
+                $('#myModal').modal('show');
+            });
+        //]]>
+        </script>
+    {% endif %}
+<!--     <script src="/static/js/bootstrap-scrollspy.js"></script> -->
+<!--     <script src="/static/js/bootstrap-tab.js"></script> -->
+<!--     <script src="/static/js/bootstrap-tooltip.js"></script> -->
+<!--     <script src="/static/js/bootstrap-popover.js"></script> -->
+<!--     <script src="/static/js/bootstrap-button.js"></script> -->
+<!--     <script src="/static/js/bootstrap-collapse.js"></script> -->
+<!--     <script src="/static/js/bootstrap-carousel.js"></script> -->
+<!--     <script src="/static/js/bootstrap-typeahead.js"></script> -->
   </body>
 </html>

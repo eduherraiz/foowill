@@ -22,25 +22,31 @@ from app.forms import *
 import html2text
 
 def get_user(userg):
-    instance = UserSocialAuth.objects.filter(provider='twitter',user=userg).get()
-    user = None
+    try: 
+        instance = UserSocialAuth.objects.filter(provider='twitter',user=userg).get()
+    except UserSocialAuth.DoesNotExist:
+        return None
     try:
-        user = CustomUser.objects.filter(user=instance).get()
+        return CustomUser.objects.filter(user=instance).get()
     except CustomUser.DoesNotExist:
-        user = CustomUser.objects.create(user=instance, username=userg)
-    return user
+        user = CustomUser.objects.create(user=instance, username=userg.username)
+        user.update_date()
+        user.update_twitter_photo()
+        user.save()
+        return user
 
 def home(request):
     """Home view, displays login mechanism"""
     if request.user.is_authenticated():
-        logued = True
         user = get_user(request.user)
+        #Initial login have to configure the app -> redirecting
+        if not user.configured:
+            return HttpResponseRedirect('/config/') # Redirect after POST
     else:
-	logued = False
 	user = ()
 	
     ctx = {
-        'logued': logued,
+        'tweetform': TweetForm(),
         'user': user,
     }    
     return render_to_response('home.html', ctx, RequestContext(request))
@@ -61,10 +67,10 @@ def config(request):
             user.publish_interval = form.cleaned_data['publish_interval']
             user.mail_interval = form.cleaned_data['mail_interval']
             user.activity_interval = form.cleaned_data['activity_interval']
-
+            #user.update_twitter_photo() #Not necessary yet, updated on first save
             user.save()
             if not user.configured:
-                user.update_date()
+                #user.update_date() #Not necessary yet, updated on first save
                 user.configured = True
                 user.save()
             saved = True
@@ -73,8 +79,8 @@ def config(request):
         
     ctx = {
         'form': form,
+        'tweetform': TweetForm(),
         'user': user,
-        'logued' : True, 
         'saved' : saved,
     }
     
@@ -84,7 +90,33 @@ def config(request):
 def done(request):
     """Login complete view, displays user data"""
     user = get_user(request.user)
-    newtweet = False
+    if not user.configured:
+        return HttpResponseRedirect('/config/') # Redirect after POST
+    # To show the modal post-tweet only one time after save
+    if user.new_posttweet:
+        new_posttweet = True
+        user.new_posttweet = False
+        user.save()
+    else:
+        new_posttweet = False
+        
+    tweets = Tweet.objects.filter(user=user).order_by('-pub_date')
+    updatetweetform = UpdateTweetForm()
+    
+    ctx = {
+        'tweetform': TweetForm(),
+        'tweets': tweets,
+        'user': user,
+        'new_posttweet': new_posttweet,
+        'updatetweetform': updatetweetform,
+    }
+    
+    return render_to_response('done.html', ctx, RequestContext(request))
+
+@login_required
+def add_tweet(request):
+    """Delete tweet"""
+    user = get_user(request.user)
    
     if request.method == 'POST': # If the form has been submitted...
         form = TweetForm(request.POST) # A form bound to the POST data
@@ -95,10 +127,9 @@ def done(request):
             
             t = Tweet(text=text, pub_date=pub_date, user=user)
             t.save()
-            newtweet = True
+            user.new_posttweet = user.show_modal_new_tweet()
             if user.alwaysupdate:
                 tweet = _("I saved a tweet that will be published when I die with http://foowill.com @foo_will")
-                newtweet = False
                 try:
                     user.update_twitter_status(tweet)
                 except TweepError:
@@ -106,22 +137,8 @@ def done(request):
                     user.update_twitter_status("%s (%d)" % (tweet, count))
                 except:
                     pass
-    else:
-        form = TweetForm() # An unbound form
-        
-    tweets = Tweet.objects.filter(user=user).order_by('-pub_date')
-    updatetweetform = UpdateTweetForm()
-    
-    ctx = {
-        'form': form,
-        'tweets': tweets,
-        'user': user,
-        'logued': True,
-        'newtweet': newtweet,
-        'updatetweetform': updatetweetform,
-    }
-    
-    return render_to_response('done.html', ctx, RequestContext(request))
+            user.save()
+    return HttpResponseRedirect('/done/') # Redirect after POST
     
 @login_required
 def delete_tweet(request, id_tweet):
@@ -134,7 +151,7 @@ def delete_tweet(request, id_tweet):
     return HttpResponseRedirect('/done/') # Redirect after POST
 
 @login_required
-def updatestatus(request):
+def update_status(request):
     """Update user status in her twitter account"""
     user = get_user(request.user)
     sendupdate = False
@@ -197,9 +214,9 @@ def form(request):
 def contact(request):
     if request.user.is_authenticated():
         user = get_user(request.user)
-        logued = True
+        if not user.configured:
+            return HttpResponseRedirect('/config/') # Redirect after POST
     else:
-        logued = False
         user = ()
 
     if request.method == 'POST': # If the form has been submitted...
@@ -223,7 +240,6 @@ def contact(request):
     ctx = {
         'form': form,
         'user': user,
-        'logued': logued,
         'infomail' : infomail,
     }
         

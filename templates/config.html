@@ -31,78 +31,88 @@
 {% endblock %}
 
 {% block content %}
+    {% include "user-box.html" %}
 
-<div style="margin-bottom:30px;">
-<h2>{% trans 'Settings' %}</h2>
-
-{% if saved %}
-    <div class="alert alert-success">
-    {% trans "Settings saved" %}
-    </div>
-{% endif %}
-
-<form action="/config/" method="post" class="form-horizontal well"> 
-
-{% csrf_token %}
-{{ form.non_field_errors }}
-
-    <div class="control-group">
-      <label class="control-label" for="email">{% trans 'Email' %}</label>
-      <div class="controls">
-        {{ form.email }}
-        <p class="help-block">
-            {% trans 'We need your email to send you a verification email.' %}<br/>
-            {% trans 'If you leave the field blank, your saved tweets will be posted immediately after reaching the interval of inactivity.' %}
-        </p>
-        {{ form.email.errors }}
-      </div>
+    <div class='header-inner'>
+        <h2>{% trans 'Settings' %}</h2>
     </div>
 
+<div class='content-box'>
 
-    <div class="control-group">
-      <label class="control-label" for="activity_interval">{% trans 'Interval of inactivity' %}</label>
-      <div class="controls">
-        <div id="slider_ai" class='slider'></div>
-        {{ form.activity_interval }}
-        {{ form.activity_interval.errors }}
-        <p class="help-block">
-            {% trans 'How long without updating your status should make us worry for you?' %}<br/>
-            {% if user.update_date %}
-                {% trans 'Your last update on twitter was' %} {{ user.last_update|relative_date }}
-            {% endif %}
-        </p>
-      </div>
+    {% if saved %}
+        <div class="alert alert-success">
+        {% trans "Settings saved" %}
+        </div>
+    {% endif %}
+
+    {% if not user.configured %}
+        <div class="alert alert-error">
+        {% trans "You need to configure the application" %}
+        </div>
+    {% endif %}
+
+        <form action="/config/" method="post" class="form-horizontal"> 
+
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+            <div class="control-group">
+            <label class="control-label" for="email">{% trans 'Email' %}</label>
+            <div class="controls">
+                {{ form.email }}
+                <p class="help-block">
+                    {% trans 'We need your email to send you a verification email.' %}<br/>
+                    {% trans 'If you leave the field blank, your saved tweets will be posted immediately after reaching the interval of inactivity.' %}
+                </p>
+                {{ form.email.errors }}
+            </div>
+            </div>
+
+
+            <div class="control-group">
+            <label class="control-label" for="activity_interval">{% trans 'Interval of inactivity' %}</label>
+            <div class="controls">
+                <div id="slider_ai" class='slider'></div>
+                {{ form.activity_interval }}
+                {{ form.activity_interval.errors }}
+                <p class="help-block">
+                    {% trans 'How long without updating your status should make us worry for you?' %}<br/>
+                    {% if user.update_date %}
+                        {% trans 'Your last update on twitter was' %} {{ user.last_update|relative_date }}
+                    {% endif %}
+                </p>
+            </div>
+            </div>
+
+
+            <div class="control-group">
+            <label class="control-label" for="mail_interval">{% trans 'Time pending verification' %}</label>
+            <div class="controls">
+                
+                <div id="slider_mi" class='slider'></div>	
+                {{ form.mail_interval }}
+                {{ form.activity_interval.errors }}
+                <p class="help-block">{% trans 'How long we wait for the response to verification mail?' %}</p>
+            </div>
+            </div>
+
+            <div class="control-group">
+            <label class="control-label" for="publish_interval">{% trans 'Publish interval' %}</label>
+            <div class="controls">
+                <div id="slider_pi" class='slider'></div> 
+                {{ form.publish_interval }}
+                {{ form.activity_interval.errors }}
+                <p class="help-block">{% trans 'Interval of time between post-tweets update' %}</p>
+            </div>
+            </div>
+
+            <div class="form-actions">
+            <button type="submit" class="btn btn-primary">{% trans 'Save changes' %}</button>
+            <button class="btn">{% trans 'Cancel' %}</button>
+            </div>
+
+        </form>
+
     </div>
-
-
-    <div class="control-group">
-      <label class="control-label" for="mail_interval">{% trans 'Time pending verification' %}</label>
-      <div class="controls">
-	
-        <div id="slider_mi" class='slider'></div>	
-        {{ form.mail_interval }}
-        {{ form.activity_interval.errors }}
-        <p class="help-block">{% trans 'How long we wait for the response to verification mail?' %}</p>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label" for="publish_interval">{% trans 'Publish interval' %}</label>
-      <div class="controls">
-        <div id="slider_pi" class='slider'></div> 
-        {{ form.publish_interval }}
-	{{ form.activity_interval.errors }}
-        <p class="help-block">{% trans 'Interval of time between post-tweets update' %}</p>
-      </div>
-    </div>
-
-    <div class="form-actions">
-      <button type="submit" class="btn btn-primary">{% trans 'Save changes' %}</button>
-      <button class="btn">{% trans 'Cancel' %}</button>
-    </div>
-
-</form>
-
 </div>
-
 {% endblock %}

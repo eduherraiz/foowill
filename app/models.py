@@ -11,6 +11,9 @@ from app.utils import send_email_mandrill, connect_tweepy
 import twitter
 import tweepy
 
+#from django.db.models.signals import post_save
+#from django.dispatch import receiver
+
 # Define a custom User class to work with django-social-auth
 class CustomUserManager(models.Manager):
     def create_user(self, username, email):
@@ -21,6 +24,7 @@ class CustomUser(models.Model):
     configured = models.BooleanField(default=False)
     user = models.OneToOneField(UserSocialAuth)
     username = models.CharField(max_length=128)
+    photo = models.URLField(blank=True, null=True)
     last_login = models.DateTimeField(blank=True, null=True)
     
     email = models.EmailField(blank=True)
@@ -48,12 +52,24 @@ class CustomUser(models.Model):
     #if we are waiting for a mail ping
     wait_mail = models.BooleanField(default=False)
     
+    new_posttweet = models.BooleanField(default=False)
+    
     #For the ask in the modal
     neverupdate = models.BooleanField(default=False)
     alwaysupdate = models.BooleanField(default=False)
     nottodayupdate = models.DateTimeField(blank=True, null=True)
 
+    
     objects = CustomUserManager()
+    
+    #def save(self, *args, **kwargs):
+        #if not self.pk:
+            #if not self.last_update:
+                #self.update_date()
+            #if not self.photo:
+                #self.update_twitter_photo()
+        #super(CustomUser, self).save(*args, **kwargs)
+        
 
     def update_date(self):
 	"Save the last update date in twitter for the user"
@@ -65,7 +81,7 @@ class CustomUser(models.Model):
         if not self.last_update or (self.last_update < new_date):
             self.last_update = new_date
             self.next_check = next_check
-            self.save()
+            #self.save()
         return self.last_update
 
     def update_twitter_status(self, text):
@@ -73,6 +89,12 @@ class CustomUser(models.Model):
             api = connect_tweepy(self.user)
 	    api.update_status(text)
 
+    def update_twitter_photo(self):
+        api = connect_tweepy(self.user)
+        user = api.get_user(self.username)
+        self.photo = user.profile_image_url
+        #self.save()
+	    
     def get_twitter_friends(self):
         api = connect_tweepy(self.user)
         friends =[]
@@ -81,12 +103,12 @@ class CustomUser(models.Model):
         return friends
         
 
-    def show_modal(self):
+    def show_modal_new_tweet(self):
 	if self.alwaysupdate:
 	    return False
 	if self.neverupdate:
 	    return False
-	if self.nottodayupdate and (self.nottodayupdate > (datetime.now() - timedelta(days=1))):
+	if self.nottodayupdate and (self.nottodayupdate > (datetime.utcnow() - timedelta(days=1))):
 	    return False
 	return True
 	
@@ -111,7 +133,16 @@ class Tweet(models.Model):
     
     def __str__(self):
         return self.text
-     
+
+#@receiver(post_save, sender=CustomUser)
+#def init_user(sender, instance, created, **kwargs):
+    #"""Create a matching profile whenever a user object is created."""
+    #if created: 
+        #instance.update_twitter_photo()
+        #instance.update_date()
+        ##profile, new = UserProfile.objects.get_or_create(user=instance)
+
+        
 from social_auth.signals import pre_update
 from social_auth.backends.facebook import FacebookBackend
 

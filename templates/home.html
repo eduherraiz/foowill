@@ -12,65 +12,69 @@
 {% block css %}<link href="/static/css/socialite.css" rel="stylesheet">{% endblock %}
 
 {% block script %}
-<script src="/static/js/socialite.min.js"></script>
-  <script type="text/javascript">
-  //<![CDATA[
-    $(document).ready(function(){
-	Socialite.load();
-    });
-  //]]>
-  </script>
+    <script src="/static/js/socialite.min.js"></script>
+
+    <script type="text/javascript">
+    //<![CDATA[
+        $(document).ready(function(){
+            Socialite.load();
+        });
+    //]]>
+    </script>
 {% endblock %}
 
-
 {% block content %}
-  <div class="hero-unit">
-    {% trans "Foowill is an twitter application where you can save tweets that will be sent to your account when you die (post-tweets)." %}<br/>
-    {% trans "We really hope not ever having to send them, but because bad things happen, we give you this opportunity." %}<br/>
-    {% trans "To check if you continue with us from time to time we will verify if you've updated your twitter account, that time you can decide yourself." %}<br/>
-    {% trans "If after that time do not read anything new you have the option of a final check, we will send an email to the address of your choice so you can stop sending your tweets and post with a simple click let us know that fortunately still alive." %}<br/>
-    <br/>{% trans "Everything in 3 simple steps:" %}<br/>
-    1. {% trans "Please sign in to your twitter account accepting that send tweets on your behalf." %}<br/>
-    2. {% trans "Configure the application by adding your email address and other parameters." %}<br/>
-    3. {% trans "Saves all the tweets you want." %}<br/>
-    <br/>
-    
-    {% if logued %}
-	<strong>{% trans "Already logged in" %}.</strong>
-	<a href="/config" >{% trans "Configure the application" %}</a> {% trans "or" %} 
-	<a href="/done" >{% trans "Save your post-tweets" %}</a>
-    {% else %}
-	<a href="{% url socialauth_begin 'twitter' %}" class="btn btn-primary btn-large">{% trans "Login with Twitter" %}</a>
-    {% endif %}
-  </div>
 
-    <div id="social">
-      <ul class="social-buttons cf">
-	<li><a class="socialite twitter" 
-                        data-text="{% trans 'I just found an app to update twitter post-mortem' %} @foo_will" 
-                        href="http://twitter.com/share"
-                        data-count="vertical"
-                        data-hastags="foowill"
-                        rel="nofollow"
-                        target="_blank"
-                        data-url="http://foowill.com/">{% trans "Share on" %} Twitter</a>
-	</li>
-	<li><a href="https://plus.google.com/share?url=http://foowill.com/" 
-                        class="socialite googleplus" 
-                        data-size="tall" 
-                        data-href="http://foowill.com/" 
-                        rel="nofollow" 
-                        target="_blank"><span>{% trans "Share on" %} Google+</span></a>
-	</li>
-	<li><a href="http://www.facebook.com/sharer.php?u=http://foowill.com/" 
-                        class="socialite facebook" 
-                        data-href="http://foowill.com/" 
-                        data-send="false" 
-                        data-layout="box_count" 
-                        data-width="60" 
-                        data-show-faces="false"
-                        rel="nofollow" 
-                        target="_blank"><span>{% trans "Share on" %} Facebook</span></a></li>
-      </ul>
+    {% include "user-box.html" %}
+
+    <div class='main-box'>
+        {% trans "Foowill is an twitter application where you can save tweets that will be sent to your account when you die (post-tweets)." %}<br/>
+        {% trans "We really hope not ever having to send them, but because bad things happen, we give you this opportunity." %}<br/>
+        {% trans "To check if you continue with us from time to time we will verify if you've updated your twitter account, that time you can decide yourself." %}<br/>
+        {% trans "If after that time do not read anything new you have the option of a final check, we will send an email to the address of your choice so you can stop sending your tweets and post with a simple click let us know that fortunately still alive." %}<br/>
+        <br/>{% trans "Everything in 3 simple steps:" %}<br/>
+        1. {% trans "Please sign in to your twitter account accepting that send tweets on your behalf." %}<br/>
+        2. {% trans "Configure the application by adding your email address and other parameters." %}<br/>
+        3. {% trans "Saves all the tweets you want." %}<br/>
+        <br/>
+        
+        {% if user %}
+            <strong>{% trans "Already logged in" %}.</strong>
+            <a href="/config" >{% trans "Configure the application" %}</a> {% trans "or" %} 
+            <a href="/done" >{% trans "Save your post-tweets" %}</a>
+        {% else %}
+            <a href="{% url socialauth_begin 'twitter' %}" class="btn btn-primary btn-large">{% trans "Login with Twitter" %}</a>
+        {% endif %}
+
+        <div id="social">
+        <ul class="social-buttons cf">
+            <li><a class="socialite twitter" 
+                            data-text="{% trans 'I just found an app to update twitter post-mortem' %} @foo_will" 
+                            href="http://twitter.com/share"
+                            data-count="vertical"
+                            data-hastags="foowill"
+                            rel="nofollow"
+                            target="_blank"
+                            data-url="http://foowill.com/">{% trans "Share on" %} Twitter</a>
+            </li>
+            <li><a href="https://plus.google.com/share?url=http://foowill.com/" 
+                            class="socialite googleplus" 
+                            data-size="tall" 
+                            data-href="http://foowill.com/" 
+                            rel="nofollow" 
+                            target="_blank"><span>{% trans "Share on" %} Google+</span></a>
+            </li>
+            <li><a href="http://www.facebook.com/sharer.php?u=http://foowill.com/" 
+                            class="socialite facebook" 
+                            data-href="http://foowill.com/" 
+                            data-send="false" 
+                            data-layout="box_count" 
+                            data-width="60" 
+                            data-show-faces="false"
+                            rel="nofollow" 
+                            target="_blank"><span>{% trans "Share on" %} Facebook</span></a></li>
+        </ul>
+        </div>
     </div>
+  </div>
 {% endblock %}

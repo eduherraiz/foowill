@@ -1,9 +1,10 @@
-/*.tweet p {
-  font-family: Georgia,"Times New Roman",serif;
-  font-size: 22px;
-  line-height: 28px;
-  word-wrap: break-word;
-}*/
+#id_text{
+    width: 300px; 
+    overflow-x: hidden; 
+    overflow-y: hidden; 
+    height: 56px; 
+    padding-bottom: 5px;
+}
 
 .form-lang{
     margin:0;
@@ -29,17 +30,11 @@ is released under the MIT License <http://www.opensource.org/licenses/mit-licens
         position: absolute;
         overflow: hidden;
         display: none;
-        border: solid 2px #87CFFF;
+        border: solid 2px #FFE8E9;
         background-color: white;
         color: #004363;
+        height:400px;
 }
-
-/*#twittUserPloader{
-        position: absolute;
-        width:16px;
-        height: 16px;*/
-/*         background: url('/static/img/pre.gif') no-repeat 0 0; */
-/* } */
 
 .info{
         height: 24px;
@@ -48,13 +43,13 @@ is released under the MIT License <http://www.opensource.org/licenses/mit-licens
 }
 
 .selected{
-        color: white;
-        background-color: #87CFFF;
+        color: black;
+        background-color: #FFE8E9;
 }
 
 .info:hover{
-        color: white;
-        background-color: #DDFFFC;
+        color: black;
+        background-color: #F3EEFF;
 }
 
 .info img{

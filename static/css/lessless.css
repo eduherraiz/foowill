@@ -1,0 +1,142 @@
+/*This file is a LESS file with a CSS extesion for markup - sorry for the inconvenience*/
+
+/*COLORS*/
+@box: #FFFFFF;
+@border: #D6D6D6;
+
+body {
+padding-top: 60px;
+padding-bottom: 40px;
+}
+
+.rounded-corners(@radius: 10px) {
+  border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+}
+
+.rounded-corners-top(@radius: 10px) {
+    -webkit-border-radius: @radius @radius 0 0 ;
+    -moz-border-radius: @radius @radius 0 0 ;
+    border-radius: @radius @radius 0 0 ;
+}
+
+.rounded-corners-bottom(@radius: 10px) {
+    -webkit-border-radius:  0 0 @radius @radius;
+    -moz-border-radius:  0 0 @radius @radius;
+    border-radius:  0 0 @radius @radius;
+}
+
+
+.formtweet{
+    margin:5px;
+}
+
+.tweet {
+  background-color: @box;
+  border-bottom: 1px solid @border;
+  padding:15px;
+  margin-left:5px;     
+  margin-right:5px;     
+  p { font-size: 22px;
+    word-wrap: break-word;
+    a { text-decoration: none;
+      &:hover { border-width: 1px }
+    }
+  }
+}
+
+.tweetslist{
+    margin:15px;
+}
+
+.main-box{
+    background-color: @box;
+    padding: 20px;
+    .rounded-corners;
+}
+
+.user-box{
+    background-color: @box;
+    padding: 20px;
+    .rounded-corners;
+}
+
+#id_text{
+    width: 150px; 
+    overflow-x: hidden; 
+    overflow-y: hidden; 
+    height: 56px; 
+    padding-bottom: 5px;
+}
+
+.form-lang{
+    margin:0;
+}
+
+
+#slider_ai .ui-slider-handle, #slider_mi .ui-slider-handle, #slider_pi .ui-slider-handle { border-color: #081A33; background: #2885FF; }
+#slider_ai, #slider_mi, #slider_pi { background: #FFF1E2; }
+
+.control-label{ font-weight:bold;}
+
+.slider{
+    width:230px; 
+    margin-top:10px; 
+    margin-bottom:10px; 
+    margin-right:20px; 
+    float:left;
+}
+
+/*! TwitterFrieds v0.1 | Autor: Jhean Ceballos: @shogoki_vnz 
+is released under the MIT License <http://www.opensource.org/licenses/mit-license.php*/
+#twitterUsers{
+        position: absolute;
+        overflow: hidden;
+        display: none;
+        border: solid 2px #FFE8E9;
+        background-color: white;
+        color: #004363;
+        height:400px;
+}
+
+.info{
+        height: 24px;
+        margin: 0 0 5px 0;
+        cursor: pointer;
+}
+
+.selected{
+        color: black;
+        background-color: #FFE8E9;
+}
+
+.info:hover{
+        color: black;
+        background-color: #F3EEFF;
+}
+
+.info img{
+        float: left;
+        margin: 0px 3px 0 0 !important;
+}
+
+.info p{
+        margin: 0;
+        padding-top: 5px;
+        text-align: left;
+}
+
+.header-inner {
+    min-height: 20px;
+    padding: 12px;
+    background-color: white;
+    border-bottom: 1px solid #E8E8E8;
+    .rounded-corners-top(5px);
+}
+
+.content-box{
+    .rounded-corners-bottom(5px);    
+    background-color: white;
+    padding: 12px;
+}

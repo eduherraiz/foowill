@@ -1,0 +1,24 @@
+{% load i18n %}
+
+{% if new_posttweet %}
+    <div class="modal hide" id="myModal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>{% trans 'Do you want to update your twitter status?' %}</h3>
+    </div>
+    
+    <form action="/update_status/" method="post">
+    {% csrf_token %}
+        <div class="modal-body">
+        {{ updatetweetform.tweet }}
+        </div>
+        <div class="modal-footer">
+        <input type="submit" class="btn btn-danger" name="never" value="{% trans 'Never' %}">
+        <input type="submit" class="btn btn-warning" name="nottoday" value="{% trans 'Not today' %}">
+        <input type="submit" class="btn btn-success" name="ever" value="{% trans 'Now and ever' %}">
+        <input type="submit" class="btn btn-info"  name="now" value="{% trans 'Just now' %}">
+        </div>
+    </form>
+    </div>
+{% endif %}
+ 

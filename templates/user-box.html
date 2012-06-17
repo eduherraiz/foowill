@@ -1,0 +1,35 @@
+{% load i18n %}
+
+{% if user %}
+    <div class="row">
+        <div class="span3">
+            <div class='user-box'>
+                <img src="{{ user.photo }}"/> 
+                <a href="https://twitter.com/#!/{{ user.username }}">{{ user.username }}</a><br/><br/>
+                <a rel="nofollow" href="/config"><i class="icon-user"></i> {% trans "Configure" %}</a><br/>
+                <a rel="nofollow" href="/done"><i class="icon-th-list"></i> {% trans "Post-tweets" %}</a><br/>
+                <a rel="nofollow" href="/logout"><i class="icon-off"></i> {% trans "Logout" %}</a><br/>
+
+                <div class="formtweet">
+                    <form action="/tweet/add/" method="post">
+                    {% csrf_token %}
+                        <div class="control-group">
+                            <label class="control-label" for="message">{% trans 'Compose a post-tweet' %}</label>
+                            <div class="controls">
+                                {{  tweetform.text }}
+                                <p class="help-block"></p>
+                                {{ tweetform.text.errors }}
+                            </div>
+                        </div>
+                    <input type="submit" value="{% trans 'Post-tweet' %}" />
+                    <div id="#counter"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="span9">
+{% else %}
+    <div class="span12">
+{% endif %}
+

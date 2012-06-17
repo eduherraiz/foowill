@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-14 08:07+0200\n"
+"POT-Creation-Date: 2012-06-17 19:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgstr "Dirección de email"
 msgid "Your name or company"
 msgstr "Tu nombre o de tu compañía"
 
-#: app/views.py:103
+#: app/views.py:132
 msgid ""
 "I saved a tweet that will be published when I die with http://foowill.com "
 "@foo_will"
@@ -88,57 +88,61 @@ msgstr[1] "%(minutes)d minutos"
 msgid "moments ago"
 msgstr "un momento"
 
-#: templates/base.html:62
+#: templates/base.html:56
 msgid "Home"
 msgstr "Inicio"
 
-#: templates/base.html:63
+#: templates/base.html:57
 msgid "Contact"
 msgstr "Contacto"
 
-#: templates/base.html:70
+#: templates/base.html:64
 msgid "Language"
 msgstr "Idioma"
 
-#: templates/base.html:91
+#: templates/base.html:85 templates/user-box.html:9
 msgid "Configure"
 msgstr "Configura"
 
-#: templates/base.html:92
+#: templates/base.html:86 templates/user-box.html:10
 msgid "Post-tweets"
 msgstr "Post-tweets"
 
-#: templates/base.html:93
+#: templates/base.html:87 templates/user-box.html:11
 msgid "Logout"
 msgstr "Desconectar"
 
-#: templates/base.html:101
+#: templates/base.html:95
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: templates/base.html:103
+#: templates/base.html:97
 msgid "Login with twitter"
 msgstr "Iniciar sesión con twitter"
 
-#: templates/config.html:36
+#: templates/config.html:37
 msgid "Settings"
 msgstr "Configuración"
 
-#: templates/config.html:40
+#: templates/config.html:44
 msgid "Settings saved"
 msgstr "Configuración guardada"
 
 #: templates/config.html:50
+msgid "You need to configure the application"
+msgstr "Necesitas configurar la aplicación"
+
+#: templates/config.html:60
 msgid "Email"
 msgstr "Email"
 
-#: templates/config.html:54
+#: templates/config.html:64
 msgid "We need your email to send you a verification email."
 msgstr ""
 "Necesitamos tu dirección de correo para poder enviarte un email de "
 "verificación."
 
-#: templates/config.html:55
+#: templates/config.html:65
 msgid ""
 "If you leave the field blank, your saved tweets will be posted immediately "
 "after reaching the interval of inactivity."
@@ -146,46 +150,46 @@ msgstr ""
 "Si dejas el campo en blanco, tus tweets guardados serán publicados "
 "inmediatamente después de sobrepasar el intervalo de inactividad."
 
-#: templates/config.html:63
+#: templates/config.html:73
 msgid "Interval of inactivity"
 msgstr "Intervalo de inactividad"
 
-#: templates/config.html:69
+#: templates/config.html:79
 msgid "How long without updating your status should make us worry for you?"
 msgstr ""
 "¿Cuánto tiempo sin actualizar tu estado debe hacer que nos preocupemos por "
 "ti?"
 
-#: templates/config.html:70
+#: templates/config.html:81
 msgid "Your last update on twitter was"
 msgstr "Tu última actualización en twitter fué hace"
 
-#: templates/config.html:77
+#: templates/config.html:89
 msgid "Time pending verification"
 msgstr "Tiempo de espera de la verificación"
 
-#: templates/config.html:83
+#: templates/config.html:95
 msgid "How long we wait for the response to verification mail?"
 msgstr ""
 "¿Cuánto tiempo esperamos por alguna respuesta al email de verificación?"
 
-#: templates/config.html:88
+#: templates/config.html:100
 msgid "Publish interval"
 msgstr "Intervalo de publicación"
 
-#: templates/config.html:93
+#: templates/config.html:105
 msgid "Interval of time between post-tweets update"
 msgstr "Intervalo de tiempo entre publicaciones de post-tweets."
 
-#: templates/config.html:98
+#: templates/config.html:110
 msgid "Save changes"
 msgstr "Guardar cambios"
 
-#: templates/config.html:99
+#: templates/config.html:111
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: templates/contact.html:28
+#: templates/contact.html:32
 msgid ""
 "Message sent, we'll try to reply as soon as possible to the your email "
 "address:"
@@ -193,39 +197,11 @@ msgstr ""
 "Mensaje enviado, intentaremos responder lo más rápido posible a tu dirección "
 "de correo: "
 
-#: templates/done.html:20
-msgid "Do you want to update your twitter status?"
-msgstr "¿Quieres actualizar tu estado en twitter?"
-
-#: templates/done.html:29
-msgid "Never"
-msgstr "Nunca"
-
-#: templates/done.html:30
-msgid "Not today"
-msgstr "Hoy no"
-
-#: templates/done.html:31
-msgid "Now and ever"
-msgstr "Ahora y siempre"
-
-#: templates/done.html:32
-msgid "Just now"
-msgstr "Sólo ahora"
-
-#: templates/done.html:43
-msgid "Save a post-tweet"
-msgstr "Guarda tus post-weets"
-
-#: templates/done.html:50
-msgid "Post-tweet"
-msgstr "Post-tweet"
-
-#: templates/done.html:63
+#: templates/done.html:40
 msgid "Delete"
 msgstr "Borrar"
 
-#: templates/home.html:28
+#: templates/home.html:31
 msgid ""
 "Foowill is an twitter application where you can save tweets that will be "
 "sent to your account when you die (post-tweets)."
@@ -233,7 +209,7 @@ msgstr ""
 "Foowill es una aplicación para twitter donde puedes guardar tweets que serán "
 "enviados a tu cuenta cuando mueras (post-tweets)."
 
-#: templates/home.html:29
+#: templates/home.html:32
 msgid ""
 "We really hope not ever having to send them, but because bad things happen, "
 "we give you this opportunity."
@@ -241,7 +217,7 @@ msgstr ""
 "Realmente esperamos no tener que enviarlos nunca, pero como las desgracias "
 "ocurren, te brindamos esta oportunidad."
 
-#: templates/home.html:30
+#: templates/home.html:33
 msgid ""
 "To check if you continue with us from time to time we will verify if you've "
 "updated your twitter account, that time you can decide yourself."
@@ -250,7 +226,7 @@ msgstr ""
 "tiempo si has actualizado tu cuenta de twitter, ese tiempo lo puedes decidir "
 "tú."
 
-#: templates/home.html:31
+#: templates/home.html:34
 msgid ""
 "If after that time do not read anything new you have the option of a final "
 "check, we will send an email to the address of your choice so you can stop "
@@ -262,11 +238,11 @@ msgstr ""
 "para que puedas parar el envio de tus post-tweets y con un simple click "
 "avisarnos que afortunadamente sigues con vida."
 
-#: templates/home.html:32
+#: templates/home.html:35
 msgid "Everything in 3 simple steps:"
 msgstr "Todo en 3 simples pasos:"
 
-#: templates/home.html:33
+#: templates/home.html:36
 msgid ""
 "Please sign in to your twitter account accepting that send tweets on your "
 "behalf."
@@ -274,43 +250,71 @@ msgstr ""
 "Logueate con tu cuenta de twitter aceptando que enviemos mensajes en tu "
 "nombre."
 
-#: templates/home.html:34
+#: templates/home.html:37
 msgid ""
 "Configure the application by adding your email address and other parameters."
 msgstr ""
 "Configura la aplicación añadiendo tu cuenta de correo y los demás parámetros."
 
-#: templates/home.html:35
+#: templates/home.html:38
 msgid "Saves all the tweets you want."
 msgstr "Guarda todos los tweets que quieras."
 
-#: templates/home.html:39
+#: templates/home.html:42
 msgid "Already logged in"
 msgstr "Ya estás logueado"
 
-#: templates/home.html:40
+#: templates/home.html:43
 msgid "Configure the application"
 msgstr "Configura la aplicación"
 
-#: templates/home.html:40
+#: templates/home.html:43
 msgid "or"
 msgstr "o"
 
-#: templates/home.html:41
+#: templates/home.html:44
 msgid "Save your post-tweets"
 msgstr "Guarda tus post-weets"
 
-#: templates/home.html:43
+#: templates/home.html:46
 msgid "Login with Twitter"
 msgstr "Iniciar sesión con twitter"
 
-#: templates/home.html:50
+#: templates/home.html:52
 msgid "I just found an app to update twitter post-mortem"
 msgstr "He encontrado un aplicación para actualizar twitter post-mortem"
 
-#: templates/home.html:56 templates/home.html.py:63 templates/home.html:73
+#: templates/home.html:58 templates/home.html.py:65 templates/home.html:75
 msgid "Share on"
 msgstr "Comparte en"
+
+#: templates/modal-newposttweet.html:17
+msgid "Do you want to update your twitter status?"
+msgstr "¿Quieres actualizar tu estado en twitter?"
+
+#: templates/modal-newposttweet.html:26
+msgid "Never"
+msgstr "Nunca"
+
+#: templates/modal-newposttweet.html:27
+msgid "Not today"
+msgstr "Hoy no"
+
+#: templates/modal-newposttweet.html:28
+msgid "Now and ever"
+msgstr "Ahora y siempre"
+
+#: templates/modal-newposttweet.html:29
+msgid "Just now"
+msgstr "Sólo ahora"
+
+#: templates/user-box.html:17
+msgid "Compose a post-tweet"
+msgstr "Escribe un post-tweet"
+
+#: templates/user-box.html:24
+msgid "Post-tweet"
+msgstr "Post-tweet"
 
 #~ msgid "Spanish"
 #~ msgstr "Español"

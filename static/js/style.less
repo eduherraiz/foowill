@@ -1,21 +1,44 @@
 /*COLORS*/
-@box: #EEF5ED;
+@bodyBackground: #EEF5ED;
+@box: #FFFFFF;
 @border: #D6D6D6;
 
-.rounded-corners(@radius: 5px) {
+.rounded-corners(@radius: 10px) {
   border-radius: @radius;
   -webkit-border-radius: @radius;
   -moz-border-radius: @radius;
+}
+
+.formtweet{
+    margin:5px;
 }
 
 .tweet {
   background-color: @box;
   border-bottom: 1px solid @border;
   padding:15px;
+  margin-left:5px;     
+  margin-right:5px;     
   p { font-size: 22px;
     word-wrap: break-word;
     a { text-decoration: none;
       &:hover { border-width: 1px }
     }
   }
+}
+
+.tweetslist{
+    margin:15px;
+}
+
+.main-box{
+    background-color: @box;
+    padding: 20px;
+    .rounded-corners;
+}
+
+.user-box{
+    background-color: @box;
+    padding: 20px;
+    .rounded-corners;
 }
