@@ -35,6 +35,41 @@ def get_user(userg):
         user.save()
         return user
 
+def contact(request):
+    if request.user.is_authenticated():
+        user = get_user(request.user)
+        if not user.configured:
+            return HttpResponseRedirect('/config/') # Redirect after POST
+    else:
+        user = ()
+
+    if request.method == 'POST': # If the form has been submitted...
+        form = ContactForm(request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            #Send the email
+            subject = form.cleaned_data['subject']
+            html_content = form.cleaned_data['message']
+            text_content = html2text.html2text(html_content)
+            from_email = form.cleaned_data['sender']
+            from_name = form.cleaned_data['name']
+            info = send_email_mandrill(subject, text_content, html_content, from_email, from_name, settings.ADMIN_EMAIL, 'Admin foowill')
+            infomail = info[0]
+            
+            #user = CustomUser.objects.filter(username=request.user).get()
+            #return HttpResponseRedirect('/contact') # Redirect after POST
+    else:
+        infomail = {}
+        form = ContactForm() # An unbound form
+        
+    ctx = {
+        'form': form,
+        'tweetform': TweetForm(),
+        'user': user,
+        'infomail' : infomail,
+    }
+        
+    return render_to_response('contact.html', ctx, RequestContext(request))
+        
 def home(request):
     """Home view, displays login mechanism"""
     if request.user.is_authenticated():
@@ -209,38 +244,3 @@ def form(request):
         backend = request.session[name]['backend']
         return redirect('socialauth_complete', backend=backend)
     return render_to_response('form.html', {}, RequestContext(request))
-
-
-def contact(request):
-    if request.user.is_authenticated():
-        user = get_user(request.user)
-        if not user.configured:
-            return HttpResponseRedirect('/config/') # Redirect after POST
-    else:
-        user = ()
-
-    if request.method == 'POST': # If the form has been submitted...
-        form = ContactForm(request.POST) # A form bound to the POST data
-        if form.is_valid(): # All validation rules pass
-            #Send the email
-            subject = form.cleaned_data['subject']
-            html_content = form.cleaned_data['message']
-            text_content = html2text.html2text(html_content)
-            from_email = form.cleaned_data['sender']
-            from_name = form.cleaned_data['name']
-            info = send_email_mandrill(subject, text_content, html_content, from_email, from_name, settings.ADMIN_EMAIL, 'Admin foowill')
-            infomail = info[0]
-            
-            #user = CustomUser.objects.filter(username=request.user).get()
-            #return HttpResponseRedirect('/contact') # Redirect after POST
-    else:
-        infomail = {}
-        form = ContactForm() # An unbound form
-        
-    ctx = {
-        'form': form,
-        'user': user,
-        'infomail' : infomail,
-    }
-        
-    return render_to_response('contact.html', ctx, RequestContext(request))
