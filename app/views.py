@@ -165,43 +165,17 @@ def done(request):
     
     return render_to_response('done.html', ctx, RequestContext(request))
 
-#@login_required
-#def add_tweet(request):
-    #"""Delete tweet"""
-    #user = get_user(request.user)
-   
-    #if request.method == 'POST': # If the form has been submitted...
-        #form = TweetForm(request.POST) # A form bound to the POST data
-        #if form.is_valid(): # All validation rules pass
-            ##Save the tweet in the table
-            #text = form.cleaned_data['text']
-            #pub_date = datetime.utcnow() 
-            
-            #t = Tweet(text=text, pub_date=pub_date, user=user)
-            #t.save()
-            #user.new_posttweet = user.show_modal_new_tweet()
-            #if user.alwaysupdate:
-                #tweet = _("I saved a tweet that will be published when I die with http://foowill.com @foo_will")
-                #try:
-                    #user.update_twitter_status(tweet)
-                #except TweepError:
-                    #count = Tweet.objects.filter(user=user).count()
-                    #user.update_twitter_status("%s (%d)" % (tweet, count))
-                #except:
-                    #pass
-            #user.save()
-        #else:
-            #return HttpResponseRedirect('//') # Redirect after POST        
-        
-    #return HttpResponseRedirect('/done/') # Redirect after POST
     
 @login_required
 def delete_tweet(request, id_tweet):
     """Delete tweet"""
     user = get_user(request.user)
-   
-    t = Tweet.objects.filter(pk=id_tweet, user=user).get()
-    t.delete()
+    try:
+        t = Tweet.objects.filter(pk=id_tweet, user=user).get()
+        t.delete()
+    except:
+        pass
+
     
     return HttpResponseRedirect('/done/') # Redirect after POST
 

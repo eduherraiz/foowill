@@ -27,9 +27,9 @@ def requirements():
 def lessc():
     'Compile lessc to the final css file'
     with cd(env.APP_DIR):
-        local('lessc app/static/js/style.less > app/static/css/less.css')
-    collectstatic()
-                
+        local('lessc app/static/css/less/bootstrap.less > app/static/css/bootstrap.css')
+        local('lessc app/static/css/lessless.css > app/static/css/final.css')
+                    
 def get_requeriments():
     with cd(env.APP_DIR):
       local('pip freeze > requirements.txt')
