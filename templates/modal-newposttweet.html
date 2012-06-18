@@ -10,11 +10,13 @@
     <form action="/update_status/" method="post">
     {% csrf_token %}
         <div class="modal-body">
-        {{ updatetweetform.tweet }}
+            {{ updatetweetform.updatetweet }}
+            <div id="counter2" ></div>
         </div>
         <div class="modal-footer">
-        <input type="submit" class="btn btn-danger" name="never" value="{% trans 'Never' %}">
-        <input type="submit" class="btn btn-warning" name="nottoday" value="{% trans 'Not today' %}">
+        <input type="submit" class="btn btn-inverse" name="never" value="{% trans 'Never' %}">
+        <input type="submit" class="btn btn-danger" name="nottoday" value="{% trans 'Not today' %}">
+        <input type="submit" class="btn btn-warning" name="notnow" value="{% trans 'Not now' %}">
         <input type="submit" class="btn btn-success" name="ever" value="{% trans 'Now and ever' %}">
         <input type="submit" class="btn btn-info"  name="now" value="{% trans 'Just now' %}">
         </div>

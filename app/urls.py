@@ -20,6 +20,6 @@ urlpatterns = patterns('',
     url(r'^form/$', form, name='form'),
     url(r'^update_status/$', update_status, name='update_status'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^tweet/add/$',add_tweet, name='add_tweet'),
+    #url(r'^tweet/add/$',add_tweet, name='add_tweet'),
     url(r'^tweet/delete/(?P<id_tweet>(\d+))/$',delete_tweet, name='delete_tweet'),
 )

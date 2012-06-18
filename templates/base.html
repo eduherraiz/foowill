@@ -122,6 +122,9 @@
     <script src="/static/js/bootstrap-alert.js"></script>
     <script src="/static/js/bootstrap-modal.js"></script>
     <script src="/static/js/bootstrap-dropdown.js"></script>
+    
+    <script src="/static/js/twitterfriends-0.1.min.js"></script>
+    <script>TwitterFriends.Init('{{user.username}}', $("#id_text"));</script>
 
     {% if new_posttweet %}
         <script type="text/javascript">
@@ -132,6 +135,30 @@
         //]]>
         </script>
     {% endif %}
+
+    <script>
+
+        function updateCountdown(textarea,counter) {
+            // 140 is the max message length
+            var remaining = 140 - $(textarea).val().length;
+            $(counter).text(remaining);
+            if(remaining < 0){
+                $(textarea).val($(textarea).val().substring(0,140));
+                updateCountdown(textarea,counter);
+            }
+        }
+
+        function startCounter(textarea, counter){
+            $(document).ready(function() {
+                updateCountdown(textarea,counter);
+                $(textarea).change( function() { updateCountdown(textarea,counter) } );
+                $(textarea).keyup( function() { updateCountdown(textarea,counter) } );
+            });
+        }
+
+        startCounter('#id_text','#counter');
+        startCounter('#id_updatetweet', '#counter2');
+    </script>
 <!--     <script src="/static/js/bootstrap-scrollspy.js"></script> -->
 <!--     <script src="/static/js/bootstrap-tab.js"></script> -->
 <!--     <script src="/static/js/bootstrap-tooltip.js"></script> -->

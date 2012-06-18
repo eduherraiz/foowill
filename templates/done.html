@@ -3,17 +3,6 @@
 {% load extras %}
 {% load i18n %}
 
-{% block script %}
-    <script>
-    $("#id_text").maxChars(200, true);
-    </script>
-
-    <script src="/static/js/character_counter.js"></script>
-    <script src="/static/js/twitterfriends-0.1.min.js"></script>
-    <script>TwitterFriends.Init('{{user.username}}', $("#id_text"));</script>
-
-{% endblock %}
-
 {% block content %}
     {% include "modal-newposttweet.html" %}
     {% include "user-box.html" %}

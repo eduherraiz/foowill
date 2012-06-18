@@ -2,7 +2,7 @@
 
 {% if user %}
     <div class="row">
-        <div class="span3">
+        <div class="span4">
             <div class='user-box'>
                 <img src="{{ user.photo }}"/> 
                 <a href="https://twitter.com/#!/{{ user.username }}">{{ user.username }}</a><br/><br/>
@@ -11,24 +11,26 @@
                 <a rel="nofollow" href="/logout"><i class="icon-off"></i> {% trans "Logout" %}</a><br/>
 
                 <div class="formtweet">
-                    <form action="/tweet/add/" method="post">
+                    <form action="/done/" method="post">
                     {% csrf_token %}
                         <div class="control-group">
                             <label class="control-label" for="message">{% trans 'Compose a post-tweet' %}</label>
                             <div class="controls">
-                                {{  tweetform.text }}
-                                <p class="help-block"></p>
+                                {{ tweetform.text }}
                                 {{ tweetform.text.errors }}
                             </div>
                         </div>
-                    <input type="submit" value="{% trans 'Post-tweet' %}" />
-                    <div id="#counter"></div>
+                    
+                    <div id="button" ><input type="submit" value="{% trans 'Post-tweet' %}" /></div>
+                    <div id="counter" ></div>
+
                     </form>
                 </div>
+
             </div>
         </div>
 
-        <div class="span9">
+        <div class="span8">
 {% else %}
     <div class="span12">
 {% endif %}

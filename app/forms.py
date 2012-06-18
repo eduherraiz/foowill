@@ -6,10 +6,10 @@ from django.utils.translation import ugettext_lazy as _
 class TweetForm(ModelForm):
     class Meta:
         model = Tweet
-        fields = ('text',)
+        fields = ('text', )
         widgets = {
-            'text': Textarea(attrs={'cols': 40, 'rows': 5} ),
-        }	
+            'text': Textarea(),
+        }
 
 class ConfigForm(ModelForm):
     class Meta:
@@ -20,11 +20,15 @@ class ConfigForm(ModelForm):
         #}	 
  
 class ContactForm(Form):
-    subject = CharField(label=_("Message subject"),max_length=200)
-    message = CharField(label=_("Your message"),widget=Textarea() )
-    sender = EmailField(label=_("Email address"))
-    name = CharField(label=_("Your name or company"),max_length=200)
+    subject = CharField(label=_("Message subject"),max_length=200,required=True)
+    message = CharField(label=_("Your message"),widget=Textarea(),required=True )
+    sender = EmailField(label=_("Email address"), required=True)
+    name = CharField(label=_("Your name or company"),max_length=200,required=True)
     #cc_myself = forms.BooleanField(required=False)
     
 class UpdateTweetForm(Form):
-    tweet = CharField(required=True, max_length=140, widget=Textarea(attrs={'cols': 80, 'rows': 5}), initial="He guardado un tweet que podrás leer cuando muera gracias a http://foowill.com @foo_will")
+    updatetweet = CharField(
+            required=True, 
+            max_length=140, 
+            widget=Textarea(), 
+            initial=_("I saved a tweet that will be published when I die with http://foowill.com @foo_will"))

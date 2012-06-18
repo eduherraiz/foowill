@@ -54,12 +54,12 @@ def contact(request):
             from_name = form.cleaned_data['name']
             info = send_email_mandrill(subject, text_content, html_content, from_email, from_name, settings.ADMIN_EMAIL, 'Admin foowill')
             infomail = info[0]
-            
-            #user = CustomUser.objects.filter(username=request.user).get()
-            #return HttpResponseRedirect('/contact') # Redirect after POST
+        else:
+            infomail = "fail"
+
     else:
-        infomail = {}
         form = ContactForm() # An unbound form
+        infomail = {}
         
     ctx = {
         'form': form,
@@ -127,42 +127,18 @@ def done(request):
     user = get_user(request.user)
     if not user.configured:
         return HttpResponseRedirect('/config/') # Redirect after POST
-    # To show the modal post-tweet only one time after save
-    if user.new_posttweet:
-        new_posttweet = True
-        user.new_posttweet = False
-        user.save()
-    else:
-        new_posttweet = False
-        
-    tweets = Tweet.objects.filter(user=user).order_by('-pub_date')
-    updatetweetform = UpdateTweetForm()
-    
-    ctx = {
-        'tweetform': TweetForm(),
-        'tweets': tweets,
-        'user': user,
-        'new_posttweet': new_posttweet,
-        'updatetweetform': updatetweetform,
-    }
-    
-    return render_to_response('done.html', ctx, RequestContext(request))
 
-@login_required
-def add_tweet(request):
-    """Delete tweet"""
-    user = get_user(request.user)
-   
+    new_posttweet = False
     if request.method == 'POST': # If the form has been submitted...
-        form = TweetForm(request.POST) # A form bound to the POST data
-        if form.is_valid(): # All validation rules pass
+        tweetf = TweetForm(request.POST) # A form bound to the POST data
+        if tweetf.is_valid(): # All validation rules pass
             #Save the tweet in the table
-            text = form.cleaned_data['text']
+            text = tweetf.cleaned_data['text']
             pub_date = datetime.utcnow() 
             
             t = Tweet(text=text, pub_date=pub_date, user=user)
             t.save()
-            user.new_posttweet = user.show_modal_new_tweet()
+            new_posttweet = user.show_modal_new_tweet()
             if user.alwaysupdate:
                 tweet = _("I saved a tweet that will be published when I die with http://foowill.com @foo_will")
                 try:
@@ -173,7 +149,51 @@ def add_tweet(request):
                 except:
                     pass
             user.save()
-    return HttpResponseRedirect('/done/') # Redirect after POST
+    else:
+        tweetf = TweetForm()
+        
+    tweets = Tweet.objects.filter(user=user).order_by('-pub_date')
+    updatetweetform = UpdateTweetForm()
+    
+    ctx = {
+        'tweetform': tweetf,
+        'tweets': tweets,
+        'user': user,
+        'updatetweetform': updatetweetform,
+        'new_posttweet': new_posttweet,
+    }
+    
+    return render_to_response('done.html', ctx, RequestContext(request))
+
+#@login_required
+#def add_tweet(request):
+    #"""Delete tweet"""
+    #user = get_user(request.user)
+   
+    #if request.method == 'POST': # If the form has been submitted...
+        #form = TweetForm(request.POST) # A form bound to the POST data
+        #if form.is_valid(): # All validation rules pass
+            ##Save the tweet in the table
+            #text = form.cleaned_data['text']
+            #pub_date = datetime.utcnow() 
+            
+            #t = Tweet(text=text, pub_date=pub_date, user=user)
+            #t.save()
+            #user.new_posttweet = user.show_modal_new_tweet()
+            #if user.alwaysupdate:
+                #tweet = _("I saved a tweet that will be published when I die with http://foowill.com @foo_will")
+                #try:
+                    #user.update_twitter_status(tweet)
+                #except TweepError:
+                    #count = Tweet.objects.filter(user=user).count()
+                    #user.update_twitter_status("%s (%d)" % (tweet, count))
+                #except:
+                    #pass
+            #user.save()
+        #else:
+            #return HttpResponseRedirect('//') # Redirect after POST        
+        
+    #return HttpResponseRedirect('/done/') # Redirect after POST
     
 @login_required
 def delete_tweet(request, id_tweet):
@@ -209,7 +229,7 @@ def update_status(request):
             form = UpdateTweetForm(request.POST) # A form bound to the POST data
             if form.is_valid(): # All validation rules pass
                 #Send the tweet to twitter
-                tweet = form.cleaned_data['tweet']
+                tweet = form.cleaned_data['updatetweet']
                 
                 try:
                     user.update_twitter_status(tweet)

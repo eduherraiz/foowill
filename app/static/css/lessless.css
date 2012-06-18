@@ -27,18 +27,35 @@ padding-bottom: 40px;
     border-radius:  0 0 @radius @radius;
 }
 
+.header-inner {
+    min-height: 20px;
+    padding: 12px;
+    background-color: white;
+    border-bottom: 1px solid #E8E8E8;
+    .rounded-corners-top(5px);
+}
+
+.content-box{
+    .rounded-corners-bottom(5px);    
+    background-color: white;
+    padding: 12px;
+}
 
 .formtweet{
     margin:5px;
 }
 
 .tweet {
+  font-family: "Helvetica Neue",Arial,sans-serif;
   background-color: @box;
   border-bottom: 1px solid @border;
   padding:15px;
   margin-left:5px;     
   margin-right:5px;     
-  p { font-size: 22px;
+  p { 
+    color: #333;
+    font-size: 16px;
+    line-height: 18px;
     word-wrap: break-word;
     a { text-decoration: none;
       &:hover { border-width: 1px }
@@ -62,8 +79,26 @@ padding-bottom: 40px;
     .rounded-corners;
 }
 
+.user-box #button{
+    float:left; 
+    width:80px;
+}
+
+.user-box #counter{
+    margin-left:225px;
+    width:40px;
+}
+
 #id_text{
-    width: 150px; 
+    width: 250px; 
+    overflow-x: hidden; 
+    overflow-y: hidden; 
+    height: 56px; 
+    padding-bottom: 5px;
+}
+
+#id_updatetweet{
+    width: 500px; 
     overflow-x: hidden; 
     overflow-y: hidden; 
     height: 56px; 
@@ -81,11 +116,15 @@ padding-bottom: 40px;
 .control-label{ font-weight:bold;}
 
 .slider{
-    width:230px; 
+    width:240px; 
     margin-top:10px; 
     margin-bottom:10px; 
     margin-right:20px; 
     float:left;
+}
+
+#id_activity_interval, #id_mail_interval, #id_publish_interval{
+    width:100px;     
 }
 
 /*! TwitterFrieds v0.1 | Autor: Jhean Ceballos: @shogoki_vnz 
@@ -94,49 +133,36 @@ is released under the MIT License <http://www.opensource.org/licenses/mit-licens
         position: absolute;
         overflow: hidden;
         display: none;
-        border: solid 2px #FFE8E9;
+        border: solid 2px #E9F1FF;
         background-color: white;
         color: #004363;
         height:400px;
+        margin-top:220px;
 }
 
-.info{
+#twitterUsers .info{
         height: 24px;
         margin: 0 0 5px 0;
         cursor: pointer;
 }
 
-.selected{
+#twitterUsers .selected{
         color: black;
-        background-color: #FFE8E9;
+        background-color: #D1E8FF;
 }
 
-.info:hover{
+#twitterUsers .info:hover{
         color: black;
-        background-color: #F3EEFF;
+        background-color: #B5C4FF;
 }
 
-.info img{
+#twitterUsers .info img{
         float: left;
         margin: 0px 3px 0 0 !important;
 }
 
-.info p{
+#twitterUsers .info p{
         margin: 0;
         padding-top: 5px;
         text-align: left;
-}
-
-.header-inner {
-    min-height: 20px;
-    padding: 12px;
-    background-color: white;
-    border-bottom: 1px solid #E8E8E8;
-    .rounded-corners-top(5px);
-}
-
-.content-box{
-    .rounded-corners-bottom(5px);    
-    background-color: white;
-    padding: 12px;
 }

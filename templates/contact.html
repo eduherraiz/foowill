@@ -34,6 +34,12 @@
         </div>
     {% endif %}
 
+    {% if infomail == "fail" %}
+        <div class="alert alert-alert">
+        {% trans "Message unsent. Form errors, correct the fields and try again." %}
+        </div>
+    {% endif %}
+
     <form action="" method="post">
         {% csrf_token %}
         {{ form.non_field_errors }}
@@ -43,7 +49,11 @@
         <div class="controls">
             {{ form.name }}
             <p class="help-block"></p>
-            {{ form.name.errors }}
+            {% if form.name.errors %}
+                <div class="alert alert-error">
+                    {{ form.name.errors }}
+                </div>
+            {% endif %}
         </div>
         </div>
 
@@ -52,7 +62,11 @@
         <div class="controls">
             {{ form.sender }}
             <p class="help-block"></p>
-            {{ form.sender.errors }}
+            {% if form.sender.errors %}
+                <div class="alert alert-error">
+                    {{ form.sender.errors }}
+                </div>
+            {% endif %}
         </div>
         </div>
 
@@ -61,7 +75,11 @@
         <div class="controls">
             {{ form.subject }}
             <p class="help-block"></p>
-            {{ form.subject.errors }}
+            {% if form.subject.errors %}
+                <div class="alert alert-error">
+                    {{ form.subject.errors }}
+                </div>
+            {% endif %}
         </div>
         </div>
 
@@ -70,7 +88,11 @@
         <div class="controls">
             {{ form.message }}
             <p class="help-block"></p>
-            {{ form.message.errors }}
+            {% if form.message.errors %}
+                <div class="alert alert-error">
+                    {{ form.message.errors }}
+                </div>
+            {% endif %}
         </div>
         </div>
 

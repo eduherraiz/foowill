@@ -33,7 +33,7 @@ class CustomUser(models.Model):
     activity_interval = models.IntegerField(choices=settings.ACTIVITY_CHOICES, default=2419200, blank=False)
     
     #intervalo de tiempo entre emisiones de tweets una vez muerto
-    publish_interval = models.IntegerField(choices=settings.PUBLISH_CHOICES, default=0, blank=True)
+    publish_interval = models.IntegerField(choices=settings.PUBLISH_CHOICES, default=0, blank=False)
 
     #tiempo a esperar desde half-dead hasta dead
     mail_interval = models.IntegerField(choices=settings.ACTIVITY_CHOICES, default=1209600, blank=False)
@@ -127,7 +127,7 @@ class CustomUser(models.Model):
         
 # Define Tweet 
 class Tweet(models.Model):
-    text = EncryptedCharField(max_length=140, unique=True)
+    text = EncryptedCharField(max_length=140, unique=True, blank=False)
     user = models.ForeignKey(CustomUser)
     pub_date = models.DateTimeField('date published')
     
