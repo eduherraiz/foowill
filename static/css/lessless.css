@@ -5,8 +5,9 @@
 @border: #D6D6D6;
 
 body {
-padding-top: 60px;
-padding-bottom: 40px;
+    padding-top: 60px;
+    padding-bottom: 40px;
+    
 }
 
 .rounded-corners(@radius: 10px) {
@@ -25,6 +26,10 @@ padding-bottom: 40px;
     -webkit-border-radius:  0 0 @radius @radius;
     -moz-border-radius:  0 0 @radius @radius;
     border-radius:  0 0 @radius @radius;
+}
+
+body{
+    background-image: url("../img/background.jpg");
 }
 
 .header-inner {
