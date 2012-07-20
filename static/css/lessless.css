@@ -1,7 +1,7 @@
 /*This file is a LESS file with a CSS extesion for markup - sorry for the inconvenience*/
 
 /*COLORS*/
-@box: #FFFFFF;
+@box: #EEEDED;
 @border: #D6D6D6;
 
 body {
@@ -30,6 +30,9 @@ body {
 
 body{
     background-image: url("../img/background.jpg");
+    background-repeat:no-repeat;
+    background-color:#FFFFFF;
+    background-position: top center;
 }
 
 .header-inner {
