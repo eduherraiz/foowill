@@ -18,7 +18,7 @@ def pre():
     env.app = 'foowill'
     env.APP_DIR = '/var/pywww/foowill/'
     env.virtualenv = 'foowill'
-
+  
 def requirements():
     """ install requeriments on app """
     with cd(env.APP_DIR):
@@ -28,13 +28,13 @@ def requirements():
 
 def lessc():
     'Compile lessc to the final css file'
-    with cd(env.APP_DIR):
-        local('lessc app/static/css/less/bootstrap.less > app/static/css/bootstrap.css')
-        local('lessc app/static/css/lessless.css > app/static/css/final.css')
+    APP_DIR = '/mnt/xuflus/Webs/foowill/'
+    local("cd %s; lessc app/static/css/less/bootstrap.less > app/static/css/bootstrap.css" % APP_DIR)
+    local("cd %s; lessc app/static/css/lessless.css > app/static/css/final.css" % APP_DIR)
                     
 def get_requeriments():
     with cd(env.APP_DIR):
-      local('pip freeze > requirements.txt')
+        local('pip freeze > requirements.txt')
                 
 def push():
     'Local push to the repository.'
@@ -43,8 +43,7 @@ def push():
         
 def pull():
     'Updates the repository.'
-    with cd(env.APP_DIR):
-	run('git pull')
+    local("ssh -A %s 'cd %s; git pull'" % (env.hosts[0], env.APP_DIR))
 
 def syncdb():
     with cd(env.APP_DIR):

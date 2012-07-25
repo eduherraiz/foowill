@@ -1,13 +1,36 @@
 /*This file is a LESS file with a CSS extesion for markup - sorry for the inconvenience*/
+.opacity(@op:100)
+{
+        filter:alpha(opacity=@op);
+        -moz-opacity:@op/100;
+        -khtml-opacity:@op/100;
+        opacity:@op/100;
+}
 
 /*COLORS*/
-@box: #EEEDED;
+@box: #FFFFFF;
 @border: #D6D6D6;
 
-body {
-/*     padding-top: 60px; */
-/*     padding-bottom: 40px; */
-    
+html, body {
+    height:100%;
+}
+
+#bigcontainer{
+/*    padding-top: 60px;
+    padding-bottom: 40px;*/
+    width:980px;
+    height:100%;
+    background-color:blue;
+    background: rgba(64, 64, 64, 0.5);
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.span12{
+    margin-left:0;
+}
+
+.container{
 }
 
 .rounded-corners(@radius: 10px) {
@@ -40,11 +63,11 @@ body{
     padding: 12px;
     background-color: white;
     border-bottom: 1px solid #E8E8E8;
-    .rounded-corners-top(5px);
+    .rounded-corners-top(3px);
 }
 
 .content-box{
-    .rounded-corners-bottom(5px);    
+    .rounded-corners-bottom(3px);    
     background-color: white;
     padding: 12px;
 }
@@ -75,16 +98,21 @@ body{
     margin:15px;
 }
 
+.main-box, .user-box{
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
 .main-box{
     background-color: @box;
     padding: 20px;
-    .rounded-corners;
+    .rounded-corners(6px);
 }
 
 .user-box{
     background-color: @box;
     padding: 20px;
-    .rounded-corners;
+    .rounded-corners(6px);
 }
 
 .user-box #button{
