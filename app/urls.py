@@ -12,6 +12,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', home, name='home'),
+    url(r'^robots\.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: /", mimetype="text/plain"))
     url(r'^contact/$', contact, name='contact'),
     url(r'^config/$', config, name='config'),    
     url(r'^done/$', done, name='done'),

@@ -38,7 +38,12 @@ def get_requeriments():
                 
 def push():
     'Local push to the repository.'
-    with cd(env.APP_DIR):
+    with cd('/mnt/xuflus/Webs/foowill'):
+        local('git add app/static')
+        try:
+            local('git commit -m "Auto push on deploy - small changes"')
+        except:
+            pass
         local('git push -u origin master')
         
 def pull():
@@ -61,8 +66,13 @@ def collectstatic():
     with cd(env.APP_DIR):
         with prefix("source /usr/local/bin/virtualenvwrapper.sh"):
             with prefix('workon %s' % env.virtualenv):
-		run('python manage.py collectstatic')
+		run('python manage.py collectstatic --noinput')
 
+def supervisor():
+    with cd(env.APP_DIR):
+        with prefix("source /usr/local/bin/virtualenvwrapper.sh"):
+            with prefix('workon %s' % env.virtualenv):
+                run('python manage.py supervisor --daemonize --project-dir=%s' % env.APP_DIR)
 def stop():
     with cd(env.APP_DIR):
         with prefix("source /usr/local/bin/virtualenvwrapper.sh"):
@@ -73,7 +83,7 @@ def start():
     with cd(env.APP_DIR):
         with prefix("source /usr/local/bin/virtualenvwrapper.sh"):
             with prefix('workon %s' % env.virtualenv):
-		run('python manage.py supervisor start all --daemonize --project-dir=%s' % env.APP_DIR)
+		run('python manage.py supervisor start all')
 
 def restart():
     stop()
@@ -105,6 +115,8 @@ def update():
 
 def updatefast():
     'No changes in DB or requeriments'
+    lessc()
+    push()
     pull()
     collectstatic()
     #compress()
