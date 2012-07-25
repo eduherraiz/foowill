@@ -15,8 +15,6 @@
     <!-- Less styles -->
     <link href="/static/css/flags.css" rel="stylesheet">
 
-
-
     {% block css %}{% endblock %}
 
     {% if DEBUG %}
@@ -50,6 +48,7 @@
   </head>
 
   <body>
+<div id="bigcontainer">
     {% load extras %}
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -112,11 +111,8 @@
 
     <div class="container">
 	{% block content %}{% endblock %}
-      <hr>
-      <footer>
-        {% block footer %}{% endblock %}
-      </footer>
     </div> <!-- /container -->
+</div> <!-- /bigcontainer -->
 
     <!-- Le javascript
     ================================================== -->
