@@ -42,6 +42,8 @@ def contact(request):
             return HttpResponseRedirect('/config/') # Redirect after POST
     else:
         user = ()
+        
+    from_email = ""
 
     if request.method == 'POST': # If the form has been submitted...
         form = ContactForm(request.POST) # A form bound to the POST data
