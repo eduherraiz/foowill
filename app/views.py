@@ -65,6 +65,7 @@ def contact(request):
         'form': form,
         'tweetform': TweetForm(),
         'user': user,
+        'from_email' : from_email,
         'infomail' : infomail,
     }
         

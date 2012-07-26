@@ -30,7 +30,7 @@
 
     {% if infomail.status == "sent" %}
         <div class="alert alert-success">
-        {% trans "Message sent, we'll try to reply as soon as possible to the your email address:" %} <b>{{ infomail.email }}</b>
+        {% trans "Message sent, we'll try to reply as soon as possible to the your email address:" %} <b>{{ from_email }}</b>
         </div>
     {% endif %}
 

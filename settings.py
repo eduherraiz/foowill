@@ -41,7 +41,7 @@ PROJECT_NAME = basename(ROOT_PATH)
 
 
 ADMINS = (
-    ('Edu Herraiz', 'gshark@gmail.com'),
+    ('Foowill', 'admin@foowill.com'),
 )
 
 MANAGERS = ADMINS
