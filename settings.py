@@ -134,12 +134,14 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -261,6 +263,9 @@ CELERYBEAT_SCHEDULE = {
     },
 }
 
+
+## CACHE
+
 SESSION_ENGINE = 'redis_sessions.session'
 
 SESSION_REDIS_HOST = 'localhost'
@@ -276,6 +281,10 @@ CACHES = {
         },
     },
 }
+
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_SECONDS = (60 * 60)
+CACHE_MIDDLEWARE_KEY_PREFIX = ''
 
 #EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
