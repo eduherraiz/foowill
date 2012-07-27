@@ -1,3 +1,4 @@
+Babel==0.9.6
 Django==1.4
 PyYAML==3.10
 South==0.7.5
@@ -12,12 +13,15 @@ django-celery==2.5.5
 django-contact-form==0.3.1
 django-fields==0.2.0
 django-picklefield==0.2.1
+django-redis-cache==0.9.5
+django-redis-sessions==0.3.1
 django-social-auth==0.6.9
 django-supervisor==0.2.7
+django-tinymce==1.5.1b2
 gunicorn==0.14.3
 httplib2==0.7.4
 kombu==2.1.8
--e git://github.com/brad/mailsnake.git@503dd6a8ba1426edf13fff13be2ff9c0354f35ae#egg=mailsnake
+-e git://github.com/brad/mailsnake.git@503dd6a8ba1426edf13fff13be2ff9c0354f35ae#egg=mailsnake-dev
 meld3==0.6.8
 oauth2==1.5.211
 oauthlib==0.1.3

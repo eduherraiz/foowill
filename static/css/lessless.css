@@ -98,6 +98,10 @@ body{
     margin:15px;
 }
 
+.header-inner{
+    margin-top: 60px;
+}
+
 .main-box, .user-box{
     margin-top: 60px;
     margin-bottom: 40px;

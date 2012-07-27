@@ -206,3 +206,9 @@ is released under the MIT License <http://www.opensource.org/licenses/mit-licens
         padding-top: 5px;
         text-align: left;
 }
+
+.main-box{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:16px;
+    color: #2C649A;
+}

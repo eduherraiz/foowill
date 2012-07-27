@@ -110,14 +110,18 @@ def update():
     syncdb()
     migrate()
     collectstatic()
-    #compress()
     restart()
 
-def updatefast():
+def updatelessc():
     'No changes in DB or requeriments'
     lessc()
     push()
     pull()
     collectstatic()
-    #compress()
+    restart()
+    
+def updatefast():
+    'No changes in DB or requeriments'
+    pull()
+    collectstatic()
     restart()

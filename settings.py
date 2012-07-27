@@ -261,6 +261,22 @@ CELERYBEAT_SCHEDULE = {
     },
 }
 
+SESSION_ENGINE = 'redis_sessions.session'
+
+SESSION_REDIS_HOST = 'localhost'
+SESSION_REDIS_PORT = 6379
+SESSION_REDIS_DB = 0
+
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': 'localhost:6379',
+        'OPTIONS': {
+            'DB': 1,
+        },
+    },
+}
+
 #EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
@@ -268,7 +284,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 #TODO:Create account and redirects to admin
 EMAIL_PROJECT = "info@foowill.com"
-ADMIN_EMAIL = "gshark@gmail.com"
+ADMIN_EMAIL = "info@foowill.com"
 MANDRILL_KEY = "994dcdb3-9fb4-4852-809d-97a7c358a0b4"
 
 hour = ugettext_lazy('hour')

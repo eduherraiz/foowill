@@ -4,3 +4,4 @@
 sqlite.db
 *.log
 properties.py
+garbage
