@@ -77,7 +77,11 @@ class CustomUser(models.Model):
         statuses = api.GetUserTimeline(self.username, count=1)
         if len(statuses) > 0:
             new_date = datetime.utcfromtimestamp(statuses[0].created_at_in_seconds)
-            next_check = new_date + timedelta(seconds=self.activity_interval)
+        else:
+            new_date = datetime.utcnow()
+        
+        next_check = new_date + timedelta(seconds=self.activity_interval)            
+        
         if not self.last_update or (self.last_update < new_date):
             self.last_update = new_date
             self.next_check = next_check
@@ -93,7 +97,7 @@ class CustomUser(models.Model):
         api = connect_tweepy(self.user)
         user = api.get_user(self.username)
         self.photo = user.profile_image_url
-        #self.save()
+        self.save()
 	    
     def get_twitter_friends(self):
         api = connect_tweepy(self.user)

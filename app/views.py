@@ -93,6 +93,7 @@ def home(request):
 def config(request):
     """Login complete view, displays user data"""
     user = get_user(request.user)
+    user.update_twitter_photo()
        
     saved = False
         

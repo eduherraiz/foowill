@@ -220,15 +220,23 @@ is released under the MIT License <http://www.opensource.org/licenses/mit-licens
     margin-right:50px;
     background-color:#D4E4CF;
     font-size:14px;
+/*     border:1px solid green; */
 /*     padding-top:15px;    */
-}
-
-.row-home-steps-button{
-    padding-top:40px;
 }
 
 .row-home-steps-text{
     padding:20px;
+    width:70%;
+    float:left;
+/*     border:1px solid red; */
+}
+
+
+.row-home-steps-button{
+    padding-top:40px;
+/*     border:1px solid blue; */
+    width:25%;
+    margin-left:75%;
 }
 
 .home-initial-text{
@@ -239,4 +247,8 @@ is released under the MIT License <http://www.opensource.org/licenses/mit-licens
     width:600px;
     margin-left:auto;
     margin-right:auto;
+}
+
+.clear{
+    clear:both;
 }
