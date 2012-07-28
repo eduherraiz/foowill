@@ -28,6 +28,7 @@
 
     <div class='main-box'>
 
+    <div class='contact-form'>
     {% if infomail.status == "sent" %}
         <div class="alert alert-success">
         {% trans "Message sent, we'll try to reply as soon as possible to the your email address:" %} <b>{{ from_email }}</b>
@@ -100,5 +101,6 @@
         <input type="submit" value="Send Message" />
     </form>
 
+</div>
 </div>
 {% endblock %}

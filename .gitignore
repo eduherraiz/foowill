@@ -6,3 +6,4 @@ sqlite.db
 properties.py
 garbage
 static
+static/css

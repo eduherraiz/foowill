@@ -28,20 +28,26 @@
     {% include "user-box.html" %}
 
     <div class='main-box'>
-        {% trans "Foowill is an twitter application where you can save tweets that will be sent to your account when you die (post-tweets)." %}<br/>
-        {% trans "We really hope not ever having to send them, but because bad things happen, we give you this opportunity." %}<br/>
-        {% trans "To check if you continue with us from time to time we will verify if you've updated your twitter account, that time you can decide yourself." %}<br/>
-        {% trans "If after that time do not read anything new you have the option of a final check, we will send an email to the address of your choice so you can stop sending your tweets and post with a simple click let us know that fortunately still alive." %}<br/>
-        <br/>{% trans "Everything in 3 simple steps:" %}<br/>
-        1. {% trans "Please sign in to your twitter account accepting that send tweets on your behalf." %}<br/>
-        2. {% trans "Configure the application by adding your email address and other parameters." %}<br/>
-        3. {% trans "Saves all the tweets you want." %}<br/>
-        <br/>
-        
-        {% if not user %}
-            <a href="{% url socialauth_begin 'twitter' %}" class="btn btn-primary btn-large">{% trans "Login with Twitter" %}</a>
-        {% endif %}
-
+        <div class='home-initial-text'>
+            {% trans "Foowill is an twitter application where you can save tweets that will be sent to your account when you die (post-tweets)." %}<br/>
+            {% trans "We really hope not ever having to send them, but because bad things happen, we give you this opportunity." %}<br/>
+            {% trans "To check if you continue with us from time to time we will verify if you've updated your twitter account, that time you can decide yourself." %}<br/>
+            {% trans "If after that time do not read anything new you have the option of a final check, we will send an email to the address of your choice so you can stop sending your tweets and post with a simple click let us know that fortunately still alive." %}<br/>
+        </div>
+        <div class="row row-home-steps">
+                <div class="span7 row-home-steps-text">
+                {% trans "Everything in 3 simple steps:" %}<br/>
+                1. {% trans "Please sign in to your twitter account accepting that send tweets on your behalf." %}<br/>
+                2. {% trans "Configure the application by adding your email address and other parameters." %}<br/>
+                3. {% trans "Saves all the tweets you want." %}<br/>
+                <br/>
+            </div>
+            <div class="span3 row-home-steps-button">
+                {% if not user %}
+                    <a href="{% url socialauth_begin 'twitter' %}" class="btn btn-success btn-large">{% trans "Login with Twitter" %}</a>
+                {% endif %}
+            </div>
+        </div>
         <div id="social">
         <ul class="social-buttons cf">
             <li><a class="socialite twitter" 

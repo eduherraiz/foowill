@@ -210,5 +210,33 @@ is released under the MIT License <http://www.opensource.org/licenses/mit-licens
 .main-box{
     font-family: Arial, Helvetica, sans-serif;
     font-size:16px;
-    color: #2C649A;
+    color: #062D00;
+}
+
+.row-home-steps{
+    .rounded-corners(6px);
+    margin-top:10px;
+    margin-left:10px;
+    margin-right:50px;
+    background-color:#D4E4CF;
+    font-size:14px;
+/*     padding-top:15px;    */
+}
+
+.row-home-steps-button{
+    padding-top:40px;
+}
+
+.row-home-steps-text{
+    padding:20px;
+}
+
+.home-initial-text{
+    padding:20px;
+}
+
+.contact-form{
+    width:600px;
+    margin-left:auto;
+    margin-right:auto;
 }
