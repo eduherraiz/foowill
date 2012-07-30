@@ -81,5 +81,8 @@
         </ul>
         </div>
     </div>
+    {% if not user %}
+         {% include "footer.html" %}
+    {% endif %}
   </div>
 {% endblock %}
