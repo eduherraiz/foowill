@@ -1,7 +1,7 @@
 {% load i18n %}
 
 {% if user %}
-    <div class="row">
+    <div class="row-fluid">
         <div class="span4">
             <div class='user-box'>
                 <img src="{{ user.photo }}"/> 
@@ -15,7 +15,7 @@
                     {% csrf_token %}
                         <div class="control-group">
                             <label class="control-label" for="message">{% trans 'Compose a post-tweet' %}</label>
-                            <div class="controls">
+                            <div class="controls" >
                                 {{ tweetform.text }}
                                 {{ tweetform.text.errors }}
                             </div>

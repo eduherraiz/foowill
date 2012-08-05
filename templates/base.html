@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <title>Foowill</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content='{% trans "Foowill is an twitter application where you can save tweets that will be sent to your account when you die (post-tweets)." %}'>
+    <meta name="author" content="Foowill">
     <link rel='shortcut icon' href='/static/img/favicon.ico' type='image/x-icon'/>
 
     {% block meta %}{% endblock %}
@@ -19,10 +19,12 @@
 
     {% if DEBUG %}
         <link rel="stylesheet/less" type="text/css" href="/static/css/less/bootstrap.less">
+        <link rel="stylesheet/less" type="text/css" href="/static/css/less/responsive.less">
         <link rel="stylesheet/less" type="text/css" href="/static/css/lessless.css">
         <script src="/static/js/less.js" type="text/javascript"></script>
     {% else %}
         <link href="/static/css/bootstrap.css" rel="stylesheet">
+        <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
         <link href="/static/css/final.css" rel="stylesheet">
     {% endif %}
 
@@ -47,27 +49,31 @@
     
   </head>
 
-  <body>
-<div id="bigcontainer">
+    <body>
     {% load extras %}
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
           <a class="brand" href="/">Foowill</a>
           <div class="nav-collapse">
-	    <ul class="nav">
+            <ul class="nav">
               <li class="{% add_active request 'home' %}"><a href="/">{% trans "Home" %}</a></li>
               <li class="{% add_active request 'contact' %}"><a href="/contact">{% trans "Contact" %}</a></li>
-	    </ul>
+            </ul>
 
-	    <ul class="nav pull-right">
-	      <li class="divider-vertical"></li>
+            <ul class="nav pull-right">
+              <li class="divider-vertical"></li>
 
-	    <li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Language" %}<b class="caret"></b></a>
-		<ul class="dropdown-menu">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Language" %}<b class="caret"></b></a>
+                <ul class="dropdown-menu">
                     {% for lang in LANGUAGES %}
-		    <form class="form-lang" name="setLang{{ lang.1 }}" action="/i18n/setlang/" method="POST">
+                    <form class="form-lang" name="setLang{{ lang.1 }}" action="/i18n/setlang/" method="POST">
                         {% csrf_token %}
                         <input name="next" type="hidden" value="{{ request.path }}" />
                         <input type="hidden" name="language" value="{{ lang.0 }}" />
@@ -76,52 +82,66 @@
                             <a rel="nofollow" onclick="document.setLang{{ lang.1 }}.submit();return false;">
                             <img src="/static/img/blank.gif" class="flag flag-{{ lang.0 }}" alt="{{ lang.1 }}" /> {{ lang.1 }}</a>
                         </li>
-		    </form>
-		  {% endfor %}    
-		</ul>
-	      </li>
-	    {% if user %}
-	      <li class="divider-vertical"></li>
-	      <li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}<b class="caret"></b></a>
-		<ul class="dropdown-menu">
-		  <li><a rel="nofollow" href="/config"><i class="icon-user"></i> {% trans "Configure" %}</a></li>
-		  <li><a rel="nofollow" href="/done"><i class="icon-th-list"></i> {% trans "Post-tweets" %}</a></li>
-		  <li><a rel="nofollow" href="/logout"><i class="icon-off"></i> {% trans "Logout" %}</a></li>
-<!-- 		  <li class="divider"></li> -->
-		</ul>
-	      </li>
-	    </ul>
-	    {% else %}
-	      <li class="divider-vertical"></li>
-	      <li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Login" %}<b class="caret"></b></a>
-		<ul class="dropdown-menu">
-		  <li><a href="{% url socialauth_begin 'twitter' %}">{% trans "Login with twitter" %}</a></li>
-<!-- 		  <li class="divider"></li> -->
-		</ul>
-	      </li>
-	    </ul>
-	    {% endif %}
+                    </form>
+                  {% endfor %}    
+                </ul>
+              </li>
+
+            {% if user %}
+              <li class="divider-vertical"></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a rel="nofollow" href="/config"><i class="icon-user"></i> {% trans "Configure" %}</a></li>
+                  <li><a rel="nofollow" href="/done"><i class="icon-th-list"></i> {% trans "Post-tweets" %}</a></li>
+                  <li><a rel="nofollow" href="/logout"><i class="icon-off"></i> {% trans "Logout" %}</a></li>
+<!--              <li class="divider"></li> -->
+                </ul>
+              </li>
+            </ul>
+            {% else %}
+              <li class="divider-vertical"></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Login" %}<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{% url socialauth_begin 'twitter' %}">{% trans "Login with twitter" %}</a></li>
+<!--              <li class="divider"></li> -->
+                </ul>
+              </li>
+            </ul>
+            {% endif %}
 
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
+
+  
+<!-- <div id="bigcontainer"> -->
     <div class="container">
-	{% block content %}{% endblock %}
+            {% block content %}{% endblock %}
     </div> <!-- /container -->
-</div> <!-- /bigcontainer -->
+    <!--</div>--> <!-- /bigcontainer -->
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/static/js/jquery.js"></script>
-    {% block script %}{% endblock %}
+    <script src="/static/js/bootstrap-scrollspy.js"></script>
+    <script src="/static/js/bootstrap-tab.js"></script>
+    <script src="/static/js/bootstrap-tooltip.js"></script>
+    <script src="/static/js/bootstrap-popover.js"></script>
+    <script src="/static/js/bootstrap-button.js"></script>
+    <script src="/static/js/bootstrap-collapse.js"></script>
+    <script src="/static/js/bootstrap-carousel.js"></script>
+    <script src="/static/js/bootstrap-typeahead.js"></script>
+    <script src="/static/js/bootstrap-transition.js"></script>
     <script src="/static/js/bootstrap-alert.js"></script>
     <script src="/static/js/bootstrap-modal.js"></script>
     <script src="/static/js/bootstrap-dropdown.js"></script>
+    <script src="/static/js/bootstrap-scrollspy.js"></script>
+    {% block script %}{% endblock %}
     
     <script src="/static/js/twitterfriends-0.1.min.js"></script>
     <script>TwitterFriends.Init('{{user.username}}', $("#id_text"));</script>
@@ -159,13 +179,7 @@
         startCounter('#id_text','#counter');
         startCounter('#id_updatetweet', '#counter2');
     </script>
-<!--     <script src="/static/js/bootstrap-scrollspy.js"></script> -->
-<!--     <script src="/static/js/bootstrap-tab.js"></script> -->
-<!--     <script src="/static/js/bootstrap-tooltip.js"></script> -->
-<!--     <script src="/static/js/bootstrap-popover.js"></script> -->
-<!--     <script src="/static/js/bootstrap-button.js"></script> -->
-<!--     <script src="/static/js/bootstrap-collapse.js"></script> -->
-<!--     <script src="/static/js/bootstrap-carousel.js"></script> -->
-<!--     <script src="/static/js/bootstrap-typeahead.js"></script> -->
+
+
   </body>
 </html>

@@ -5,7 +5,8 @@ from social_auth.models import UserSocialAuth
 from datetime import datetime,timedelta
 from django_fields.tests import EncryptedCharField
 from django.core.mail import EmailMultiAlternatives
-
+from django.utils.translation import ugettext_lazy as _
+from django.shortcuts import render
 from app.utils import send_email_mandrill, connect_tweepy
 
 import twitter
@@ -121,9 +122,28 @@ class CustomUser(models.Model):
 
 
     def send_email_halfdead(self):
-	subject = "¿Sigues vivo?"
-	text_content = "Get text from template/text_halfdead.txt"
-	html_content = "Get <b>html</b> from template/text_halfdead.html"
+	subject = _("Are you still alive?")
+	text_content = """Hola <username>,
+
+        Desde foowill.com hemos detectado que has sobrepasado el tiempo que configuraste sin actualizar tu cuenta de twitter 
+        para que nos empecemos a preocupar por tí.
+        Llevas <tiempo_sin_actualizar> sin actualizar twitter.
+
+        Si no actualizas tu cuenta de twitter antes de <half_dead_time + mail_interval>,
+        procederemos a enviar los <count_messages> que tienes guardados en foowill.com
+
+        También tienes la opción clickar en el siguiente link, para parar el proceso como si hubieses publicado en twitter:
+        <link_alive_user>
+
+        Te recomendamos que modifiques tu configuración, si crees que es necesario aumentar el tiempo de inactividad:
+        <link_config>
+
+        Te recordamos que puedes modificar o borrar tus post-tweets!
+
+        Saludos
+        Foowill.com"""
+
+	html_content = render(request, )
 	self.send_email(subject, text_content, html_content)
 	
     def is_authenticated(self):

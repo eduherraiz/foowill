@@ -30,6 +30,7 @@ def lessc():
     'Compile lessc to the final css file'
     APP_DIR = '/mnt/xuflus/Webs/foowill/'
     local("cd %s; lessc app/static/css/less/bootstrap.less > app/static/css/bootstrap.css" % APP_DIR)
+    local("cd %s; lessc app/static/css/less/responsive.less > app/static/css/bootstrap-responsive.css" % APP_DIR)
     local("cd %s; lessc app/static/css/lessless.css > app/static/css/final.css" % APP_DIR)
                     
 def get_requeriments():
