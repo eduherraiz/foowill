@@ -35,20 +35,23 @@
             {% trans "If after that time do not read anything new you have the option of a final check, we will send an email to the address of your choice so you can stop sending your tweets and post with a simple click let us know that fortunately still alive." %}<br/>
         </div>
 
-        <div class="row-home-steps">
-            <div class="row-home-steps-text">
-                {% trans "Everything in 3 simple steps:" %}<br/>
-                1. {% trans "Please sign in to your twitter account accepting that send tweets on your behalf." %}<br/>
-                2. {% trans "Configure the application by adding your email address and other parameters." %}<br/>
-                3. {% trans "Saves all the tweets you want." %}<br/>
-                <br/>
+        <div class="row-fluid">
+            <div class="span12 row-home-steps">
+                <div class="row-fluid">
+                    <div class="span8 row-home-steps-text">
+                        {% trans "Everything in 3 simple steps:" %}<br/>
+                        1. {% trans "Please sign in to your twitter account accepting that send tweets on your behalf." %}<br/>
+                        2. {% trans "Configure the application by adding your email address and other parameters." %}<br/>
+                        3. {% trans "Saves all the tweets you want." %}<br/>
+                        <br/>
+                    </div>
+                    <div class="span4 row-home-steps-button">
+                        {% if not user %}
+                            <a href="{% url socialauth_begin 'twitter' %}" class="btn btn-success btn-large">{% trans "Login with Twitter" %}</a>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
-            <div class="row-home-steps-button">
-                {% if not user %}
-                    <a href="{% url socialauth_begin 'twitter' %}" class="btn btn-success btn-large">{% trans "Login with Twitter" %}</a>
-                {% endif %}
-            </div>
-            <div class='clear'></div>
         </div>
 
         <div id="social">
