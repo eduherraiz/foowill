@@ -13,6 +13,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', home, name='home'),
     url(r'^contact/$', contact, name='contact'),
+    url(r'^about/$', about, name='about'),
     url(r'^config/$', config, name='config'),    
     url(r'^done/$', done, name='done'),
     url(r'^error/$', error, name='error'),

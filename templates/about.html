@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block meta %}
+  <meta property="og:title" content="Foowill" />
+  <meta property="og:url" content="http://foowill.com" />
+  <meta property="og:image" content="http://foowill.com/static/img/icon.jpg" />
+  <meta property="og:site_name" content="foowill.com" />
+{% endblock %}
+
+{% block content %}
+
+    {% include "user-box.html" %}
+
+    <div class='main-box'>
+        <div class='row-fluid home-initial-text'>
+            <div class="span12">
+                <div class="row-fluid">
+                    <div class="span8">
+                        <h3>{% trans "About Ba" %}</h3>
+                        <p>El ba es una fuerza anímica, componente de la parte espiritual del hombre, 
+                        la fuerza animada de cada ser fallecido, personalidad espiritual manifestada una vez acaecida la muerte, según la mitología egipcia.</p>
+
+                        <p>Es un concepto referente al difunto y no al hombre vivo; el ba era una especie de mediador entre el mundo de los dioses y la Tierra, 
+                        pues tenía movilidad y hacía posible que ambos mundos se relacionaran. Era el medio que tenía el difunto para desplazarse y reunirse 
+                        con su ka que permanecía en la tumba.</p>
+                        
+                        <p>El ba abandonaba el cuerpo en el momento de la muerte del individuo y ascendía al reino celestial pero, cada noche, 
+                        debía acudir al sepulcro para alojarse en el cuerpo del difunto, iba y venía del mundo de los dioses a la tumba.</p>
+                        <p>Lo hemos escogido como máscota para que, como los egipcios creían, traiga una parte de tí cuando ya no estés.</p>
+
+                        <p><a href="http://www.egyptianmyths.net/ba.htm">More info</a></p>
+                    </div>
+                    <div class="span4">
+                        <img src='/static/img/foowill_color.jpeg'> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if not user %}
+         {% include "footer.html" %}
+    {% endif %}
+
+{% endblock %}

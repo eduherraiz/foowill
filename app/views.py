@@ -89,6 +89,22 @@ def home(request):
     }    
     return render_to_response('home.html', ctx, RequestContext(request))
 
+def about(request):
+    """Home view, displays login mechanism"""
+    if request.user.is_authenticated():
+        user = get_user(request.user)
+        #Initial login have to configure the app -> redirecting
+        if not user.configured:
+            return HttpResponseRedirect('/config/') # Redirect after POST
+    else:
+        user = ()
+        
+    ctx = {
+        'tweetform': TweetForm(),
+        'user': user,
+    }    
+    return render_to_response('about.html', ctx, RequestContext(request))
+    
 @login_required
 def config(request):
     """Login complete view, displays user data"""
