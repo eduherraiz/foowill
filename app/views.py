@@ -29,7 +29,7 @@ def get_user(userg):
         return None
     try:
         return CustomUser.objects.filter(user=instance).get()
-    except CustomUser.DoesNotExist:
+    except: #Not user defined
         user = CustomUser.objects.create(user=instance, username=userg.username)
         user.update_date()
         user.update_twitter_photo()
