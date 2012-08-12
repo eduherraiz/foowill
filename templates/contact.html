@@ -34,7 +34,7 @@
         </div>
     {% endif %}
 
-    {% if not infomail %}
+    {% if not infomail and sended %}
         <div class="alert alert-alert">
         {% trans "Message unsent. Form errors, correct the fields and try again." %}
         </div>

@@ -45,7 +45,8 @@ def contact(request):
         user = ()
         
     from_email = ""
-
+    sended = False
+    
     if request.method == 'POST': # If the form has been submitted...
         form = ContactForm(request.POST) # A form bound to the POST data
         if form.is_valid(): # All validation rules pass
@@ -56,9 +57,9 @@ def contact(request):
             from_name = form.cleaned_data['name']
             infomail = send_email_mandrill(subject,html_content, from_email, from_name, settings.ADMIN_EMAIL, 'Admin foowill')
             #infomail = info[0]
+            sended = True
         else:
             infomail = False
-
     else:
         form = ContactForm() # An unbound form
         infomail = {}
@@ -69,6 +70,7 @@ def contact(request):
         'user': user,
         'from_email' : from_email,
         'infomail' : infomail,
+        'sended' : sended,
     }
         
     return render_to_response('contact.html', ctx, RequestContext(request))
