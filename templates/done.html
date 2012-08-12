@@ -15,9 +15,10 @@
         {% for tweet in tweets %}
             <div class='tweet'>
                 <p>{% parse_tweet tweet.text %}</p>
-                <i>{{ tweet.pub_date|relative_date }}</i>
-        <!-- 	<a href="/tweet/open/{{tweet.pk}}"><i class="icon-eye-open icon-black"></i> Abrir</a> -->
-                <a href="/tweet/delete/{{tweet.pk}}"><i class="icon-trash icon-black"></i>{% trans 'Delete' %}</a><br/>
+                <div class='tweet-info'>
+                    <i>{{ tweet.pub_date|relative_date }}</i>
+                    <a href="/tweet/delete/{{tweet.pk}}"><i class="icon-trash icon-black"></i> {% trans 'Delete' %}</a><br/>
+                </div>
             </div>
         {% endfor %}
     </div>

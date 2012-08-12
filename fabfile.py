@@ -51,12 +51,15 @@ def pull():
     'Updates the repository.'
     local("ssh -A %s 'cd %s; git pull'" % (env.hosts[0], env.APP_DIR))
 
+def redis_restart():
+    'Restart the redis server.'
+    local("ssh -A %s '/etc/init.d/redis-server restart'" % (env.hosts[0]))
+    
 def syncdb():
     with cd(env.APP_DIR):
         with prefix("source /usr/local/bin/virtualenvwrapper.sh"):
             with prefix('workon %s' % env.virtualenv):
 		run('python manage.py syncdb')
-
 def migrate():
     with cd(env.APP_DIR):
         with prefix("source /usr/local/bin/virtualenvwrapper.sh"):
@@ -88,6 +91,7 @@ def start():
 
 def restart():
     stop()
+    redis_restart()
     start()
 
 def newserver():

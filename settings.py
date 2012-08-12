@@ -2,6 +2,8 @@
 from os.path import abspath, dirname, basename, join
 from django.utils.translation import ugettext_lazy
 from django.utils.translation import string_concat
+from datetime import timedelta
+import djcelery
 
 try:
     import social_auth
@@ -250,18 +252,18 @@ CROP_AUTO_CLEAN = False
 # Let Celery workers import our tasks module
 CELERY_IMPORTS = ("tasks", )
 
-from datetime import timedelta
-#import tasks
+
+
 CELERYBEAT_SCHEDULE = {
     "Forensic": {
         "task": "tasks.forensic",
-        "schedule": timedelta(seconds=15),
+        "schedule": timedelta(seconds=600),
         "args": ()
     },
     
     "Killer-Saver": {
         "task": "tasks.killer_saver",
-        "schedule": timedelta(seconds=15),
+        "schedule": timedelta(seconds=600),
         "args": ()
     },
 }
@@ -301,7 +303,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 #EMAIL_FILE_PATH = '/tmp/app-messages' # change this to a proper location
 
-#TODO:Create account and redirects to admin
 EMAIL_PROJECT = "info@foowill.com"
 ADMIN_EMAIL = "info@foowill.com"
 MANDRILL_KEY = "994dcdb3-9fb4-4852-809d-97a7c358a0b4"
@@ -318,8 +319,7 @@ year = ugettext_lazy('year')
 years = ugettext_lazy('years')
 
 ACTIVITY_CHOICES = (
-    (30, '30 seconds'),
-    (120, '2 minutes'),
+    (3600, '1 hora'),
     (604800, string_concat('1 ', week)),
     (1209600, string_concat('2 ', weeks)),
     (1814400, string_concat('3 ', weeks)),
@@ -368,7 +368,7 @@ PUBLISH_CHOICES = (
     (87091200, string_concat('3 ', years)),
 )
 
-import djcelery
+
 djcelery.setup_loader()
 
 #try:

@@ -75,11 +75,13 @@ body{
 
 .tweet {
   font-family: "Helvetica Neue",Arial,sans-serif;
-  background-color: @box;
-  border-bottom: 1px solid @border;
+  background-color: #F5FFF3;
+  border: 1px solid @border;
   padding:15px;
   margin-left:5px;     
-  margin-right:5px;     
+  margin-right:5px; 
+  margin-bottom:8px;
+  .rounded-corners(4px);
   p { 
     color: #333;
     font-size: 16px;
@@ -89,6 +91,10 @@ body{
       &:hover { border-width: 1px }
     }
   }
+}
+
+.tweet-info{
+    text-align:right;
 }
 
 .tweetslist{
@@ -329,6 +335,7 @@ is released under the MIT License <http://www.opensource.org/licenses/mit-licens
     margin-bottom:30px;
     background-color:#F5FFF3;   
     text-align:center;
+   border: 1px solid @border;
 }
 
 .footer-box:hover a{
