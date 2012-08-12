@@ -1,0 +1,19 @@
+{% load extras %}
+{% load i18n %}
+<html>
+<head></head>
+<body>
+    <p>{% trans "Hello" %} <b>{{ username }}</b>,</p>
+    
+    {% blocktrans %}
+    <p>This is an automatic message from <a href="http://www.foowill.com">foowill.com</a>.</p>
+    <p>We are glad you are okay!</p>
+    <p>Your saved post-tweets are still stored in foowill.com and have not been posted on twitter.
+    We hope to continue saving your post-tweets for a long long time. ;)</p>
+    {% endblocktrans %}
+
+    <p>{% trans "Regards," %}</p>
+    <p><a href="http://www.foowill.com">Foowill.com</a></p>
+
+</body>
+</html>

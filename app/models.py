@@ -5,9 +5,10 @@ from social_auth.models import UserSocialAuth
 from datetime import datetime,timedelta
 from django_fields.tests import EncryptedCharField
 from django.core.mail import EmailMultiAlternatives
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 from django.shortcuts import render
 from app.utils import send_email_mandrill, connect_tweepy
+from django.template.loader import render_to_string
 
 import twitter
 import tweepy
@@ -26,6 +27,8 @@ class CustomUser(models.Model):
     user = models.OneToOneField(UserSocialAuth)
     username = models.CharField(max_length=128)
     photo = models.URLField(blank=True, null=True)
+    language = models.CharField(max_length=128, default='en', blank=True)
+
     last_login = models.DateTimeField(blank=True, null=True)
     
     email = models.EmailField(blank=True)
@@ -60,6 +63,7 @@ class CustomUser(models.Model):
     alwaysupdate = models.BooleanField(default=False)
     nottodayupdate = models.DateTimeField(blank=True, null=True)
 
+       
     
     objects = CustomUserManager()
     
@@ -74,7 +78,7 @@ class CustomUser(models.Model):
 
     def update_date(self):
 	"Save the last update date in twitter for the user"
-        api = twitter.Api()
+        api = twitter.Api(settings.TWITTER_CONSUMER_KEY,settings.TWITTER_CONSUMER_SECRET,settings.ACCESS_TOKEN,settings.ACCESS_TOKEN_SECRET)
         statuses = api.GetUserTimeline(self.username, count=1)
         if len(statuses) > 0:
             new_date = datetime.utcfromtimestamp(statuses[0].created_at_in_seconds)
@@ -117,35 +121,54 @@ class CustomUser(models.Model):
 	    return False
 	return True
 	
-    def send_email(self, subject, text_content, html_content):
-        send_email_mandrill(subject, text_content, html_content, self.email. self.username)
+    def send_email(self, subject,  html_content):
+        send_email_mandrill(subject, html_content,settings.EMAIL_PROJECT ,settings.NAME_PROJECT,self.email, self.username)
 
+    def number_posts(self):
+        return Tweet.objects.filter(user=self).count()
 
     def send_email_halfdead(self):
 	subject = _("Are you still alive?")
-	text_content = """Hola <username>,
-
-        Desde foowill.com hemos detectado que has sobrepasado el tiempo que configuraste sin actualizar tu cuenta de twitter 
-        para que nos empecemos a preocupar por tí.
-        Llevas <tiempo_sin_actualizar> sin actualizar twitter.
-
-        Si no actualizas tu cuenta de twitter antes de <half_dead_time + mail_interval>,
-        procederemos a enviar los <count_messages> que tienes guardados en foowill.com
-
-        También tienes la opción clickar en el siguiente link, para parar el proceso como si hubieses publicado en twitter:
-        <link_alive_user>
-
-        Te recomendamos que modifiques tu configuración, si crees que es necesario aumentar el tiempo de inactividad:
-        <link_config>
-
-        Te recordamos que puedes modificar o borrar tus post-tweets!
-
-        Saludos
-        Foowill.com"""
-
-	html_content = render(request, )
-	self.send_email(subject, text_content, html_content)
 	
+	html_content = render_to_string('half_dead.html', 
+            { 
+            'username': self.username,
+            'time_without_update': self.last_update,
+            'half_dead_time_mail_interval': self.last_update + timedelta(seconds=self.activity_interval+self.mail_interval),
+            'number_posts': self.number_posts(),
+            'link_for_config': 'http://www.foowill.com/config'
+            }
+	)
+
+	self.send_email(subject, html_content)
+	
+    def send_email_still_alive(self):
+        subject = _("We are glad you are okay!")
+        
+        html_content = render_to_string('still_alive.html', 
+            { 
+            'username': self.username,
+            }
+        )
+
+        self.send_email(subject, html_content)
+
+    def send_email_hope_to_read(self):
+        subject = _("The time interval waiting for your twitter status update is exceeded")
+        
+        html_content = render_to_string('hope_to_read.html', 
+            { 
+            'username': self.username,
+            }
+        )
+
+        self.send_email(subject, html_content)
+        
+    def deliver_all_to_twitter(self):
+        tweets = Tweet.objects.filter(user=self)
+        for tweet in tweets:
+            self.update_twitter_status(tweet.text)
+        
     def is_authenticated(self):
         return True
         

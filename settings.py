@@ -147,7 +147,8 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
-    join(ROOT_PATH, 'templates')
+    join(ROOT_PATH, 'templates'),
+    join(ROOT_PATH, 'templates_mails')
 )
 
 INSTALLED_APPS = (
@@ -220,6 +221,8 @@ AUTHENTICATION_BACKENDS = (
 
 TWITTER_CONSUMER_KEY         = 'W5LegvUQ6n8yewTD416XZw'
 TWITTER_CONSUMER_SECRET      = 'ibQZkg6Os0UaBr4r4TAJUOfcGYVwljvfKQyNqyrOMCo'
+ACCESS_TOKEN                 = '252129698-pPOELRBf9PxPqvrkL05WGbb7MVeo3vtw6JYGb329'
+ACCESS_TOKEN_SECRET          = '2NBcrSon1uWdqnWJLj0YPwTJjXvMyTOTtOlCfzCxqE'
 
 LOGIN_URL          = '/'
 LOGIN_REDIRECT_URL = '/'

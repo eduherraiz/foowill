@@ -28,18 +28,20 @@
 
     <div class='main-box'>
 
-    <div class='contact-form'>
-    {% if infomail.status == "sent" %}
+    {% if infomail %}
         <div class="alert alert-success">
         {% trans "Message sent, we'll try to reply as soon as possible to the your email address:" %} <b>{{ from_email }}</b>
         </div>
     {% endif %}
 
-    {% if infomail == "fail" %}
+    {% if not infomail %}
         <div class="alert alert-alert">
         {% trans "Message unsent. Form errors, correct the fields and try again." %}
         </div>
     {% endif %}
+
+    <div class='contact-form'>
+
 
     <form action="" method="post">
         {% csrf_token %}

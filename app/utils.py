@@ -1,8 +1,9 @@
 #-*- coding: UTF-8 -*-
 from django.conf import settings
 import tweepy
- 
-def send_email_mandrill(subject, text_content, html_content, from_email, from_name, email_to, name_to):
+import html2text
+
+def send_email_mandrill(subject, html_content, from_email, from_name, email_to, name_to):
     from mailsnake import MailSnake
     from django.conf import settings
 
@@ -10,7 +11,7 @@ def send_email_mandrill(subject, text_content, html_content, from_email, from_na
     mapi = MailSnake(settings.MANDRILL_KEY, api='mandrill')
     message={
         'subject':subject, 
-        'text': text_content,
+        'text': html2text.html2text(html_content),
         'html': html_content,
         'from_email': from_email, 
         'from_name':from_name, 
@@ -19,7 +20,8 @@ def send_email_mandrill(subject, text_content, html_content, from_email, from_na
             'name': name_to,
         }]
     }
-    return mapi.messages.send(message=message) 
+    mapi.messages.send(message=message) 
+    return True
     
 
 def connect_tweepy(user):

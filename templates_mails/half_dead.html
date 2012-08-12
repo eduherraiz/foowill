@@ -1,0 +1,33 @@
+{% load extras %}
+{% load i18n %}
+<html>
+<head></head>
+<body>
+    <p>{% trans "Hello" %} <b>{{ username }}</b>,</p>
+    
+    {% blocktrans %}
+    <p>This is an automatic message from <a href="http://www.foowill.com">foowill.com</a>.
+    You have exceeded the time interval without updating your twitter status and we are worry about you.</p>
+    {% endblocktrans %}
+
+    <p>{% blocktrans %}Your last status update on twitter was {% endblocktrans %} {{ time_without_update|relative_date }}.</p>
+
+    <p>
+    {% blocktrans %}
+        If you do not update your twitter status before  {{ half_dead_time_mail_interval }},
+            we will proceed to send your  {{ number_posts }} post-tweets that you saved on <a href="http://www.foowill.com">foowill.com</a> 
+    {% endblocktrans %}
+    </p>
+
+    <p>{% blocktrans %}You also have the option to login on <a href="http://www.foowill.com">foowill.com</a> to stop the publish process.{% endblocktrans %}<br/>
+
+    <p>{% trans "If you think it's necessary to increase the downtime interval on twitter, we recommend that you change your settings:" %}<br/>
+    <a href="{{ link_for_config }}">{{ link_for_config }}</a></p>
+
+    <p>{% trans "We remind you that you can add or delete post-tweets if you still want!" %}</p>
+
+    <p>{% trans "Regards," %}</p>
+    <p><a href="http://www.foowill.com">Foowill.com</a></p>
+
+</body>
+</html>

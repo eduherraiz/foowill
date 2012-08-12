@@ -54,17 +54,12 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-<!--            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>-->
           <a class="brand" href="/">Foowill</a>
             <ul class="nav">
               <li class="{% add_active request 'home' %}"><a href="/">{% trans "Home" %}</a></li>
               <li class="{% add_active request 'contact' %}"><a href="/contact">{% trans "Contact" %}</a></li>
             </ul>
-<!-- <div class="nav-collapse"> -->
+
             <ul class="nav pull-right">
               <li class="divider-vertical"></li>
 
@@ -104,7 +99,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Login" %}<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="{% url socialauth_begin 'twitter' %}">{% trans "Login with twitter" %}</a></li>
-<!--              <li class="divider"></li> -->
+<!--               <li class="divider"></li>  -->
                 </ul>
               </li>
             </ul>
@@ -115,13 +110,9 @@
       </div>
     </div>
 
-
-  
-<!-- <div id="bigcontainer"> -->
     <div class="container">
             {% block content %}{% endblock %}
     </div> <!-- /container -->
-    <!--</div>--> <!-- /bigcontainer -->
 
     <!-- Le javascript
     ================================================== -->
@@ -142,8 +133,16 @@
     <script src="/static/js/bootstrap-scrollspy.js"></script>
     {% block script %}{% endblock %}
     
-    <script src="/static/js/twitterfriends-0.1.min.js"></script>
-    <script>TwitterFriends.Init('{{user.username}}', $("#id_text"));</script>
+<!--     <script src="/static/js/twitterfriends-0.1.min.js"></script> -->
+<!--    <script type="text/javascript">
+        function displayunicode(e){
+            var unicode=e.keyCode? e.keyCode : e.charCode;
+            if(unicode == 50){
+                $('#twitterfriends').focus();
+            }
+        }
+    </script>-->
+<!--     <script>TwitterFriends.Init('{{user.username}}', $("#id_text"));</script> -->
 
     {% if new_posttweet %}
         <script type="text/javascript">

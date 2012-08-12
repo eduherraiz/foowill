@@ -7,6 +7,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, redirect
 from django.contrib.messages.api import get_messages
 from django.conf import settings
+from django.utils.translation import get_language
 from django.utils.translation import ugettext as _
 from datetime import datetime
 
@@ -19,7 +20,7 @@ from social_auth.models import UserSocialAuth
 from app.models import Tweet, CustomUser
 from app.utils import send_email_mandrill
 from app.forms import *
-import html2text
+
 
 def get_user(userg):
     try: 
@@ -51,13 +52,12 @@ def contact(request):
             #Send the email
             subject = form.cleaned_data['subject']
             html_content = form.cleaned_data['message']
-            text_content = html2text.html2text(html_content)
             from_email = form.cleaned_data['sender']
             from_name = form.cleaned_data['name']
-            info = send_email_mandrill(subject, text_content, html_content, from_email, from_name, settings.ADMIN_EMAIL, 'Admin foowill')
-            infomail = info[0]
+            infomail = send_email_mandrill(subject,html_content, from_email, from_name, settings.ADMIN_EMAIL, 'Admin foowill')
+            #infomail = info[0]
         else:
-            infomail = "fail"
+            infomail = False
 
     else:
         form = ContactForm() # An unbound form
@@ -109,7 +109,6 @@ def about(request):
 def config(request):
     """Login complete view, displays user data"""
     user = get_user(request.user)
-    user.update_twitter_photo()
        
     saved = False
         
@@ -122,8 +121,17 @@ def config(request):
             user.publish_interval = form.cleaned_data['publish_interval']
             user.mail_interval = form.cleaned_data['mail_interval']
             user.activity_interval = form.cleaned_data['activity_interval']
+            user.language = get_language()
+            user.update_twitter_photo()
+            user.update_date()
+            
             #user.update_twitter_photo() #Not necessary yet, updated on first save
             user.save()
+            #user.send_email_halfdead()
+            #user.send_email_still_alive()
+            #user.send_email_hope_to_read()
+            #user.deliver_all_to_twitter()
+            
             if not user.configured:
                 #user.update_date() #Not necessary yet, updated on first save
                 user.configured = True

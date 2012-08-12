@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block meta %}
+  <meta property="og:title" content="Foowill" />
+  <meta property="og:url" content="http://foowill.com" />
+  <meta property="og:image" content="http://foowill.com/static/img/icon.jpg" />
+  <meta property="og:site_name" content="foowill.com" />
+{% endblock %}
+
+{% block css %}<link href="/static/css/socialite.css" rel="stylesheet">{% endblock %}
+
+{% block script %}
+    <script src="/static/js/socialite.min.js"></script>
+
+    <script type="text/javascript">
+    //<![CDATA[
+        $(document).ready(function(){
+            Socialite.load();
+        });
+    //]]>
+    </script>
+{% endblock %}
+
+{% block content %}
+
+    {% include "user-box.html" %}
+
+    <div class='main-box'>
+        <h3>{% trans "Page not found" %}</h3>
+        <img src='/static/img/foowill_color.jpeg'> 
+    </div>
+
+    {% if not user %}
+         {% include "footer.html" %}
+    {% endif %}
+
+<!--  </div>-->
+{% endblock %}

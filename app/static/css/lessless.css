@@ -19,17 +19,6 @@ html, body {
     padding: 9px 0;
 }
 
-/* #bigcontainer{ */
-/*    padding-top: 60px;
-    padding-bottom: 40px;*/
-/*     width:980px; */
-/*     height:100%; */
-/*     background-color:blue; */
-/*     background: rgba(64, 64, 64, 0.5); */
-/*     margin-left:auto; */
-/*     margin-right:auto; */
-/* } */
-
 .span12{
     margin-left:0;
 }
@@ -159,12 +148,47 @@ body{
 }
 
 #id_text{
-    width: 250px; 
+/*    width: 250px; 
+
+    height: 76px; 
+    padding:8px;
+    padding-bottom: 5px;
+    resize:none;
+    color: #2E4158;
+    font-size:12px;
+    font-family:Arial;*/
+/*     outline:none; */
+    resize:none;
     overflow-x: hidden; 
     overflow-y: hidden; 
-    height: 56px; 
-    padding-bottom: 5px;
+    
+    color:#666;
+    font-size:14px;
+    .rounded-corners(6px);
+    margin:5px 0px 10px 0px;
+    padding:10px;
+    height:76px;
+    width:250px;
+    border:#999 1px solid;
+    font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    transition: all 0.25s ease-in-out;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    box-shadow: 0 0 5px rgba(81, 203, 238, 0);
+    -webkit-box-shadow: 0 0 5px rgba(81, 203, 238, 0);
+    -moz-box-shadow: 0 0 5px rgba(81, 203, 238, 0);
 }
+
+#id_text:focus{
+    color:#000;
+    outline:none;
+    border:#35a5e5 1px solid;
+    font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    -webkit-box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    -moz-box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+}
+
 @media (min-width: 768px) and (max-width: 979px) {
     #id_text{
         width: 170px;
@@ -208,13 +232,14 @@ body{
 is released under the MIT License <http://www.opensource.org/licenses/mit-license.php*/
 #twitterUsers{
         position: absolute;
-        overflow: hidden;
+/*         overflow: hidden; */
         display: none;
         border: solid 2px #E9F1FF;
         background-color: white;
         color: #004363;
         height:400px;
-        margin-top:220px;
+        margin-top:244px;
+        overflow-y:scroll;
 }
 
 #twitterUsers .info{
@@ -314,3 +339,4 @@ is released under the MIT License <http://www.opensource.org/licenses/mit-licens
         color:#87AA92;
         margin-left:15px;
 }
+
