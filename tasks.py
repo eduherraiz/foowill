@@ -33,7 +33,7 @@ def forensic():
 def killer_saver():
     logger = killer_saver.get_logger()
    
-    users = CustomUser.objects.filter(half_dead=True).filter(dead=False).filter(configured=True)
+    users = CustomUser.objects.filter(half_dead=True, dead=False, configured=True)
     
     for user in users:
 	logger.info("User %s, act: %d, mail: %d, lu: %s - [%s]" % (user.username, user.activity_interval, user.mail_interval, user.last_update,  datetime.now()))	    
@@ -41,9 +41,15 @@ def killer_saver():
 	#Get the last update date for the user
 	if user.update_date():
 	    logger.info("User %s, update the last date update (on twitter) - [%s]" % (user.username, datetime.now()))	    
+	    
+        #Which is bigger?
+        if user.last_update < user.last_login:
+            date_substract = user.last_login
+        else:
+            date_substract = user.last_update
 
 	#time from last update
-	t = datetime.utcnow() - user.last_update
+	t = datetime.utcnow() - date_substract
 	
 	#Check if the user status
 	if t.seconds < user.activity_interval:

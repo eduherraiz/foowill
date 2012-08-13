@@ -92,6 +92,10 @@ class CustomUser(models.Model):
             self.next_check = next_check
             #self.save()
         return self.last_update
+        
+    def update_login_date(self):
+        if not self.last_login or self.last_login < (datetime.utcnow() - timedelta(seconds=3600)):
+            self.last_login = datetime.utcnow()
 
     def update_twitter_status(self, text):
 	if text:

@@ -28,13 +28,14 @@ def get_user(userg):
     except UserSocialAuth.DoesNotExist:
         return None
     try:
-        return CustomUser.objects.filter(user=instance).get()
+        user = CustomUser.objects.filter(user=instance).get()
     except: #Not user defined
         user = CustomUser.objects.create(user=instance, username=userg.username)
         user.update_date()
         user.update_twitter_photo()
         user.save()
-        return user
+    user.update_login_date()
+    return user
 
 def contact(request):
     if request.user.is_authenticated():
