@@ -3,6 +3,7 @@ from django.db.models import F
 from celery.task import *
 from datetime import timedelta, datetime
 from app.models import CustomUser
+from django.utils.translation import activate,deactivate
 """
 Note: the api of twitter retards 1 minute (more or less) the update of the update_date
 """
@@ -25,9 +26,11 @@ def forensic():
 	if t.seconds >= user.activity_interval:
 	    user.half_dead = True
 	    user.save()
-	    logger.info("User %s, is HALF-DEAD (on twitter) - [%s]" % (user.username, datetime.now()))
 	    
+	    logger.info("User %s, is HALF-DEAD (on twitter) - [%s]" % (user.username, datetime.now()))
+	    activate(user.language)
 	    user.send_email_halfdead()
+	    deactivate()
 	    
 @task
 def killer_saver():
@@ -58,15 +61,19 @@ def killer_saver():
 	    user.half_dead = False
 	    user.save()
 	    logger.info("User %s, is SAVED (on twitter) - [%s]" % (user.username, datetime.now()))
+	    activate(user.language)
 	    user.send_email_still_alive()
+	    deactivate()
 	    #user.update_twitter_status("Sigo vivo, no os preocupeis. http://foowill.com %s" % datetime.now() )
 	    
 	elif t.seconds >= user.activity_interval + user.mail_interval:
 	    user.dead = True
 	    user.save()
 	    logger.info("User %s, is DEAD (on twitter) - [%s]" % (user.username, datetime.now()))
+	    activate(user.language)
 	    user.send_email_hope_to_read()
 	    user.deliver_all_to_twitter()
+	    deactivate()
             #TODO: Deliver messages with the publish interval !!!
             
 	else:

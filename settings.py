@@ -257,13 +257,13 @@ CELERY_IMPORTS = ("tasks", )
 CELERYBEAT_SCHEDULE = {
     "Forensic": {
         "task": "tasks.forensic",
-        "schedule": timedelta(seconds=600),
+        "schedule": timedelta(seconds=60),
         "args": ()
     },
     
     "Killer-Saver": {
         "task": "tasks.killer_saver",
-        "schedule": timedelta(seconds=600),
+        "schedule": timedelta(seconds=60),
         "args": ()
     },
 }
@@ -320,7 +320,7 @@ years = ugettext_lazy('years')
 inmediatly = ugettext_lazy('Inmediatly')
 
 ACTIVITY_CHOICES = (
-    (900, '15 minutos'),
+    (600, '10 minutos'),
     (604800, string_concat('1 ', week)),
     (1209600, string_concat('2 ', weeks)),
     (1814400, string_concat('3 ', weeks)),
