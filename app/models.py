@@ -136,6 +136,7 @@ class CustomUser(models.Model):
 	
 	html_content = render_to_string('half_dead.html', 
             { 
+            'userlanguage': self.language,
             'username': self.username,
             'time_without_update': self.last_update,
             'half_dead_time_mail_interval': self.last_update + timedelta(seconds=self.activity_interval+self.mail_interval),
@@ -152,6 +153,7 @@ class CustomUser(models.Model):
         html_content = render_to_string('still_alive.html', 
             { 
             'username': self.username,
+            'userlanguage': self.language,
             }
         )
 
@@ -163,6 +165,7 @@ class CustomUser(models.Model):
         html_content = render_to_string('hope_to_read.html', 
             { 
             'username': self.username,
+            'userlanguage': self.language,
             }
         )
 

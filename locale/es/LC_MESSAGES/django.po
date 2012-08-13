@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-12 03:56+0200\n"
+"POT-Creation-Date: 2012-08-13 20:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,45 +18,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: settings.py:309
+#: settings.py:310
 msgid "hour"
 msgstr "hora"
 
-#: settings.py:310
+#: settings.py:311
 msgid "hours"
 msgstr "horas"
 
-#: settings.py:311
+#: settings.py:312
 msgid "day"
 msgstr "día"
 
-#: settings.py:312
+#: settings.py:313
 msgid "days"
 msgstr "días"
 
-#: settings.py:313
+#: settings.py:314
 msgid "week"
 msgstr "semana"
 
-#: settings.py:314
+#: settings.py:315
 msgid "weeks"
 msgstr "semanas"
 
-#: settings.py:315
+#: settings.py:316
 msgid "month"
 msgstr "mes"
 
-#: settings.py:316
+#: settings.py:317
 msgid "months"
 msgstr "meses"
 
-#: settings.py:317
+#: settings.py:318
 msgid "year"
 msgstr "año"
 
-#: settings.py:318
+#: settings.py:319
 msgid "years"
 msgstr "años"
+
+#: settings.py:320
+msgid "Inmediatly"
+msgstr "Inmediatamente"
 
 #: app/forms.py:23
 msgid "Message subject"
@@ -74,7 +78,7 @@ msgstr "Dirección de email"
 msgid "Your name or company"
 msgstr "Tu nombre o de tu compañía"
 
-#: app/forms.py:34 app/views.py:170
+#: app/forms.py:34 app/views.py:174
 msgid ""
 "I saved a tweet that will be published when I die with http://foowill.com "
 "@foo_will"
@@ -82,15 +86,15 @@ msgstr ""
 "He guardado un tweet que se publicará cuando muera gracias a http://foowill."
 "com @foo_will"
 
-#: app/models.py:131
+#: app/models.py:135
 msgid "Are you still alive?"
 msgstr "¿Aún sigues vivo?"
 
-#: app/models.py:146
+#: app/models.py:151
 msgid "We are glad you are okay!"
 msgstr "Nos alegramos de que estés bien!"
 
-#: app/models.py:157
+#: app/models.py:163
 msgid "The time interval waiting for your twitter status update is exceeded"
 msgstr "El intervalo de tiempo para que esperemos ha expirado"
 
@@ -169,7 +173,7 @@ msgstr ""
 msgid "About Ba"
 msgstr "Sobre Ba"
 
-#: templates/base.html:9 templates/home.html:32
+#: templates/base.html:9
 msgid ""
 "Foowill is an twitter application where you can save tweets that will be "
 "sent to your account when you die (post-tweets)."
@@ -300,66 +304,70 @@ msgstr "Borrar"
 msgid "About"
 msgstr "Acerca de"
 
-#: templates/home.html:33
+#: templates/home.html:32
 msgid ""
-"We really hope not ever having to send them, but because bad things happen, "
-"we give you this opportunity."
+"\n"
+"            Foowill is an <a href=\"http://twitter.com\">twitter</a> "
+"application where you can save tweets that will be sent to your account when "
+"you die (post-tweets).<br/>\n"
+"            We really hope not ever having to send them, but because bad "
+"things happen, we give you this opportunity.<br/>\n"
+"            To check if you continue with us from time to time we will "
+"verify if you've updated your twitter account, that <a href=\"/config\">time "
+"you can decide</a> it yourself.<br/>\n"
+"            If after that time do not read anything new you have the option "
+"of a final check, we will send an email to the address of your choice so you "
+"can stop sending your tweets and post with a simple click let us know that "
+"fortunately still alive.<br/>\n"
+"            "
 msgstr ""
-"Realmente esperamos no tener que enviarlos nunca, pero como las desgracias "
-"ocurren, te brindamos esta oportunidad."
+"\n"
+"            Foowill es una aplicación para <a href=\"http://twitter.com\">twitter</a> "
+"donde puedes guardar tweets que serán publicados en tu cuenta de twitter cuando mueras "
+"(post-tweets).<br/>\n"
+"            Realmente esperamos no tener que enviarlos nunca, pero como las cosas malas ocurren,"
+" te brindamos esta oportunidad.<br/>\n"
+"            Para comprobar si sigues vivo, de ahora en adelante y cada cierto tiempo, "
+"iremos comprobando si has actualizado tu estado en twitter, un <a href=\"/config\">"
+"tu decides cuanto tiempo</a>.<br/>\n"
+"            Si después de ese tiempo no leemos nada nuevo sobre tí, tienes la opción "
+"de una comprobación extra, pues te enviaremos un email a la dirección de correo que configuraste, "
+"para que con un simple click puedas parar el proceso y informarnos que afortunadamente sigues con "
+"vida.<br/>\n"
+"            "
 
-#: templates/home.html:34
-msgid ""
-"To check if you continue with us from time to time we will verify if you've "
-"updated your twitter account, that time you can decide yourself."
-msgstr ""
-"Para comprobar si sigues entre nosotros iremos verificando cada cierto "
-"tiempo si has actualizado tu cuenta de twitter, ese tiempo lo puedes decidir "
-"tú."
-
-#: templates/home.html:35
-msgid ""
-"If after that time do not read anything new you have the option of a final "
-"check, we will send an email to the address of your choice so you can stop "
-"sending your tweets and post with a simple click let us know that "
-"fortunately still alive."
-msgstr ""
-"Si pasado ese tiempo no leemos nada nuevo de tí tienes la opción de una "
-"última comprobación, te enviaremos un email a la dirección que prefieras "
-"para que puedas parar el envio de tus post-tweets y con un simple click "
-"avisarnos que afortunadamente sigues con vida."
-
-#: templates/home.html:42
+#: templates/home.html:48
 msgid "Everything in 3 simple steps:"
 msgstr "Todo en 3 simples pasos:"
 
-#: templates/home.html:43
+#: templates/home.html:49
 msgid ""
-"Please sign in to your twitter account accepting that send tweets on your "
+"1. Please sign in to your twitter account accepting that send tweets on your "
 "behalf."
 msgstr ""
-"Logueate con tu cuenta de twitter aceptando que enviemos mensajes en tu "
+"1. Logueate con tu cuenta de twitter aceptando que enviemos mensajes en tu "
 "nombre."
 
-#: templates/home.html:44
-msgid ""
-"Configure the application by adding your email address and other parameters."
-msgstr ""
-"Configura la aplicación añadiendo tu cuenta de correo y los demás parámetros."
-
-#: templates/home.html:45
-msgid "Saves all the tweets you want."
-msgstr "Guarda todos los tweets que quieras."
-
 #: templates/home.html:50
+msgid ""
+"2. <a href=\"/config\">Configure the application</a>, adding your email "
+"address and time parameters."
+msgstr ""
+"2. <a href=\"/config\">Configura la aplicación</a> añadiendo tu cuenta de correo y los demás parámetros."
+
+#: templates/home.html:51
+msgid "3. <a href=\"/done\" >Saves all the tweets you want</a>."
+msgstr "3. <a href=\"/done\" >Guarda todos los tweets que quieras</a>."
+
+#: templates/home.html:56
 msgid "Login with Twitter"
 msgstr "Iniciar sesión con twitter"
 
-#: templates/home.html:60
+#: templates/home.html:66
 msgid "I just found an app to update twitter post-mortem"
 msgstr "He encontrado un aplicación para actualizar twitter post-mortem"
 
-#: templates/home.html:66 templates/home.html.py:73 templates/home.html:83
+#: templates/home.html:72 templates/home.html.py:79 templates/home.html:89
 msgid "Share on"
 msgstr "Comparte en"
 
@@ -395,12 +403,12 @@ msgstr "Escribe un post-tweet"
 msgid "Post-tweet"
 msgstr "Post-tweet"
 
-#: templates_mails/half_dead.html:6 templates_mails/hope_to_read.html:6
-#: templates_mails/still_alive.html:6
+#: templates_mails/half_dead.html:8 templates_mails/hope_to_read.html:7
+#: templates_mails/still_alive.html:7
 msgid "Hello"
 msgstr "Hola"
 
-#: templates_mails/half_dead.html:8
+#: templates_mails/half_dead.html:10
 msgid ""
 "\n"
 "    <p>This is an automatic message from <a href=\"http://www.foowill.com"
@@ -416,11 +424,11 @@ msgstr ""
 "twitter y estamos preocupados por tí.</p>\n"
 "    "
 
-#: templates_mails/half_dead.html:13
+#: templates_mails/half_dead.html:15
 msgid "Your last status update on twitter was "
 msgstr "Tu última actualización en twitter fue hace"
 
-#: templates_mails/half_dead.html:16
+#: templates_mails/half_dead.html:18
 #, python-format
 msgid ""
 "\n"
@@ -437,7 +445,7 @@ msgstr ""
 "guardaste en <a href=\"http://www.foowill.com\">foowill.com</a> \n"
 "    "
 
-#: templates_mails/half_dead.html:22
+#: templates_mails/half_dead.html:24
 msgid ""
 "You also have the option to login on <a href=\"http://www.foowill.com"
 "\">foowill.com</a> to stop the publish process."
@@ -445,7 +453,7 @@ msgstr ""
 "También tienes la opción de inciar sesión en <a href=\"http://www.foowill.com"
 "\">foowill.com</a> para parar el proceso de publicación de tus post-tweets."
 
-#: templates_mails/half_dead.html:24
+#: templates_mails/half_dead.html:26
 msgid ""
 "If you think it's necessary to increase the downtime interval on twitter, we "
 "recommend that you change your settings:"
@@ -453,18 +461,18 @@ msgstr ""
 "Si ahora crees que el intervalo de actualización en twitter es muy reducido "
 "te recomendamos que lo cambies desde tu configuración personal:"
 
-#: templates_mails/half_dead.html:27
+#: templates_mails/half_dead.html:29
 msgid "We remind you that you can add or delete post-tweets if you still want!"
 msgstr ""
 "Te recordamos que también puedes seguir añadiendo o borrando post-tweets si "
 "aún quieres"
 
-#: templates_mails/half_dead.html:29 templates_mails/hope_to_read.html:14
-#: templates_mails/still_alive.html:15
+#: templates_mails/half_dead.html:31 templates_mails/hope_to_read.html:15
+#: templates_mails/still_alive.html:16
 msgid "Regards,"
 msgstr "Saludos"
 
-#: templates_mails/hope_to_read.html:8
+#: templates_mails/hope_to_read.html:9
 #, python-format
 msgid ""
 "\n"
@@ -478,16 +486,16 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"        <p>Este es un mensaje automático desde <a href=\"http://www.foowill.com"
-"\">foowill.com</a>.</p>\n"
-"        <p>El intervalo de espera por una actualización en tu estado de twitter ha expirado "
-". Hemos proceddo a la publicación de tus post-tweets en <a href=\"https://"
-"twitter.com/#!/%(username)s\">twitter</a>.</p>\n"
-"        <p>Esperamos que todo esto sea una confusión y puedas llegar a leer este mensaje, "
-" aunque los post-tweets ya hayan sido publicados.</p>\n"
+"        <p>Este es un mensaje automático desde <a href=\"http://www.foowill."
+"com\">foowill.com</a>.</p>\n"
+"        <p>El intervalo de espera por una actualización en tu estado de "
+"twitter ha expirado . Hemos proceddo a la publicación de tus post-tweets en "
+"<a href=\"https://twitter.com/#!/%(username)s\">twitter</a>.</p>\n"
+"        <p>Esperamos que todo esto sea una confusión y puedas llegar a leer "
+"este mensaje,  aunque los post-tweets ya hayan sido publicados.</p>\n"
 "    "
 
-#: templates_mails/still_alive.html:8
+#: templates_mails/still_alive.html:9
 msgid ""
 "\n"
 "    <p>This is an automatic message from <a href=\"http://www.foowill.com"
@@ -507,6 +515,32 @@ msgstr ""
 "publicados en twitter.\n"
 "    Esperamos seguir conservándolos durante mucho mucho tiempo. ;)</p>\n"
 "    "
+
+#~ msgid ""
+#~ "We really hope not ever having to send them, but because bad things "
+#~ "happen, we give you this opportunity."
+#~ msgstr ""
+#~ "Realmente esperamos no tener que enviarlos nunca, pero como las "
+#~ "desgracias ocurren, te brindamos esta oportunidad."
+
+#~ msgid ""
+#~ "To check if you continue with us from time to time we will verify if "
+#~ "you've updated your twitter account, that time you can decide yourself."
+#~ msgstr ""
+#~ "Para comprobar si sigues entre nosotros iremos verificando cada cierto "
+#~ "tiempo si has actualizado tu cuenta de twitter, ese tiempo lo puedes "
+#~ "decidir tú."
+
+#~ msgid ""
+#~ "If after that time do not read anything new you have the option of a "
+#~ "final check, we will send an email to the address of your choice so you "
+#~ "can stop sending your tweets and post with a simple click let us know "
+#~ "that fortunately still alive."
+#~ msgstr ""
+#~ "Si pasado ese tiempo no leemos nada nuevo de tí tienes la opción de una "
+#~ "última comprobación, te enviaremos un email a la dirección que prefieras "
+#~ "para que puedas parar el envio de tus post-tweets y con un simple click "
+#~ "avisarnos que afortunadamente sigues con vida."
 
 #~ msgid ""
 #~ "Your last status update on twitter was %(time_without_update|"

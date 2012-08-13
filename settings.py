@@ -317,9 +317,10 @@ month = ugettext_lazy('month')
 months = ugettext_lazy('months')
 year = ugettext_lazy('year')
 years = ugettext_lazy('years')
+inmediatly = ugettext_lazy('Inmediatly')
 
 ACTIVITY_CHOICES = (
-    (3600, '1 hora'),
+    (900, '15 minutos'),
     (604800, string_concat('1 ', week)),
     (1209600, string_concat('2 ', weeks)),
     (1814400, string_concat('3 ', weeks)),
@@ -340,7 +341,7 @@ ACTIVITY_CHOICES = (
 )
 
 PUBLISH_CHOICES = (
-    (0, 'Inmediatly'), ##DEFAULT
+    (0, inmediatly), ##DEFAULT
     (3600, string_concat('1 ', hour)),
     (21600, string_concat('6 ', hours)),
     (86400, string_concat('1 ', day)),

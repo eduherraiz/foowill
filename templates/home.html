@@ -29,27 +29,33 @@
 
     <div class='main-box'>
         <div class='home-initial-text'>
-            {% trans "Foowill is an twitter application where you can save tweets that will be sent to your account when you die (post-tweets)." %}<br/>
-            {% trans "We really hope not ever having to send them, but because bad things happen, we give you this opportunity." %}<br/>
-            {% trans "To check if you continue with us from time to time we will verify if you've updated your twitter account, that time you can decide yourself." %}<br/>
-            {% trans "If after that time do not read anything new you have the option of a final check, we will send an email to the address of your choice so you can stop sending your tweets and post with a simple click let us know that fortunately still alive." %}<br/>
+            {% blocktrans %}
+            Foowill is an <a href="http://twitter.com">twitter</a> application where you can save tweets that will be sent to your account when you die (post-tweets).<br/>
+            We really hope not ever having to send them, but because bad things happen, we give you this opportunity.<br/>
+            To check if you continue with us from time to time we will verify if you've updated your twitter account, that <a href="/config">time you can decide</a> it yourself.<br/>
+            If after that time do not read anything new you have the option of a final check, we will send an email to the address of your choice so you can stop sending your tweets and post with a simple click let us know that fortunately still alive.<br/>
+            {% endblocktrans %}
         </div>
 
         <div class="row-fluid">
             <div class="span12 row-home-steps">
                 <div class="row-fluid">
-                    <div class="span8 row-home-steps-text">
+                    {% if not user %}
+                        <div class="span8 row-home-steps-text">
+                    {% else %}
+                        <div class="span12 row-home-steps-text">
+                    {% endif %}
                         {% trans "Everything in 3 simple steps:" %}<br/>
-                        1. {% trans "Please sign in to your twitter account accepting that send tweets on your behalf." %}<br/>
-                        2. {% trans "Configure the application by adding your email address and other parameters." %}<br/>
-                        3. {% trans "Saves all the tweets you want." %}<br/>
+                        {% blocktrans %}1. Please sign in to your twitter account accepting that send tweets on your behalf.{% endblocktrans %}<br/>
+                        {% blocktrans %}2. <a href="/config">Configure the application</a>, adding your email address and time parameters.{% endblocktrans %}<br/>
+                        {% blocktrans %}3. <a href="/done" >Saves all the tweets you want</a>.{% endblocktrans %}<br/>
                         <br/>
                     </div>
+                    {% if not user %}
                     <div class="span4 row-home-steps-button">
-                        {% if not user %}
                             <a href="{% url socialauth_begin 'twitter' %}" class="btn btn-success btn-large">{% trans "Login with Twitter" %}</a>
-                        {% endif %}
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

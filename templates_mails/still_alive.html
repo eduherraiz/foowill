@@ -3,6 +3,7 @@
 <html>
 <head></head>
 <body>
+{% language userlanguage %}
     <p>{% trans "Hello" %} <b>{{ username }}</b>,</p>
     
     {% blocktrans %}
@@ -14,6 +15,6 @@
 
     <p>{% trans "Regards," %}</p>
     <p><a href="http://www.foowill.com">Foowill.com</a></p>
-
+{% endlanguage %}
 </body>
 </html>
