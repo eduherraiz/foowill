@@ -1,4 +1,3 @@
-
 from django import template
 from django.core.urlresolvers import reverse
 from django.conf import settings

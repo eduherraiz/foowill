@@ -45,3 +45,13 @@ def connect_tweepy(user):
     auth.set_access_token(access_token, access_token_secret)
 
     return tweepy.API(auth)
+
+#def get_possible_country_code(ip):
+    ##ip = "74.125.230.211" #google.com
+    #from django.contrib.gis.geoip import GeoIP
+    #g = GeoIP(path=settings.GEOIP_PATH)
+    #c = g.country(ip)['country_code']
+    #if not c:
+        #return 'ES'
+    #else:
+        #return c

@@ -28,6 +28,8 @@ class CustomUser(models.Model):
     username = models.CharField(max_length=128)
     photo = models.URLField(blank=True, null=True)
     language = models.CharField(max_length=128, default='en', blank=True)
+    #timezone = models.CharField(max_length=128, default='Europe/Madrid', blank=True)
+    #countrycode = models.CharField(max_length=4, default='ES', blank=True)
 
     last_login = models.DateTimeField(blank=True, null=True)
     

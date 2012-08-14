@@ -14,7 +14,7 @@ class TweetForm(ModelForm):
 class ConfigForm(ModelForm):
     class Meta:
         model = CustomUser
-        fields = ('email','activity_interval', 'publish_interval', 'mail_interval' )
+        fields = ('email','activity_interval', 'publish_interval', 'mail_interval', 'timezone' )
         #widgets = {
             #'text': Textarea(attrs={'cols': 40, 'rows': 5}),
         #}	 

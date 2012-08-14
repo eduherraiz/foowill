@@ -40,7 +40,7 @@ DATABASES = {
 ROOT_PATH = abspath(dirname(__file__))
 PROJECT_NAME = basename(ROOT_PATH)
 
-
+#GEOIP_PATH = ROOT_PATH+"/app/static/"
 
 ADMINS = (
     ('Foowill', 'admin@foowill.com'),
@@ -320,7 +320,7 @@ years = ugettext_lazy('years')
 inmediatly = ugettext_lazy('Inmediatly')
 
 ACTIVITY_CHOICES = (
-    (600, '10 minutos'),
+    (900, '15 minutos'),
     (604800, string_concat('1 ', week)),
     (1209600, string_concat('2 ', weeks)),
     (1814400, string_concat('3 ', weeks)),

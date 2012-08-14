@@ -18,9 +18,10 @@ from social_auth.utils import setting
 from social_auth.models import UserSocialAuth
 
 from app.models import Tweet, CustomUser
-from app.utils import send_email_mandrill
+from app.utils import send_email_mandrill, get_possible_country_code
 from app.forms import *
 
+#from pytz import country_timezones
 
 def get_user(userg):
     try: 
@@ -111,7 +112,10 @@ def about(request):
 @login_required
 def config(request):
     """Login complete view, displays user data"""
-    user = get_user(request.user)
+    #user = get_user(request.user)
+    #ip = request.META.get('REMOTE_ADDR', None)
+    #countrycode = get_possible_country_code(ip)
+    #timezones = country_timezones(countrycode)
        
     saved = False
         
@@ -124,7 +128,9 @@ def config(request):
             user.publish_interval = form.cleaned_data['publish_interval']
             user.mail_interval = form.cleaned_data['mail_interval']
             user.activity_interval = form.cleaned_data['activity_interval']
+            user.timezone = form.cleaned_data['timezone']
             user.language = get_language()
+            #user.countrycode = countrycode
             user.update_twitter_photo()
             user.update_date()
             
@@ -142,12 +148,14 @@ def config(request):
             saved = True
     else:
         form = ConfigForm(instance=user) # An unbound form
+
         
     ctx = {
         'form': form,
         'tweetform': TweetForm(),
         'user': user,
         'saved' : saved,
+        #'timezones' : timezones,
     }
     
     return render_to_response('config.html', ctx, RequestContext(request))

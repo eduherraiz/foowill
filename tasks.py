@@ -51,14 +51,16 @@ def killer_saver():
         else:
             date_substract = user.last_update
 
+        nowdate = datetime.utcnow()
 	#time from last update
-	t = datetime.utcnow() - date_substract
+	t = nowdate - date_substract
 	
 	#Check if the user status
 	if t.seconds < user.activity_interval:
 	    #Is not still half_dead -> save it
-	    user.dead = False
 	    user.half_dead = False
+	    user.last_update = nowdate
+	    user.next_check = nowdate + timedelta(seconds=user.activity_interval)
 	    user.save()
 	    logger.info("User %s, is SAVED (on twitter) - [%s]" % (user.username, datetime.now()))
 	    activate(user.language)

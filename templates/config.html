@@ -50,7 +50,6 @@
         {% trans "You need to configure the application" %}
         </div>
     {% endif %}
-
         <form action="/config/" method="post" class="form-horizontal"> 
 
         {% csrf_token %}
@@ -105,6 +104,17 @@
                 <p class="help-block">{% trans 'Interval of time between post-tweets update' %}</p>
             </div>
             </div>
+
+<!--            <div class="control-group">
+            <label class="control-label" for="publish_interval">{% trans 'Timezone' %}</label>
+            <div class="controls">
+            <select name="timezone">
+                {% for tz in timezones %}
+                <option value="{{ tz }}"{% if tz == TIME_ZONE %} selected="selected"{% endif %}>{{ tz }}</option>
+                {% endfor %}
+            </select>
+            </div>
+            </div>-->
 
             <div class="form-actions">
             <button type="submit" class="btn btn-primary">{% trans 'Save changes' %}</button>
