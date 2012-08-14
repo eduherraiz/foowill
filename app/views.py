@@ -18,7 +18,7 @@ from social_auth.utils import setting
 from social_auth.models import UserSocialAuth
 
 from app.models import Tweet, CustomUser
-from app.utils import send_email_mandrill, get_possible_country_code
+from app.utils import send_email_mandrill
 from app.forms import *
 
 #from pytz import country_timezones

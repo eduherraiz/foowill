@@ -7,3 +7,4 @@ properties.py
 garbage
 static
 static/css
+static/css/*
