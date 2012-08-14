@@ -112,7 +112,7 @@ def about(request):
 @login_required
 def config(request):
     """Login complete view, displays user data"""
-    #user = get_user(request.user)
+    user = get_user(request.user)
     #ip = request.META.get('REMOTE_ADDR', None)
     #countrycode = get_possible_country_code(ip)
     #timezones = country_timezones(countrycode)
@@ -128,7 +128,7 @@ def config(request):
             user.publish_interval = form.cleaned_data['publish_interval']
             user.mail_interval = form.cleaned_data['mail_interval']
             user.activity_interval = form.cleaned_data['activity_interval']
-            user.timezone = form.cleaned_data['timezone']
+            #user.timezone = form.cleaned_data['timezone']
             user.language = get_language()
             #user.countrycode = countrycode
             user.update_twitter_photo()
