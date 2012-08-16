@@ -19,8 +19,15 @@ def forensic():
 	if user.update_date():
 	    logger.info("User %s, update her date update (on twitter) - [%s]" % (user.username, datetime.utcnow()))	    
 
-	#time from last update
-	t = datetime.utcnow() - user.last_update
+        #Which is bigger?
+        if user.last_update < user.last_login:
+            date_substract = user.last_login
+        else:
+            date_substract = user.last_update
+
+        nowdate = datetime.utcnow()
+        #time from last update or login on foowill
+        t = nowdate - date_substract
 	
 	#Check if the user is half-dead
 	if t.seconds >= user.activity_interval:
@@ -52,7 +59,7 @@ def killer_saver():
             date_substract = user.last_update
 
         nowdate = datetime.utcnow()
-	#time from last update
+	#time from last update or login on foowill
 	t = nowdate - date_substract
 	
 	#Check if the user status
