@@ -43,7 +43,7 @@ def forensic():
 def killer_saver():
     logger = killer_saver.get_logger(logfile='tasks.log')
    
-    users = CustomUser.objects.filter(half_dead=True, dead=False, configured=True)
+    users = CustomUser.objects.filter(next_check__lt=datetime.utcnow(),half_dead=True, dead=False, configured=True)
     
     for user in users:
 	logger.info("User %s, act: %d, mail: %d, lu: %s - [%s]" % (user.username, user.activity_interval, user.mail_interval, user.last_update,  datetime.now()))	    
