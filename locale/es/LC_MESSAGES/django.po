@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-13 20:22+0200\n"
+"POT-Creation-Date: 2012-08-16 21:56+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,47 +18,47 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: settings.py:310
+#: settings.py:314
 msgid "hour"
 msgstr "hora"
 
-#: settings.py:311
+#: settings.py:315
 msgid "hours"
 msgstr "horas"
 
-#: settings.py:312
+#: settings.py:316
 msgid "day"
 msgstr "día"
 
-#: settings.py:313
+#: settings.py:317
 msgid "days"
 msgstr "días"
 
-#: settings.py:314
+#: settings.py:318
 msgid "week"
 msgstr "semana"
 
-#: settings.py:315
+#: settings.py:319
 msgid "weeks"
 msgstr "semanas"
 
-#: settings.py:316
+#: settings.py:320
 msgid "month"
 msgstr "mes"
 
-#: settings.py:317
+#: settings.py:321
 msgid "months"
 msgstr "meses"
 
-#: settings.py:318
+#: settings.py:322
 msgid "year"
 msgstr "año"
 
-#: settings.py:319
+#: settings.py:323
 msgid "years"
 msgstr "años"
 
-#: settings.py:320
+#: settings.py:324
 msgid "Inmediatly"
 msgstr "Inmediatamente"
 
@@ -78,7 +78,7 @@ msgstr "Dirección de email"
 msgid "Your name or company"
 msgstr "Tu nombre o de tu compañía"
 
-#: app/forms.py:34 app/views.py:174
+#: app/forms.py:34 app/views.py:182
 msgid ""
 "I saved a tweet that will be published when I die with http://foowill.com "
 "@foo_will"
@@ -86,61 +86,61 @@ msgstr ""
 "He guardado un tweet que se publicará cuando muera gracias a http://foowill."
 "com @foo_will"
 
-#: app/models.py:135
+#: app/models.py:138
 msgid "Are you still alive?"
 msgstr "¿Aún sigues vivo?"
 
-#: app/models.py:151
+#: app/models.py:154
 msgid "We are glad you are okay!"
 msgstr "Nos alegramos de que estés bien!"
 
-#: app/models.py:163
+#: app/models.py:166
 msgid "The time interval waiting for your twitter status update is exceeded"
 msgstr "El intervalo de tiempo para que esperemos ha expirado"
 
-#: app/templatetags/extras.py:71
+#: app/templatetags/extras.py:70
 #, python-format
 msgid "a year ago"
 msgid_plural "%(years)d years ago"
 msgstr[0] "hace cerca de un año"
 msgstr[1] "hace cerca de %(years)d años"
 
-#: app/templatetags/extras.py:74
+#: app/templatetags/extras.py:73
 #, python-format
 msgid "a month ago"
 msgid_plural "%(months)d months ago"
 msgstr[0] "un mes"
 msgstr[1] "%(months)d meses"
 
-#: app/templatetags/extras.py:77
+#: app/templatetags/extras.py:76
 #, python-format
 msgid "a week ago"
 msgid_plural "%(weeks)d weeks ago"
 msgstr[0] "una semana"
 msgstr[1] "%(weeks)d semanas"
 
-#: app/templatetags/extras.py:80
+#: app/templatetags/extras.py:79
 #, python-format
 msgid "a day ago"
 msgid_plural "%(days)d days ago"
 msgstr[0] "un día"
 msgstr[1] "%(days)d días"
 
-#: app/templatetags/extras.py:83
+#: app/templatetags/extras.py:82
 #, python-format
 msgid "a hour ago"
 msgid_plural "%(hours)d hours ago"
 msgstr[0] "una hora"
 msgstr[1] "%(hours)d horas"
 
-#: app/templatetags/extras.py:86
+#: app/templatetags/extras.py:85
 #, python-format
 msgid "a minute ago"
 msgid_plural "%(minutes)d minutes ago"
 msgstr[0] "un minuto"
 msgstr[1] "%(minutes)d minutos"
 
-#: app/templatetags/extras.py:88
+#: app/templatetags/extras.py:87
 msgid "moments ago"
 msgstr "un momento"
 
@@ -225,17 +225,17 @@ msgstr "Configuración guardada"
 msgid "You need to configure the application"
 msgstr "Necesitas configurar la aplicación"
 
-#: templates/config.html:60
+#: templates/config.html:59
 msgid "Email"
 msgstr "Email"
 
-#: templates/config.html:64
+#: templates/config.html:63
 msgid "We need your email to send you a verification email."
 msgstr ""
 "Necesitamos tu dirección de correo para poder enviarte un email de "
 "verificación."
 
-#: templates/config.html:65
+#: templates/config.html:64
 msgid ""
 "If you leave the field blank, your saved tweets will be posted immediately "
 "after reaching the interval of inactivity."
@@ -243,38 +243,42 @@ msgstr ""
 "Si dejas el campo en blanco, tus tweets guardados serán publicados "
 "inmediatamente después de sobrepasar el intervalo de inactividad."
 
-#: templates/config.html:73
+#: templates/config.html:72
 msgid "Interval of inactivity"
 msgstr "Intervalo de inactividad"
 
-#: templates/config.html:79
+#: templates/config.html:78
 msgid "How long without updating your status should make us worry for you?"
 msgstr ""
 "¿Cuánto tiempo sin actualizar tu estado debe hacer que nos preocupemos por "
 "ti?"
 
-#: templates/config.html:81
+#: templates/config.html:80
 msgid "Your last update on twitter was"
 msgstr "Tu última actualización en twitter fué hace"
 
-#: templates/config.html:89
+#: templates/config.html:88
 msgid "Time pending verification"
 msgstr "Tiempo de espera de la verificación"
 
-#: templates/config.html:95
+#: templates/config.html:94
 msgid "How long we wait for the response to verification mail?"
 msgstr ""
 "¿Cuánto tiempo esperamos por alguna respuesta al email de verificación?"
 
-#: templates/config.html:100
+#: templates/config.html:99
 msgid "Publish interval"
 msgstr "Intervalo de publicación"
 
-#: templates/config.html:105
+#: templates/config.html:104
 msgid "Interval of time between post-tweets update"
 msgstr "Intervalo de tiempo entre publicaciones de post-tweets."
 
-#: templates/config.html:110
+#: templates/config.html:109
+msgid "Timezone"
+msgstr ""
+
+#: templates/config.html:120
 msgid "Save changes"
 msgstr "Guardar cambios"
 
@@ -322,18 +326,18 @@ msgid ""
 "            "
 msgstr ""
 "\n"
-"            Foowill es una aplicación para <a href=\"http://twitter.com\">twitter</a> "
-"donde puedes guardar tweets que serán publicados en tu cuenta de twitter cuando mueras "
-"(post-tweets).<br/>\n"
-"            Realmente esperamos no tener que enviarlos nunca, pero como las cosas malas ocurren,"
-" te brindamos esta oportunidad.<br/>\n"
-"            Para comprobar si sigues vivo, de ahora en adelante y cada cierto tiempo, "
-"iremos comprobando si has actualizado tu estado en twitter, un <a href=\"/config\">"
-"tu decides cuanto tiempo</a>.<br/>\n"
-"            Si después de ese tiempo no leemos nada nuevo sobre tí, tienes la opción "
-"de una comprobación extra, pues te enviaremos un email a la dirección de correo que configuraste, "
-"para que con un simple click puedas parar el proceso y informarnos que afortunadamente sigues con "
-"vida.<br/>\n"
+"            Foowill es una aplicación para <a href=\"http://twitter.com"
+"\">twitter</a> donde puedes guardar tweets que serán publicados en tu cuenta "
+"de twitter cuando mueras (post-tweets).<br/>\n"
+"            Realmente esperamos no tener que enviarlos nunca, pero como las "
+"cosas malas ocurren, te brindamos esta oportunidad.<br/>\n"
+"            Para comprobar si sigues vivo, de ahora en adelante y cada "
+"cierto tiempo, iremos comprobando si has actualizado tu estado en twitter, "
+"un <a href=\"/config\">tu decides cuanto tiempo</a>.<br/>\n"
+"            Si después de ese tiempo no leemos nada nuevo sobre tí, tienes "
+"la opción de una comprobación extra, pues te enviaremos un email a la "
+"dirección de correo que configuraste, para que con un simple click puedas "
+"parar el proceso y informarnos que afortunadamente sigues con vida.<br/>\n"
 "            "
 
 #: templates/home.html:48
@@ -353,7 +357,8 @@ msgid ""
 "2. <a href=\"/config\">Configure the application</a>, adding your email "
 "address and time parameters."
 msgstr ""
-"2. <a href=\"/config\">Configura la aplicación</a> añadiendo tu cuenta de correo y los demás parámetros."
+"2. <a href=\"/config\">Configura la aplicación</a> añadiendo tu cuenta de "
+"correo y los demás parámetros."
 
 #: templates/home.html:51
 msgid "3. <a href=\"/done\" >Saves all the tweets you want</a>."
@@ -429,18 +434,17 @@ msgid "Your last status update on twitter was "
 msgstr "Tu última actualización en twitter fue hace"
 
 #: templates_mails/half_dead.html:18
-#, python-format
 msgid ""
 "\n"
-"        If you do not update your twitter status before  "
-"%(half_dead_time_mail_interval)s,\n"
+"        If you do not update your twitter status in "
+"%(half_dead_time_mail_interval|relative_date2)s,\n"
 "            we will proceed to send your  %(number_posts)s post-tweets that "
 "you saved on <a href=\"http://www.foowill.com\">foowill.com</a> \n"
 "    "
 msgstr ""
 "\n"
-"        Si no actualizas tu estado en twitter antes de   "
-"%(half_dead_time_mail_interval)s,\n"
+"        Si no actualizas tu estado en twitter en   "
+"%(half_dead_time_mail_interval|relative_date2)s,\n"
 "        procederemos a enviar tus  %(number_posts)s post-tweets que "
 "guardaste en <a href=\"http://www.foowill.com\">foowill.com</a> \n"
 "    "

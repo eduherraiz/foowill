@@ -97,7 +97,7 @@ class CustomUser(models.Model):
         
     def update_login_date(self):
         ##Checkin login in last day to update last_login, used in tasks
-        if not self.last_login or self.last_login < (datetime.utcnow() - timedelta(seconds=3600)):
+        if not self.last_login or self.last_login < (datetime.utcnow() - timedelta(seconds=settings.TIME_LOGIN)):
             self.last_login = datetime.utcnow()
 
     def update_twitter_status(self, text):

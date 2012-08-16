@@ -24,6 +24,10 @@ APP_ROOT = getattr(properties, 'app_root', '.')
 DEBUG = getattr(properties, 'debug', True)
 TEMPLATE_DEBUG = DEBUG
 
+TIME_LOGIN = getattr(properties, 'time_login', 60)
+TIME_FORENSIC = getattr(properties, 'time_forensic', 60)
+TIME_KILLERSAVER = getattr(properties, 'time_killersaver', 60)
+
 DATABASES = {
     'default': {
         'ENGINE': getattr(properties, 'database_engine', 'django.db.backends.sqlite3'),
@@ -257,13 +261,13 @@ CELERY_IMPORTS = ("tasks", )
 CELERYBEAT_SCHEDULE = {
     "Forensic": {
         "task": "tasks.forensic",
-        "schedule": timedelta(seconds=60),
+        "schedule": timedelta(seconds=TIME_FORENSIC),
         "args": ()
     },
     
     "Killer-Saver": {
         "task": "tasks.killer_saver",
-        "schedule": timedelta(seconds=60),
+        "schedule": timedelta(seconds=TIME_KILLERSAVER),
         "args": ()
     },
 }
