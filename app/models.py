@@ -87,6 +87,8 @@ class CustomUser(models.Model):
         else:
             new_date = datetime.utcnow()
         
+        if not self.activity_interval:
+            self.activity_interval = 3600
         next_check = new_date + timedelta(seconds=self.activity_interval)            
         
         if not self.last_update or (self.last_update < new_date):
