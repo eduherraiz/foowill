@@ -92,10 +92,11 @@ class CustomUser(models.Model):
         if not self.last_update or (self.last_update < new_date):
             self.last_update = new_date
             self.next_check = next_check
-            #self.save()
+            self.save()
         return self.last_update
         
     def update_login_date(self):
+        ##Checkin login in last day to update last_login, used in tasks
         if not self.last_login or self.last_login < (datetime.utcnow() - timedelta(seconds=3600)):
             self.last_login = datetime.utcnow()
 
