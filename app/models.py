@@ -78,7 +78,7 @@ class CustomUser(models.Model):
         #super(CustomUser, self).save(*args, **kwargs)
         
 
-    def update_date(self, force):
+    def update_date(self, force=False):
 	"Save the last update date in twitter for the user"
         api = twitter.Api(settings.TWITTER_CONSUMER_KEY,settings.TWITTER_CONSUMER_SECRET,settings.ACCESS_TOKEN,settings.ACCESS_TOKEN_SECRET)
         statuses = api.GetUserTimeline(self.username, count=1)
