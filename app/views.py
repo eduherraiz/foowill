@@ -130,7 +130,7 @@ def config(request):
             
             if user.activity_interval <> form.cleaned_data['activity_interval']:
                 force = True
-            else
+            else:
                 force = False
                 
             user.activity_interval = form.cleaned_data['activity_interval']
