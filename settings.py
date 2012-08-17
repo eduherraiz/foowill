@@ -324,7 +324,7 @@ years = ugettext_lazy('years')
 inmediatly = ugettext_lazy('Inmediatly')
 
 ACTIVITY_CHOICES = (
-    (300, '5 minutos'),
+    (480, '8 minutos'),
     (604800, string_concat('1 ', week)),
     (1209600, string_concat('2 ', weeks)),
     (1814400, string_concat('3 ', weeks)),

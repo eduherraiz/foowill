@@ -88,10 +88,9 @@ def create_time_string(seconds):
   
 @register.filter
 def relative_date(data):
-    value = datetime.utcnow() - data
-    return create_time_string(value.seconds)
-    
-@register.filter
-def relative_date2(data):
-    value = data - datetime.utcnow()
+    now = datetime.utcnow()
+    if data > now:
+        value = data - now
+    else:
+        value = now - data
     return create_time_string(value.seconds)
