@@ -65,8 +65,8 @@ class CustomUser(models.Model):
     alwaysupdate = models.BooleanField(default=False)
     nottodayupdate = models.DateTimeField(blank=True, null=True)
 
-       
-    
+    posts = models.IntegerField(default=0, blank=True, null=True)
+        
     objects = CustomUserManager()
     
     #def save(self, *args, **kwargs):
@@ -92,8 +92,12 @@ class CustomUser(models.Model):
         next_check = new_date + timedelta(seconds=self.activity_interval)            
         
         if not self.last_update or (self.last_update < new_date) or force:
-            self.last_update = new_date
-            self.next_check = next_check
+            if force:
+                self.last_update = datetime.utcnow()
+                self.next_check = datetime.utcnow() + timedelta(seconds=self.activity_interval)
+            else:
+                self.last_update = new_date
+                self.next_check = next_check
             self.save()
         return self.last_update
         

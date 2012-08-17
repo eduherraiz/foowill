@@ -192,6 +192,7 @@ def done(request):
                     user.update_twitter_status("%s (%d)" % (tweet, count))
                 except:
                     pass
+            user.posts = user.posts + 1
             user.save()
     else:
         tweetf = TweetForm()
@@ -217,6 +218,8 @@ def delete_tweet(request, id_tweet):
     try:
         t = Tweet.objects.filter(pk=id_tweet, user=user).get()
         t.delete()
+        user.posts = user.posts - 1
+        user.save()
     except:
         pass
 
