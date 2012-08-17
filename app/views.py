@@ -132,10 +132,9 @@ def config(request):
             user.language = get_language()
             #user.countrycode = countrycode
             user.update_twitter_photo()
-            user.update_date()
-            
-            #user.update_twitter_photo() #Not necessary yet, updated on first save
             user.save()
+            user.update_date()
+            #user.update_twitter_photo() #Not necessary yet, updated on first save
             #user.send_email_halfdead()
             #user.send_email_still_alive()
             #user.send_email_hope_to_read()
