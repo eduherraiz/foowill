@@ -127,13 +127,19 @@ def config(request):
             user.email = form.cleaned_data['email']
             user.publish_interval = form.cleaned_data['publish_interval']
             user.mail_interval = form.cleaned_data['mail_interval']
+            
+            if user.activity_interval <> form.cleaned_data['activity_interval']:
+                force = True
+            else
+                force = False
+                
             user.activity_interval = form.cleaned_data['activity_interval']
             #user.timezone = form.cleaned_data['timezone']
             user.language = get_language()
             #user.countrycode = countrycode
             user.update_twitter_photo()
             user.save()
-            user.update_date()
+            user.update_date(force)
             #user.update_twitter_photo() #Not necessary yet, updated on first save
             #user.send_email_halfdead()
             #user.send_email_still_alive()

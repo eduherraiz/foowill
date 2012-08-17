@@ -78,7 +78,7 @@ class CustomUser(models.Model):
         #super(CustomUser, self).save(*args, **kwargs)
         
 
-    def update_date(self):
+    def update_date(self, force):
 	"Save the last update date in twitter for the user"
         api = twitter.Api(settings.TWITTER_CONSUMER_KEY,settings.TWITTER_CONSUMER_SECRET,settings.ACCESS_TOKEN,settings.ACCESS_TOKEN_SECRET)
         statuses = api.GetUserTimeline(self.username, count=1)
@@ -91,7 +91,7 @@ class CustomUser(models.Model):
             self.activity_interval = 3600
         next_check = new_date + timedelta(seconds=self.activity_interval)            
         
-        if not self.last_update or (self.last_update < new_date):
+        if not self.last_update or (self.last_update < new_date) or force:
             self.last_update = new_date
             self.next_check = next_check
             self.save()
