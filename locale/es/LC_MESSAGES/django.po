@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-16 21:56+0200\n"
+"POT-Creation-Date: 2012-08-18 01:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,7 +78,7 @@ msgstr "Dirección de email"
 msgid "Your name or company"
 msgstr "Tu nombre o de tu compañía"
 
-#: app/forms.py:34 app/views.py:182
+#: app/forms.py:34 app/views.py:187
 msgid ""
 "I saved a tweet that will be published when I die with http://foowill.com "
 "@foo_will"
@@ -86,15 +86,15 @@ msgstr ""
 "He guardado un tweet que se publicará cuando muera gracias a http://foowill."
 "com @foo_will"
 
-#: app/models.py:138
+#: app/models.py:146
 msgid "Are you still alive?"
 msgstr "¿Aún sigues vivo?"
 
-#: app/models.py:154
+#: app/models.py:162
 msgid "We are glad you are okay!"
 msgstr "Nos alegramos de que estés bien!"
 
-#: app/models.py:166
+#: app/models.py:174
 msgid "The time interval waiting for your twitter status update is exceeded"
 msgstr "El intervalo de tiempo para que esperemos ha expirado"
 
@@ -437,14 +437,14 @@ msgstr "Tu última actualización en twitter fue hace"
 msgid ""
 "\n"
 "        If you do not update your twitter status in "
-"%(half_dead_time_mail_interval|relative_date2)s,\n"
+"%(half_dead_time_mail_interval|relative_date)s,\n"
 "            we will proceed to send your  %(number_posts)s post-tweets that "
 "you saved on <a href=\"http://www.foowill.com\">foowill.com</a> \n"
 "    "
 msgstr ""
 "\n"
 "        Si no actualizas tu estado en twitter en   "
-"%(half_dead_time_mail_interval|relative_date2)s,\n"
+"%(half_dead_time_mail_interval|relative_date)s,\n"
 "        procederemos a enviar tus  %(number_posts)s post-tweets que "
 "guardaste en <a href=\"http://www.foowill.com\">foowill.com</a> \n"
 "    "

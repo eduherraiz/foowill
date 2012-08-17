@@ -60,8 +60,11 @@ def killer_saver():
 
         nowdate = datetime.utcnow()
 	#time from last update or login on foowill
-	t = nowdate - date_substract
-	
+	if nowdate > date_substract: #Correction for a date_substract in future (synchronization problems)
+            t = nowdate - date_substract
+        else:
+            t = timedelta(seconds=0)
+            
 	#Check if the user status
 	if t.seconds < user.activity_interval:
 	    #Is not still half_dead -> save it
