@@ -9,7 +9,7 @@ from django.contrib.messages.api import get_messages
 from django.conf import settings
 from django.utils.translation import get_language
 from django.utils.translation import ugettext as _
-from datetime import datetime
+from datetime import datetime,timedelta
 
 from tweepy.error import TweepError
 
@@ -140,8 +140,9 @@ def config(request):
             user.update_twitter_photo()
             user.save()
             user.update_date(force)
-            #user.update_twitter_photo() #Not necessary yet, updated on first save
-            #user.send_email_halfdead()
+
+            ##USED FOR TESTING 
+            user.send_email_halfdead()
             #user.send_email_still_alive()
             #user.send_email_hope_to_read()
             #user.deliver_all_to_twitter()
@@ -159,6 +160,8 @@ def config(request):
         'form': form,
         'tweetform': TweetForm(),
         'user': user,
+        'bigger': user.bigger_date(),
+        'bigger2': user.bigger_date() + timedelta(seconds=(user.activity_interval+user.mail_interval)),
         'saved' : saved,
         #'timezones' : timezones,
     }

@@ -128,6 +128,6 @@ def updatelessc():
 def updatefast():
     'No changes in DB or requeriments'
     pull()
-    requirements()
-    collectstatic()
+    #requirements()
+    #collectstatic()
     restart()

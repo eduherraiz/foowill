@@ -19,11 +19,8 @@ def forensic():
 	if user.update_date():
 	    logger.info("User %s, update her date update (on twitter) - [%s]" % (user.username, datetime.utcnow()))	    
 
-        #Which is bigger?
-        if user.last_update < user.last_login:
-            date_substract = user.last_login
-        else:
-            date_substract = user.last_update
+        #Which is bigger? login or update date?
+        date_substract = user.bigger_date()
 
         nowdate = datetime.utcnow()
         #time from last update or login on foowill
@@ -52,11 +49,8 @@ def killer_saver():
 	if user.update_date():
 	    logger.info("User %s, update the last date update (on twitter) - [%s]" % (user.username, datetime.utcnow()))	    
 	    
-        #Which is bigger?
-        if user.last_update < user.last_login:
-            date_substract = user.last_login
-        else:
-            date_substract = user.last_update
+        #Which is bigger? login or update date?
+        date_substract = user.bigger_date()
 
         nowdate = datetime.utcnow()
 	#time from last update or login on foowill

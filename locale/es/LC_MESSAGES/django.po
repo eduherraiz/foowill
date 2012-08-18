@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-18 01:43+0200\n"
+"POT-Creation-Date: 2012-08-18 15:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,7 +78,7 @@ msgstr "Dirección de email"
 msgid "Your name or company"
 msgstr "Tu nombre o de tu compañía"
 
-#: app/forms.py:34 app/views.py:187
+#: app/forms.py:34 app/views.py:188
 msgid ""
 "I saved a tweet that will be published when I die with http://foowill.com "
 "@foo_will"
@@ -86,62 +86,63 @@ msgstr ""
 "He guardado un tweet que se publicará cuando muera gracias a http://foowill."
 "com @foo_will"
 
-#: app/models.py:146
+#: app/models.py:152
 msgid "Are you still alive?"
 msgstr "¿Aún sigues vivo?"
 
-#: app/models.py:162
+#: app/models.py:170
 msgid "We are glad you are okay!"
 msgstr "Nos alegramos de que estés bien!"
 
-#: app/models.py:174
+#: app/models.py:182
 msgid "The time interval waiting for your twitter status update is exceeded"
 msgstr "El intervalo de tiempo para que esperemos ha expirado"
 
 #: app/templatetags/extras.py:70
 #, python-format
-msgid "a year ago"
-msgid_plural "%(years)d years ago"
-msgstr[0] "hace cerca de un año"
-msgstr[1] "hace cerca de %(years)d años"
+msgid "a year"
+msgid_plural "%(years)d years"
+msgstr[0] "año"
+msgstr[1] "%(years)d años"
 
 #: app/templatetags/extras.py:73
 #, python-format
-msgid "a month ago"
-msgid_plural "%(months)d months ago"
-msgstr[0] "un mes"
+msgid "a month"
+msgid_plural "%(months)d months"
+msgstr[0] "mes"
 msgstr[1] "%(months)d meses"
 
 #: app/templatetags/extras.py:76
 #, python-format
-msgid "a week ago"
-msgid_plural "%(weeks)d weeks ago"
-msgstr[0] "una semana"
+msgid "a week"
+msgid_plural "%(weeks)d weeks"
+msgstr[0] "semana"
 msgstr[1] "%(weeks)d semanas"
 
 #: app/templatetags/extras.py:79
 #, python-format
-msgid "a day ago"
-msgid_plural "%(days)d days ago"
+msgid "a day"
+msgid_plural "%(days)d days"
 msgstr[0] "un día"
 msgstr[1] "%(days)d días"
 
 #: app/templatetags/extras.py:82
 #, python-format
-msgid "a hour ago"
-msgid_plural "%(hours)d hours ago"
-msgstr[0] "una hora"
+msgid "a hour"
+msgid_plural "%(hours)d hours"
+msgstr[0] "hora"
 msgstr[1] "%(hours)d horas"
 
 #: app/templatetags/extras.py:85
 #, python-format
-msgid "a minute ago"
-msgid_plural "%(minutes)d minutes ago"
+msgid "a minute"
+msgid_plural "%(minutes)d minutes"
 msgstr[0] "un minuto"
 msgstr[1] "%(minutes)d minutos"
 
 #: app/templatetags/extras.py:87
-msgid "moments ago"
+#,
+msgid "moments"
 msgstr "un momento"
 
 #: templates/403.html:31
@@ -276,7 +277,7 @@ msgstr "Intervalo de tiempo entre publicaciones de post-tweets."
 
 #: templates/config.html:109
 msgid "Timezone"
-msgstr ""
+msgstr "Zona horaria"
 
 #: templates/config.html:120
 msgid "Save changes"
@@ -430,22 +431,22 @@ msgstr ""
 "    "
 
 #: templates_mails/half_dead.html:15
-msgid "Your last status update on twitter was "
-msgstr "Tu última actualización en twitter fue hace"
+#, python-format
+msgid "The latest news we have of you was %(time1)s ago."
+msgstr "La última noticia que tenemos de ti fue hace %(time1)s."
 
 #: templates_mails/half_dead.html:18
+#, python-format
 msgid ""
 "\n"
-"        If you do not update your twitter status in "
-"%(half_dead_time_mail_interval|relative_date)s,\n"
-"            we will proceed to send your  %(number_posts)s post-tweets that "
+"        If you do not update your twitter status in the next %(time2)s,\n"
+"            we will proceed to send your post-tweets (%(number_posts)s) that "
 "you saved on <a href=\"http://www.foowill.com\">foowill.com</a> \n"
 "    "
 msgstr ""
 "\n"
-"        Si no actualizas tu estado en twitter en   "
-"%(half_dead_time_mail_interval|relative_date)s,\n"
-"        procederemos a enviar tus  %(number_posts)s post-tweets que "
+"        Si no actualizas tu estado en twitter en %(time2)s,\n"
+"        procederemos a enviar los post-tweets (%(number_posts)s) que "
 "guardaste en <a href=\"http://www.foowill.com\">foowill.com</a> \n"
 "    "
 
@@ -519,6 +520,29 @@ msgstr ""
 "publicados en twitter.\n"
 "    Esperamos seguir conservándolos durante mucho mucho tiempo. ;)</p>\n"
 "    "
+
+#~ msgid "a year ago"
+#~ msgid_plural "%(years)d years ago"
+#~ msgstr[0] "hace cerca de un año"
+#~ msgstr[1] "hace cerca de %(years)d años"
+
+#~ msgid "a month ago"
+#~ msgid_plural "%(months)d months ago"
+#~ msgstr[0] "un mes"
+#~ msgstr[1] "%(months)d meses"
+
+#~ msgid "a week ago"
+#~ msgid_plural "%(weeks)d weeks ago"
+#~ msgstr[0] "una semana"
+#~ msgstr[1] "%(weeks)d semanas"
+
+#~ msgid "a hour ago"
+#~ msgid_plural "%(hours)d hours ago"
+#~ msgstr[0] "una hora"
+#~ msgstr[1] "%(hours)d horas"
+
+#~ msgid "Your last status update on twitter was "
+#~ msgstr "Tu última actualización en twitter fue hace"
 
 #~ msgid ""
 #~ "We really hope not ever having to send them, but because bad things "

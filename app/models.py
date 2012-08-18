@@ -135,6 +135,12 @@ class CustomUser(models.Model):
 	if self.nottodayupdate and (self.nottodayupdate > (datetime.utcnow() - timedelta(days=1))):
 	    return False
 	return True
+
+    def bigger_date(self):
+        if self.last_update < self.last_login:
+            return self.last_login
+        else:
+            return self.last_update
 	
     def send_email(self, subject,  html_content):
         send_email_mandrill(subject, html_content,settings.EMAIL_PROJECT ,settings.NAME_PROJECT,self.email, self.username)
@@ -149,8 +155,8 @@ class CustomUser(models.Model):
             { 
             'userlanguage': self.language,
             'username': self.username,
-            'time_without_update': self.last_update,
-            'half_dead_time_mail_interval': self.last_update + timedelta(seconds=self.activity_interval+self.mail_interval),
+            'time_without_update': self.bigger_date(),
+            'half_dead_time_mail_interval': self.bigger_date() + timedelta(seconds=(self.activity_interval+self.mail_interval)),
             'number_posts': self.number_posts(),
             'link_for_config': 'http://www.foowill.com/config'
             }

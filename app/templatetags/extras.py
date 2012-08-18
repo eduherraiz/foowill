@@ -59,38 +59,38 @@ def values(ts):
     return a
     
 def create_time_string(seconds):
-    hours = seconds / 3600
     minutes = (seconds % 3600) / 60
+    hours = seconds / 3600
     days = hours/24
     weeks = days/7
     months = days/30
     years = months/12
   
     if years > 0:
-        return ungettext('a year ago','%(years)d years ago', years) % {'years': years }
+        return ungettext('a year','%(years)d years', years) % {'years': years }
         
     if months > 0:
-        return ungettext('a month ago','%(months)d months ago', months) % {'months': months }    
+        return ungettext('a month','%(months)d months', months) % {'months': months }    
     
     if weeks > 0:
-        return ungettext('a week ago','%(weeks)d weeks ago', weeks) % {'weeks': weeks }
+        return ungettext('a week','%(weeks)d weeks', weeks) % {'weeks': weeks }
         
     if days > 0:
-        return ungettext('a day ago','%(days)d days ago', days) % {'days': days }
+        return ungettext('a day','%(days)d days', days) % {'days': days }
         
     if hours > 0:
-        return ungettext('a hour ago','%(hours)d hours ago', hours) % {'hours': hours }
+        return ungettext('a hour','%(hours)d hours', hours) % {'hours': hours }
         
     if minutes > 0:
-        return ungettext('a minute ago','%(minutes)d minutes ago', minutes) % {'minutes': minutes }
+        return ungettext('a minute','%(minutes)d minutes', minutes) % {'minutes': minutes }
         
-    return ugettext('moments ago')
+    return ugettext('moments')
   
 @register.filter
 def relative_date(data):
     now = datetime.utcnow()
     if data > now:
-        value = data - now
+        v = data - now
     else:
-        value = now - data
-    return create_time_string(value.seconds)
+        v = now - data
+    return create_time_string(v.seconds+(v.days * 86400))
