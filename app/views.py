@@ -142,6 +142,8 @@ def config(request):
             user.update_date(force)
 
             ##USED FOR TESTING 
+            #user.posts_sended = user.posts
+            #user.deliver_one_to_twitter()
             #user.send_email_halfdead()
             #user.send_email_still_alive()
             #user.send_email_hope_to_read()

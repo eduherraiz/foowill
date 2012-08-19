@@ -30,7 +30,7 @@ def forensic():
 	if t.seconds >= user.activity_interval:
 	    user.half_dead = True
 	    user.save()
-	    
+	    False
 	    logger.info("User %s, is HALF-DEAD (on twitter) - [%s]" % (user.username, datetime.utcnow()))
 	    activate(user.language)
 	    user.send_email_halfdead()
@@ -78,10 +78,23 @@ def killer_saver():
 	    logger.info("User %s, is DEAD (on twitter) - [%s]" % (user.username, datetime.utcnow()))
 	    activate(user.language)
 	    user.send_email_hope_to_read()
-	    user.deliver_all_to_twitter()
-	    deactivate()
-            #TODO: Deliver messages with the publish interval !!!
+            if user.mail_interval == 0:    
+                user.deliver_all_to_twitter()
+            else:
+                user.posts_sended = user.posts
+                user.deliver_one_to_twitter()
+            deactivate()
             
 	else:
 	    logger.info("User %s, is STILL HALF-DEAD (on twitter) - [%s]" % (user.username, datetime.utcnow()))
 	    #TODO: if email: Send email for another reminder.
+
+	    
+@task
+def tweet_sender():
+    logger = killer_saver.get_logger(logfile='tasks.log')
+   
+    users = CustomUser.objects.filter(half_dead=True, dead=True, configured=True, posts_sended__gt=0, next_check_mail__lt=datetime.utcnow())
+    
+    for user in users:
+        user.deliver_one_to_twitter()

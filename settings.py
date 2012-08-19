@@ -27,6 +27,7 @@ TEMPLATE_DEBUG = DEBUG
 TIME_LOGIN = getattr(properties, 'time_login', 60)
 TIME_FORENSIC = getattr(properties, 'time_forensic', 60)
 TIME_KILLERSAVER = getattr(properties, 'time_killersaver', 60)
+TIME_TWEETSENDER = getattr(properties, 'time_tweetsender', 60)
 
 DATABASES = {
     'default': {
@@ -269,6 +270,11 @@ CELERYBEAT_SCHEDULE = {
     "Killer-Saver": {
         "task": "tasks.killer_saver",
         "schedule": timedelta(seconds=TIME_KILLERSAVER),
+        "args": ()
+    },
+    "Killer-Saver": {
+        "task": "tasks.tweet_sender",
+        "schedule": timedelta(seconds=TIME_TWEETSENDER),
         "args": ()
     },
 }

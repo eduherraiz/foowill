@@ -50,6 +50,9 @@ class CustomUser(models.Model):
     #fecha para la siguiente comprobación del estado de twitter
     next_check = models.DateTimeField(blank=True, null=True)
     
+    #fecha para la siguiente envío de un post-tweet con interval_mail > 0
+    next_check_mail = models.DateTimeField(blank=True, null=True)
+    
     #if (now() - last_update) > activity_interval: 
 	#half_dead = True
     half_dead = models.BooleanField(default=False)
@@ -66,6 +69,7 @@ class CustomUser(models.Model):
     nottodayupdate = models.DateTimeField(blank=True, null=True)
 
     posts = models.IntegerField(default=0, blank=True, null=True)
+    posts_sended = models.IntegerField(default=0, blank=True, null=True)
         
     objects = CustomUserManager()
     
@@ -193,6 +197,15 @@ class CustomUser(models.Model):
         for tweet in tweets:
             self.update_twitter_status(tweet.text)
 
+    def deliver_one_to_twitter(self):    
+        if self.posts_sended > 0:
+            self.next_check_mail = datetime.utcnow() + timedelta(seconds=self.mail_interval)
+            ts = self.posts - self.posts_sended
+            self.posts_sended = self.posts_sended - 1
+            tweets = Tweet.objects.filter(user=self)
+            self.update_twitter_status(tweets[ts].text)
+            self.save()
+            
     def admin_thumbnail(self):
         return u'<img src="%s" />' % (self.photo)
     admin_thumbnail.short_description = 'Thumbnail'
