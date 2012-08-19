@@ -134,6 +134,7 @@ TEMPLATE_LOADERS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
+    'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
     'django.core.context_processors.i18n',
     'app.context_processors.debug_mode',

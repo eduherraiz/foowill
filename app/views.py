@@ -142,7 +142,7 @@ def config(request):
             user.update_date(force)
 
             ##USED FOR TESTING 
-            user.send_email_halfdead()
+            #user.send_email_halfdead()
             #user.send_email_still_alive()
             #user.send_email_hope_to_read()
             #user.deliver_all_to_twitter()

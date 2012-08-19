@@ -5,7 +5,7 @@ from django.http import HttpResponse
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-
+from admin import *
 from app.views import *
 
 admin.autodiscover()

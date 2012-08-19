@@ -192,9 +192,22 @@ class CustomUser(models.Model):
         tweets = Tweet.objects.filter(user=self)
         for tweet in tweets:
             self.update_twitter_status(tweet.text)
-        
+
+    def admin_thumbnail(self):
+        return u'<img src="%s" />' % (self.photo)
+    admin_thumbnail.short_description = 'Thumbnail'
+    admin_thumbnail.allow_tags = True
+    
+    def admin_posts(self):
+        return u'<a href="/admin/app/tweet/?q=1&user__id__exact=%d">%d Post-tweets</a>' % (self.id, self.posts)
+    admin_posts.short_description = 'Post-tweets'
+    admin_posts.allow_tags = True
+    
     def is_authenticated(self):
         return True
+    
+    def __unicode__(self):
+        return self.username
         
 # Define Tweet 
 class Tweet(models.Model):
