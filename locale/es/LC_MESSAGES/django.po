@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-18 15:50+0200\n"
+"POT-Creation-Date: 2012-08-22 20:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,47 +18,47 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: settings.py:314
+#: settings.py:321
 msgid "hour"
 msgstr "hora"
 
-#: settings.py:315
+#: settings.py:322
 msgid "hours"
 msgstr "horas"
 
-#: settings.py:316
+#: settings.py:323
 msgid "day"
 msgstr "día"
 
-#: settings.py:317
+#: settings.py:324
 msgid "days"
 msgstr "días"
 
-#: settings.py:318
+#: settings.py:325
 msgid "week"
 msgstr "semana"
 
-#: settings.py:319
+#: settings.py:326
 msgid "weeks"
 msgstr "semanas"
 
-#: settings.py:320
+#: settings.py:327
 msgid "month"
 msgstr "mes"
 
-#: settings.py:321
+#: settings.py:328
 msgid "months"
 msgstr "meses"
 
-#: settings.py:322
+#: settings.py:329
 msgid "year"
 msgstr "año"
 
-#: settings.py:323
+#: settings.py:330
 msgid "years"
 msgstr "años"
 
-#: settings.py:324
+#: settings.py:331
 msgid "Inmediatly"
 msgstr "Inmediatamente"
 
@@ -78,7 +78,7 @@ msgstr "Dirección de email"
 msgid "Your name or company"
 msgstr "Tu nombre o de tu compañía"
 
-#: app/forms.py:34 app/views.py:188
+#: app/forms.py:34 app/views.py:192
 msgid ""
 "I saved a tweet that will be published when I die with http://foowill.com "
 "@foo_will"
@@ -86,15 +86,15 @@ msgstr ""
 "He guardado un tweet que se publicará cuando muera gracias a http://foowill."
 "com @foo_will"
 
-#: app/models.py:152
+#: app/models.py:156
 msgid "Are you still alive?"
 msgstr "¿Aún sigues vivo?"
 
-#: app/models.py:170
+#: app/models.py:172
 msgid "We are glad you are okay!"
 msgstr "Nos alegramos de que estés bien!"
 
-#: app/models.py:182
+#: app/models.py:184
 msgid "The time interval waiting for your twitter status update is exceeded"
 msgstr "El intervalo de tiempo para que esperemos ha expirado"
 
@@ -141,7 +141,6 @@ msgstr[0] "un minuto"
 msgstr[1] "%(minutes)d minutos"
 
 #: app/templatetags/extras.py:87
-#,
 msgid "moments"
 msgstr "un momento"
 
@@ -218,25 +217,25 @@ msgstr "Iniciar sesión con twitter"
 msgid "Settings"
 msgstr "Configuración"
 
-#: templates/config.html:44
+#: templates/config.html:43
 msgid "Settings saved"
 msgstr "Configuración guardada"
 
-#: templates/config.html:50
+#: templates/config.html:49
 msgid "You need to configure the application"
 msgstr "Necesitas configurar la aplicación"
 
-#: templates/config.html:59
+#: templates/config.html:58
 msgid "Email"
 msgstr "Email"
 
-#: templates/config.html:63
+#: templates/config.html:62
 msgid "We need your email to send you a verification email."
 msgstr ""
 "Necesitamos tu dirección de correo para poder enviarte un email de "
 "verificación."
 
-#: templates/config.html:64
+#: templates/config.html:63
 msgid ""
 "If you leave the field blank, your saved tweets will be posted immediately "
 "after reaching the interval of inactivity."
@@ -244,42 +243,42 @@ msgstr ""
 "Si dejas el campo en blanco, tus tweets guardados serán publicados "
 "inmediatamente después de sobrepasar el intervalo de inactividad."
 
-#: templates/config.html:72
+#: templates/config.html:71
 msgid "Interval of inactivity"
 msgstr "Intervalo de inactividad"
 
-#: templates/config.html:78
+#: templates/config.html:77
 msgid "How long without updating your status should make us worry for you?"
 msgstr ""
 "¿Cuánto tiempo sin actualizar tu estado debe hacer que nos preocupemos por "
 "ti?"
 
-#: templates/config.html:80
+#: templates/config.html:79
 msgid "Your last update on twitter was"
 msgstr "Tu última actualización en twitter fué hace"
 
-#: templates/config.html:88
+#: templates/config.html:87
 msgid "Time pending verification"
 msgstr "Tiempo de espera de la verificación"
 
-#: templates/config.html:94
+#: templates/config.html:93
 msgid "How long we wait for the response to verification mail?"
 msgstr ""
 "¿Cuánto tiempo esperamos por alguna respuesta al email de verificación?"
 
-#: templates/config.html:99
+#: templates/config.html:98
 msgid "Publish interval"
 msgstr "Intervalo de publicación"
 
-#: templates/config.html:104
+#: templates/config.html:103
 msgid "Interval of time between post-tweets update"
 msgstr "Intervalo de tiempo entre publicaciones de post-tweets."
 
-#: templates/config.html:109
+#: templates/config.html:108
 msgid "Timezone"
 msgstr "Zona horaria"
 
-#: templates/config.html:120
+#: templates/config.html:119
 msgid "Save changes"
 msgstr "Guardar cambios"
 
@@ -299,7 +298,7 @@ msgstr ""
 
 #: templates/contact.html:103
 msgid "Send Message"
-msgstr "Enviar Mensake"
+msgstr "Enviar Mensaje"
 
 #: templates/done.html:20
 msgid "Delete"

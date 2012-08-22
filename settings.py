@@ -330,26 +330,49 @@ year = ugettext_lazy('year')
 years = ugettext_lazy('years')
 inmediatly = ugettext_lazy('Inmediatly')
 
-ACTIVITY_CHOICES = (
-    (480, '8 minutos'),
-    (604800, string_concat('1 ', week)),
-    (1209600, string_concat('2 ', weeks)),
-    (1814400, string_concat('3 ', weeks)),
-    (2419200, string_concat('1 ', month)), ##DEFAULT
-    (4838400, string_concat('2 ', months)), 
-    (7257600, string_concat('3 ', months)),
-    (9676800, string_concat('4 ', months)),
-    (12096000, string_concat('5 ', months)),
-    (14515200, string_concat('6 ', months)),
-    (16934400, string_concat('7 ', months)),
-    (19353600, string_concat('8 ', months)),
-    (21772800, string_concat('9 ', months)),
-    (24192000, string_concat('10 ', months)),
-    (26611200, string_concat('11 ', months)),
-    (29030400, string_concat('1 ', year)),
-    (58060800, string_concat('2 ', years)),
-    (87091200, string_concat('3 ', years)),
-)
+if DEBUG: 
+    ACTIVITY_CHOICES = (
+        (480, '8 minutos'),
+        (604800, string_concat('1 ', week)),
+        (1209600, string_concat('2 ', weeks)),
+        (1814400, string_concat('3 ', weeks)),
+        (2419200, string_concat('1 ', month)), ##DEFAULT
+        (4838400, string_concat('2 ', months)), 
+        (7257600, string_concat('3 ', months)),
+        (9676800, string_concat('4 ', months)),
+        (12096000, string_concat('5 ', months)),
+        (14515200, string_concat('6 ', months)),
+        (16934400, string_concat('7 ', months)),
+        (19353600, string_concat('8 ', months)),
+        (21772800, string_concat('9 ', months)),
+        (24192000, string_concat('10 ', months)),
+        (26611200, string_concat('11 ', months)),
+        (29030400, string_concat('1 ', year)),
+        (58060800, string_concat('2 ', years)),
+        (87091200, string_concat('3 ', years)),
+    )
+else:
+    ACTIVITY_CHOICES = (
+        (604800, string_concat('1 ', week)),
+        (1209600, string_concat('2 ', weeks)),
+        (1814400, string_concat('3 ', weeks)),
+        (2419200, string_concat('1 ', month)), ##DEFAULT
+        (4838400, string_concat('2 ', months)), 
+        (7257600, string_concat('3 ', months)),
+        (9676800, string_concat('4 ', months)),
+        (12096000, string_concat('5 ', months)),
+        (14515200, string_concat('6 ', months)),
+        (16934400, string_concat('7 ', months)),
+        (19353600, string_concat('8 ', months)),
+        (21772800, string_concat('9 ', months)),
+        (24192000, string_concat('10 ', months)),
+        (26611200, string_concat('11 ', months)),
+        (29030400, string_concat('1 ', year)),
+        (58060800, string_concat('2 ', years)),
+        (87091200, string_concat('3 ', years)),
+        (116121600, string_concat('4 ', years)),
+    )    
+
 
 PUBLISH_CHOICES = (
     (0, inmediatly), ##DEFAULT
