@@ -11,7 +11,7 @@ from app.views import *
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^robots\.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: /", mimetype="text/plain")),
+    url(r'^robots\.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: /config\nDisallow: /done", mimetype="text/plain")),
     url(r'', include('app.urls')),
     url(r'', include('social_auth.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),

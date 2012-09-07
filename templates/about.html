@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+    {% extends "base.html" %}
 
 {% load i18n %}
 
@@ -19,18 +19,14 @@
                 <div class="row-fluid">
                     <div class="span8">
                         <h3>{% trans "About Ba" %}</h3>
-                        <p>El ba es una fuerza anímica, componente de la parte espiritual del hombre, 
-                        la fuerza animada de cada ser fallecido, personalidad espiritual manifestada una vez acaecida la muerte, según la mitología egipcia.</p>
-
-                        <p>Es un concepto referente al difunto y no al hombre vivo; el ba era una especie de mediador entre el mundo de los dioses y la Tierra, 
-                        pues tenía movilidad y hacía posible que ambos mundos se relacionaran. Era el medio que tenía el difunto para desplazarse y reunirse 
-                        con su ka que permanecía en la tumba.</p>
-                        
-                        <p>El ba abandonaba el cuerpo en el momento de la muerte del individuo y ascendía al reino celestial pero, cada noche, 
-                        debía acudir al sepulcro para alojarse en el cuerpo del difunto, iba y venía del mundo de los dioses a la tumba.</p>
-                        <p>Lo hemos escogido como máscota para que, como los egipcios creían, traiga una parte de tí cuando ya no estés.</p>
-
+                        {% blocktrans %}
+                        <p>Ba is a psychic strength, component of man's spiritual part, the animated strength of each deceased, spiritual personality manifested once death happened, according to Egyptian mythology.</p>
+                        <p>It is a concept which refers to deceased man not to the alive one. Ba was a kind of mediator between gods and the earth, as it had mobility and it made possible that both worlds were connected. It was the way the deceased had for shifting and joining its ka which remained in the tomb.</p>
+                        <p>Ba quitted the body when the person died and ascended to the celestial kingdom but, every night, it should come up to the tomb to lodge the deceased's body, it came and went from the gods' world to the tomb.</p>
+                        <p>We chose Ba as a mascot in order to, as the Egyptians believed, carry a part of you when you are gone.</p>
                         <p><a href="http://www.egyptianmyths.net/ba.htm">More info</a></p>
+
+                        {% endblocktrans %}
                     </div>
                     <div class="span4">
                         <img src='/static/img/foowill_color.jpeg'> 
