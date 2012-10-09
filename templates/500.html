@@ -33,7 +33,7 @@
         <img src='/static/img/foowill_color.jpeg'> 
     </div>
 
-    {% if not user %}
+    {% if not user.configured %}
          {% include "footer.html" %}
     {% endif %}
 

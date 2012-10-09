@@ -46,7 +46,7 @@
 
     {% if not user.configured %}
         <div class="alert alert-error">
-        {% trans "You need to configure the application" %}
+        <h2>{% trans "You need to configure the application" %}</h2>
         </div>
     {% endif %}
         <form action="/config/" method="post" class="form-horizontal"> 

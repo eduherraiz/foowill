@@ -59,6 +59,10 @@
                     {% endif %}
                 </div>
             </div>
+            <div class="span12">
+                <br/>
+                {% blocktrans %}<b>Security</b>: your post-tweets are saved and no one will read before they are published on twitter.{% endblocktrans %}<br/>
+            </div>
         </div>
         <div class="row-fluid">
             <div class="span4">
@@ -109,7 +113,7 @@
             </div>
     </div>
 
-    {% if not user %}
+    {% if not user.configured %}
          {% include "footer.html" %}
     {% endif %}
 
