@@ -228,10 +228,10 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-TWITTER_CONSUMER_KEY         = 'W5LegvUQ6n8yewTD416XZw'
-TWITTER_CONSUMER_SECRET      = 'ibQZkg6Os0UaBr4r4TAJUOfcGYVwljvfKQyNqyrOMCo'
-ACCESS_TOKEN                 = '252129698-pPOELRBf9PxPqvrkL05WGbb7MVeo3vtw6JYGb329'
-ACCESS_TOKEN_SECRET          = '2NBcrSon1uWdqnWJLj0YPwTJjXvMyTOTtOlCfzCxqE'
+TWITTER_CONSUMER_KEY         = ''
+TWITTER_CONSUMER_SECRET      = ''
+ACCESS_TOKEN                 = ''
+ACCESS_TOKEN_SECRET          = ''
 
 LOGIN_URL          = '/'
 LOGIN_REDIRECT_URL = '/'
@@ -317,7 +317,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 EMAIL_PROJECT = "info@foowill.com"
 ADMIN_EMAIL = "info@foowill.com"
-MANDRILL_KEY = "994dcdb3-9fb4-4852-809d-97a7c358a0b4"
+MANDRILL_KEY = ""
 
 hour = ugettext_lazy('hour')
 hours = ugettext_lazy('hours')
